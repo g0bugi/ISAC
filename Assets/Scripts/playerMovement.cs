@@ -1,25 +1,28 @@
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
+    public float moveSpeed, sensitivity;
+    private float horizontalInput, verticalInput, mouseXInput, mouseYInput;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Move()
     {
-        
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+        transform.Translate(moveSpeed * Time.deltaTime * new Vector3(horizontalInput, 0, verticalInput));
+    }
+
+    void Rotate()
+    {
+        mouseXInput = Input.GetAxis("Mouse X");
+        mouseYInput = Input.GetAxis("Mouse Y");
+        transform.Rotate(sensitivity * Time.deltaTime * new Vector3(mouseYInput, mouseXInput, 0));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
-            transform.position += moveSpeed * Time.deltaTime * Vector3.left;
-        if (Input.GetKey(KeyCode.RightArrow))
-            transform.position += moveSpeed * Time.deltaTime * Vector3.right;
-        if (Input.GetKey(KeyCode.UpArrow))
-            transform.position += moveSpeed * Time.deltaTime * Vector3.forward;
-        if (Input.GetKey(KeyCode.DownArrow))
-            transform.position += moveSpeed * Time.deltaTime * Vector3.back;
+        Move();
+        Rotate();
     }
 }
