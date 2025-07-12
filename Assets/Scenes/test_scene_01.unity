@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 272381224}
   - component: {fileID: 272381228}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,12 +237,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272381223}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03d706cf0aec72342b9b1887d28bdfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
+  sensitivity: 0
 --- !u!1 &1890790316
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ GameObject:
   - component: {fileID: 1890790318}
   - component: {fileID: 1890790317}
   - component: {fileID: 1890790320}
+  - component: {fileID: 1890790321}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -380,6 +382,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1890790321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890790316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d706cf0aec72342b9b1887d28bdfcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  sensitivity: 200
 --- !u!1 &2067361679
 GameObject:
   m_ObjectHideFlags: 0
