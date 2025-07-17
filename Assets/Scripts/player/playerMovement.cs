@@ -2,21 +2,34 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed, sensitivity;
-    private float horizontalInput, verticalInput, mouseXInput, mouseYInput;
+    [Header("Tarnslational Settings")]
+    [Range(0, 100)]
+    public float moveSpeed;
+
+    [Header("Rotation Settings")]
+    [Range(100, 1000)]
+    public float rotateSpeed;
+    [Range(-45, -30)]
+    public float minAngle;
+    [Range(30, 75)]
+    public float maxAngle;
+
+    [Header("References")]
+    private float horizontalInput, verticalInput;
+    private float mouseXInput, mouseYInput;
 
     void Move()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        transform.position += moveSpeed * Time.deltaTime * new Vector3(horizontalInput, 0, verticalInput);
+        transform.Translate(Time.deltaTime * moveSpeed * new Vector3(horizontalInput, 0, verticalInput));
     }
 
     void Rotate()
     {
         mouseXInput = Input.GetAxis("Mouse X");
         mouseYInput = Input.GetAxis("Mouse Y");
-        transform.Rotate(sensitivity * Time.deltaTime * new Vector3(-mouseYInput, mouseXInput, 0));
+        transform.Rotate(Time.deltaTime * rotateSpeed * mouseXInput * Vector3.up);
     }
 
     // Update is called once per frame
