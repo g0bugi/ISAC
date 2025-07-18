@@ -108,7 +108,7 @@ public class Playermove : MonoBehaviour
 
     void HandleJump() // ⭐ 점프 처리 함수 분리 및 CharacterController에 맞게 수정
     {
-        Debug.Log($"isGrounded: {isGrounded}, playerVelocity.y: {playerVelocity.y:F2}, Spacebar Pressed: {Input.GetKeyDown(KeyCode.Space)}"); 
+        //Debug.Log($"isGrounded: {isGrounded}, playerVelocity.y: {playerVelocity.y:F2}, Spacebar Pressed: {Input.GetKeyDown(KeyCode.Space)}"); 
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
