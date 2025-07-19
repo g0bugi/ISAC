@@ -11,7 +11,8 @@ public class SoundLight : MonoBehaviour
     public float rippleScaleMultiplier = 2.0f;
     public float randomOffsetRange = 50f; // 파장이 나타날 랜덤 범위 (픽셀 단위)
 
-    public float rippleInterval = 0.5f; // 파장 효과가 나타나는 간격 (초)
+    public float screenEdgePadding = 50f;
+    private RectTransform canvasRectTransform;
     
     
 
@@ -26,6 +27,12 @@ public class SoundLight : MonoBehaviour
         {
             Debug.LogError("씬에서 'MainCamera' 태그가 지정된 카메라를 찾을 수 없습니다.");
         }
+
+        canvasRectTransform = transform.parent.GetComponent<RectTransform>();
+        if (canvasRectTransform == null)
+        {
+            Debug.LogError("Canvas의 RectTransform을 찾을 수 없습니다. SoundRippleEffectManager가 Canvas의 자식에 붙어있는지 확인하세요.");
+        }
     
     }
 
@@ -34,64 +41,53 @@ public class SoundLight : MonoBehaviour
     // soundSourcePosition: 소리가 나는 3D 월드 위치
     public void PlayRippleEffect(Vector3 soundSourcePosition, float audioSourceMaxDistance)
     {
-        if (ripplePrefab == null)
+        if (ripplePrefab == null || mainCamera == null || canvasRectTransform == null)
         {
-            Debug.LogError("Ripple Prefab이 할당되지 않았습니다. Inspector에서 할당해주세요.");
+            Debug.LogError("필수 컴포넌트 또는 프리팹이 할당되지 않았습니다.");
             return;
         }
-        if (mainCamera == null)
-        {
-            Debug.LogError("메인 카메라가 없습니다. 파장 효과를 생성할 수 없습니다.");
-            return;
-        }
-        // 1. 소리 오브젝트와 카메라(AudioListener) 사이의 실제 거리 계산
+
         float distanceToCamera = Vector3.Distance(soundSourcePosition, mainCamera.transform.position);
 
-        // 2. Max Distance를 넘어가면 파장 생성하지 않음
         if (distanceToCamera > audioSourceMaxDistance)
         {
-            // Debug.Log("거리가 Max Distance(" + audioSourceMaxDistance + ")를 초과하여 파장 생성 안 함: " + distanceToCamera);
-            return; // 함수 종료, 파장 생성하지 않음
+            return; // 소리 감쇠 거리를 넘어가면 파장 생성 안 함
         }
 
-        // 3. 거리 기반으로 파장 크기 계산
-        // 거리가 0에 가까울수록 maxRippleSize, MaxDistance에 가까울수록 minRippleSize
-        // Mathf.InverseLerp는 값이 min ~ max 범위 내에서 어디에 위치하는지 0~1 사이의 값으로 반환합니다.
-        // 여기서는 거리가 멀수록 0에 가까워지도록, 가까울수록 1에 가까워지도록 역전시킵니다.
         float normalizedDistance = Mathf.InverseLerp(audioSourceMaxDistance, 0f, distanceToCamera);
-        
-        float initialRippleSize = Mathf.Lerp(minRippleSize, maxRippleSize, normalizedDistance);
+        float initialRippleSize = Mathf.Lerp(minRippleSize, maxRippleSize, normalizedDistance); 
 
-        // Debug.Log("거리: " + distanceToCamera + ", 정규화된 거리: " + normalizedDistance + ", 최종 파장 크기: " + currentRippleSize);
-
-
-
-        // 3D 월드 위치를 2D 화면상의 픽셀 위치로 변환합니다.
-        Vector2 screenPosition = mainCamera.WorldToScreenPoint(soundSourcePosition);
-
-        // 랜덤 부분
-        float offsetX = Random.Range(-randomOffsetRange, randomOffsetRange);
-        float offsetY = Random.Range(-randomOffsetRange, randomOffsetRange);
-        screenPosition += new Vector2(offsetX, offsetY);
-
-        
-        // 파장 UI 인스턴스를 생성합니다.
-        // Canvas의 자식으로 생성되어야 화면에 제대로 표시됩니다.
-        GameObject rippleGO = Instantiate(ripplePrefab, transform.parent); // 이 스크립트가 붙은 오브젝트의 부모 (Canvas) 아래에 생성
+        GameObject rippleGO = Instantiate(ripplePrefab, transform.parent); 
         RectTransform rippleRect = rippleGO.GetComponent<RectTransform>();
         Image rippleImage = rippleGO.GetComponent<Image>();
 
-        
-
-        // 빛 UI의 초기 위치 및 사이즈 설정
-        rippleRect.position = screenPosition;
         rippleRect.sizeDelta = new Vector2(initialRippleSize, initialRippleSize);
 
+        // --- 핵심 로직 수정: 카메라 뒤 오브젝트 위치 반전 처리 ---
+        Vector3 screenPoint = mainCamera.WorldToScreenPoint(soundSourcePosition); // 3D 월드 -> 2D 화면 픽셀 좌표
 
-        // 파장 애니메이션 코루틴 시작
+        // 오브젝트가 카메라 뒤에 있는지 확인
+        // WorldToScreenPoint의 Z값이 0보다 작으면 카메라 뒤에 있는 것입니다.
+        if (screenPoint.z < 0)
+        {
+            // Debug.Log("카메라 뒤 오브젝트 감지: " + soundSourcePosition + " -> " + screenPoint);
+            // 카메라 뒤에 있는 경우, 화면 중앙을 기준으로 X, Y 좌표를 반전시킵니다.
+            // 이렇게 하면 소스 위치가 화면 뒤편의 왼쪽 위라면, 화면 앞의 오른쪽 아래로 매핑됩니다.
+            screenPoint.x = Screen.width - screenPoint.x;
+            screenPoint.y = Screen.height - screenPoint.y;
+            // Z 값은 중요하지 않으므로 그대로 두거나 0으로 설정해도 됩니다.
+        }
+        // --- 여기까지 핵심 로직 수정 ---
+
+        // 최종 화면 위치를 파장 RectTransform에 적용
+        rippleRect.position = screenPoint; 
+
+        // 랜덤 오프셋 추가는 최종 위치 결정 후에 적용
+        float offsetX = Random.Range(-randomOffsetRange, randomOffsetRange);
+        float offsetY = Random.Range(-randomOffsetRange, randomOffsetRange);
+        rippleRect.position += new Vector3(offsetX, offsetY, 0);
+
         StartCoroutine(AnimateRipple(rippleRect, rippleImage, initialRippleSize));
-
-        Debug.Log("변환된 스크린 위치: " + screenPosition);
     }
 
     IEnumerator AnimateRipple(RectTransform rect, Image image, float startSizeForAnim)
