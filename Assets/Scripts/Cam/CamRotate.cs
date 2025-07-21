@@ -1,11 +1,15 @@
 using UnityEngine;
-
+using System.Collections;
 public class CamRotate : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(Waitfor());
+    }
+    IEnumerator Waitfor()
+    {
+        yield return new WaitForSeconds(5);
     }
     public float rotspeed = 1.0f;
     float mx = 0;
@@ -19,7 +23,8 @@ public class CamRotate : MonoBehaviour
         mx += mouse_X * rotspeed * Time.deltaTime;
         my += mouse_Y * rotspeed * Time.deltaTime;
 
-        my = Mathf.Clamp(my, -90f, 90f);
+        my = Mathf.Clamp(my, -20f, 20f);
+        mx = Mathf.Clamp(mx, -30f, 30f);
         transform.eulerAngles = new Vector3(-my, mx, 0);
     }
 }
