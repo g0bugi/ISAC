@@ -6,7 +6,7 @@ public class InteractionTrigger : MonoBehaviour
 {
     public FadeManager fadeManager;
     public DialogueManager dialogueManager;
-    public string[] dialogueLines; // 이 트리거에서 시작할 대화 내용
+    public DialogueLine[] dialogueLines; // 이 트리거에서 시작할 대화 내용
 
     // 플레이어 위치 수정을 위한 변수
     public Transform playerTransform; 
@@ -58,10 +58,12 @@ public class InteractionTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(delayBetweenFades);
 
+        dialogueManager.StartDialogue(dialogueLines);
+
         yield return StartCoroutine(fadeManager.FadeIn(1.0f)); // 1초 동안 페이드 인
 
 
-        dialogueManager.StartDialogue(dialogueLines);
+        
 
         // DialogueManager의 IsDialogueActive 속성을 사용하여 대화 종료를 감지
         yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);

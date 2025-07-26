@@ -21,7 +21,7 @@ public class Playermove : MonoBehaviour
     public string speedParameterName = "Speed"; 
     public string jumpParameterName = "Jump"; 
 
-    private bool canMove = false; // 플레이어 이동 가능 여부 플래그
+    public bool canMove = true; // 플레이어 이동 가능 여부 플래그
 
     void Awake()
     {
@@ -158,6 +158,30 @@ public class Playermove : MonoBehaviour
         // 이동이 활성화될 때 마우스 커서도 다시 잠급니다. (이미 Start에서 했지만 혹시 모를 경우)
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void SetCanMove(bool state)
+    {
+        canMove = state;
+
+        if (!state && playerAnimator != null)
+        {
+            playerAnimator.SetFloat(speedParameterName, 0f);
+        }
+
+        
+        if (state) 
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else 
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        Debug.Log($"플레이어 이동 {(state ? "활성화" : "비활성화")}.");
     }
 
     public void StartGettingUpAnimation()
