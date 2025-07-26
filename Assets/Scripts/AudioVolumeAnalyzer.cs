@@ -6,6 +6,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
 {
     public AudioSource source;
     AudioClip clip;
+    public AudioDistortionFilter distortionFilter;
     float[] spectrum = new float[512];
     public GameObject circlePrefab;
     private bool IsSpawned = false;
@@ -23,31 +24,32 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         yield break;
     }
     int cycle = 0;
-    float timer = 0;
+    float timer = 0f;
     // Update is called once per frame
     void Update()
     {
         if (!source.isPlaying) return;
-        if(noisy)
+        if(timer> 0.05)
         {
-
-        }
             IsSpawned = false;
-        clip.GetData(spectrum, cycle*512);
+        }
+        clip.GetData(spectrum, cycle * 512);
         for (int i = 0; i < spectrum.Length; i++)
         {
-            if (spectrum[i] > 0.4 && !IsSpawned)
+            if (spectrum[i] > 0.3 && !IsSpawned)
             {
-                SpawnCircle();
+                SpawnCircle(spectrum[i]);
                 IsSpawned =true;
             }
         }
         cycle++;
         timer += Time.deltaTime;
     }
-    void SpawnCircle()
+    void SpawnCircle(float volume)
     {
-        Vector3 spawnPos = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), 0f);
-        Instantiate(circlePrefab, spawnPos, Quaternion.identity);
+        Vector3 spawnPos = new Vector3(Random.Range(-16f, 16f), Random.Range(-9f, 9f), 0f);
+        GameObject colorball = Instantiate(circlePrefab, spawnPos, Quaternion.identity);
+        colorball.transform.localScale *= 4f * volume;
+        distortionFilter.distortionLevel += 0.005f;
     }
 }
