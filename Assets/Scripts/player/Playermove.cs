@@ -11,22 +11,22 @@ public class Playermove : MonoBehaviour
     public float mouseSensitivity = 2f;
     public Transform cameraTransform;
 
-    private CharacterController controller; // ⭐ 변경: Rigidbody 대신 CharacterController
-    private Vector3 playerVelocity; // ⭐ 추가: 플레이어의 현재 속도 (중력, 점프 등)
-    private bool isGrounded; // ⭐ 추가: 땅에 닿아있는지 여부
+    private CharacterController controller; 
+    private Vector3 playerVelocity; //플레이어의 현재 속도 (중력, 점프 등)
+    private bool isGrounded; // 땅에 닿아있는지 여부
     private float cameraPitch = 0f;
 
     public Animator playerAnimator;
     public string getUpAnimationTrigger = "GetUp";
-    public string speedParameterName = "Speed"; // 걷기/달리기 애니메이션
-    public string jumpParameterName = "Jump"; // ⭐ 추가: 점프 애니메이션 트리거 (선택 사항)
+    public string speedParameterName = "Speed"; 
+    public string jumpParameterName = "Jump"; 
 
     private bool canMove = false; // 플레이어 이동 가능 여부 플래그
 
     void Awake()
     {
         
-        // ⭐ CharacterController 컴포넌트 가져오기
+        // CharacterController 컴포넌트 가져오기
         controller = GetComponent<CharacterController>();
         if (controller == null)
         {
@@ -71,7 +71,7 @@ public class Playermove : MonoBehaviour
 
         isGrounded = controller.isGrounded;
 
-        // ⭐ 중력 적용
+        // 중력 적용
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2.0f;
@@ -113,9 +113,9 @@ public class Playermove : MonoBehaviour
         }
     }
 
-    void HandleJump() // ⭐ 점프 처리 함수 분리 및 CharacterController에 맞게 수정
+    void HandleJump() // 점프 처리 함수 분리 및 CharacterController에 맞게 수정
     {
-        Debug.Log($"isGrounded: {isGrounded}, playerVelocity.y: {playerVelocity.y:F2}, Spacebar Pressed: {Input.GetKeyDown(KeyCode.Space)}"); 
+        //Debug.Log($"isGrounded: {isGrounded}, playerVelocity.y: {playerVelocity.y:F2}, Spacebar Pressed: {Input.GetKeyDown(KeyCode.Space)}"); 
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {

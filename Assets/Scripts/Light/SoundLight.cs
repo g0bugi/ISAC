@@ -10,6 +10,7 @@ public class SoundLight : MonoBehaviour
     public float minRippleSize = 50f;
     public float rippleScaleMultiplier = 2.0f;
     public float randomOffsetRange = 50f; // 파장이 나타날 랜덤 범위 (픽셀 단위)
+    public float rippleTransparency = 1.0f; // 투명도
 
     public float screenEdgePadding = 50f;
     private RectTransform canvasRectTransform;
@@ -62,6 +63,7 @@ public class SoundLight : MonoBehaviour
         Image rippleImage = rippleGO.GetComponent<Image>();
 
         rippleRect.sizeDelta = new Vector2(initialRippleSize, initialRippleSize);
+        rippleTransparency = 1.0f;
 
         // --- 핵심 로직 수정: 카메라 뒤 오브젝트 위치 반전 처리 ---
         Vector3 screenPoint = mainCamera.WorldToScreenPoint(soundSourcePosition); // 3D 월드 -> 2D 화면 픽셀 좌표
@@ -75,9 +77,10 @@ public class SoundLight : MonoBehaviour
             // 이렇게 하면 소스 위치가 화면 뒤편의 왼쪽 위라면, 화면 앞의 오른쪽 아래로 매핑됩니다.
             screenPoint.x = Screen.width - screenPoint.x;
             screenPoint.y = Screen.height - screenPoint.y;
-            // Z 값은 중요하지 않으므로 그대로 두거나 0으로 설정해도 됩니다.
+            rippleTransparency = 0.5f;
+
         }
-        // --- 여기까지 핵심 로직 수정 ---
+        
 
         // 최종 화면 위치를 파장 RectTransform에 적용
         rippleRect.position = screenPoint; 
@@ -111,7 +114,7 @@ public class SoundLight : MonoBehaviour
 
             // 투명도 애니메이션 (1에서 0으로 감소)
             // 파장이 나타났다가 사라지는 효과를 위해 1-progress를 사용합니다.
-            float currentAlpha = Mathf.Lerp(1f, 0f, progress); 
+            float currentAlpha = Mathf.Lerp(rippleTransparency, 0f, progress); 
             image.color = new Color(initialColor.r, initialColor.g, initialColor.b, currentAlpha);
 
             timer += Time.deltaTime;
