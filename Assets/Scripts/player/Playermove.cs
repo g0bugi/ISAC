@@ -21,10 +21,11 @@ public class Playermove : MonoBehaviour
     public string speedParameterName = "Speed"; // 걷기/달리기 애니메이션
     public string jumpParameterName = "Jump"; // ⭐ 추가: 점프 애니메이션 트리거 (선택 사항)
 
-    private bool canMove = true; // 플레이어 이동 가능 여부 플래그
+    private bool canMove = false; // 플레이어 이동 가능 여부 플래그
 
     void Awake()
     {
+        
         // ⭐ CharacterController 컴포넌트 가져오기
         controller = GetComponent<CharacterController>();
         if (controller == null)
@@ -54,14 +55,19 @@ public class Playermove : MonoBehaviour
             }
         }
 
-        canMove = true;
+        canMove = false;
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
+        //Debug.Log($"[Update] canMove: {canMove}");
+
         if (!canMove) return;
+
+        //Debug.Log($"[Update] → 이동 처리 시작");
 
         isGrounded = controller.isGrounded;
 
@@ -78,6 +84,7 @@ public class Playermove : MonoBehaviour
     void FixedUpdate() 
     {
         if (!canMove) return;
+        //Debug.Log("[FixedUpdate] 이동 처리 진입");
         HandleMovement(); 
     }
 
@@ -108,7 +115,7 @@ public class Playermove : MonoBehaviour
 
     void HandleJump() // ⭐ 점프 처리 함수 분리 및 CharacterController에 맞게 수정
     {
-        //Debug.Log($"isGrounded: {isGrounded}, playerVelocity.y: {playerVelocity.y:F2}, Spacebar Pressed: {Input.GetKeyDown(KeyCode.Space)}"); 
+        Debug.Log($"isGrounded: {isGrounded}, playerVelocity.y: {playerVelocity.y:F2}, Spacebar Pressed: {Input.GetKeyDown(KeyCode.Space)}"); 
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -134,8 +141,20 @@ public class Playermove : MonoBehaviour
 
     public void EnableMovement()
     {
+        this.enabled = true;
         canMove = true;
-        Debug.Log("플레이어 이동 활성화.");
+        Debug.Log("EnableMovement 플레이어 이동 활성화.");
+
+
+        if (controller != null)
+        {
+            Debug.Log($"CharacterController 활성 상태: {controller.enabled}");
+        }
+
+        if (cameraTransform == null)
+        {
+            Debug.LogWarning("카메라가 없습니다!");
+        }
         // 이동이 활성화될 때 마우스 커서도 다시 잠급니다. (이미 Start에서 했지만 혹시 모를 경우)
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -143,6 +162,9 @@ public class Playermove : MonoBehaviour
 
     public void StartGettingUpAnimation()
     {
+        canMove = false;
+        Debug.Log("StartGettingUpAnimation 플레이어 이동 비활성화.");
+
         if (playerAnimator != null && !string.IsNullOrEmpty(getUpAnimationTrigger))
         {
             playerAnimator.SetTrigger(getUpAnimationTrigger);
@@ -168,9 +190,8 @@ public class Playermove : MonoBehaviour
         // 예시: yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(0).length);
         yield return new WaitForSeconds(5.0f); // 임의의 대기 시간 (애니메이션 길이에 맞게 조절)
 
-        if (!canMove)
-        {
-            EnableMovement();
-        }
+        EnableMovement();
+        
     }
+
 }
