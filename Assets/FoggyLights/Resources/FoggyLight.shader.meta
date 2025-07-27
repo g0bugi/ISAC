@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 86cd59b51722abd4796157c4d08ead2e
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 16607
+  packageName: Foggy Lights
+  packageVersion: 1.08
+  assetPath: Assets/FoggyLights/Resources/FoggyLight.shader
+  uploadId: 280650
