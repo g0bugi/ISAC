@@ -92,7 +92,7 @@ public class SoundLight : MonoBehaviour
 
     IEnumerator AnimateRipple(RectTransform rect, Image image, float startSizeForAnim)
     {
-        Debug.Log("AnimateRipple 코루틴 시작됨!");
+        //Debug.Log("AnimateRipple 코루틴 시작됨!");
         float timer = 0f;
         float endSizeForAnim = startSizeForAnim * rippleScaleMultiplier;
         Color initialColor = image.color; // 초기 색상 (알파 0으로 설정된 색상)
