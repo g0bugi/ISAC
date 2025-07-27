@@ -10,16 +10,17 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     float[] spectrum = new float[512];
     public GameObject circlePrefab;
     private bool IsSpawned = false;
-    public bool noisy = false;
+    public float Waittime = 6;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         clip = source.clip;
         StartCoroutine(Play());
+        source.volume = 1;
     }
     IEnumerator Play()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(Waittime);
         source.Play();
         yield break;
     }
@@ -33,10 +34,11 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         {
             IsSpawned = false;
         }
+        
         clip.GetData(spectrum, cycle * 512);
         for (int i = 0; i < spectrum.Length; i++)
         {
-            if (spectrum[i] > 0.3 && !IsSpawned)
+            if (spectrum[i] > 0.1 && !IsSpawned)
             {
                 SpawnCircle(spectrum[i]);
                 IsSpawned =true;
@@ -49,7 +51,11 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(Random.Range(-16f, 16f), Random.Range(-9f, 9f), 0f);
         GameObject colorball = Instantiate(circlePrefab, spawnPos, Quaternion.identity);
-        colorball.transform.localScale *= 4f * volume;
-        distortionFilter.distortionLevel += 0.005f;
+        colorball.transform.localScale *= 10f * volume;
+        if (distortionFilter.distortionLevel < 0.98)
+        {
+            
+            distortionFilter.distortionLevel += 0.005f;
+        }
     }
 }
