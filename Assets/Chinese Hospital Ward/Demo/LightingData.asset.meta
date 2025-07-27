@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 22c7c2b93cf3fd0469d75e75f5c1ac71
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298504
+  packageName: Hospital Ward - Asian Hospital Room
+  packageVersion: 1.0
+  assetPath: Assets/Chinese Hospital Ward/Demo/LightingData.asset
+  uploadId: 708141

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c77051aa0bea10f4c86773dc99fc0e9f
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 9d339e02037151b428e8f06394201968, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 16607
+  packageName: Foggy Lights
+  packageVersion: 1.08
+  assetPath: Assets/FoggyLights/FoggyLight.cs
+  uploadId: 280650

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a5d8b832d3272624cbe023b1c8445366
+timeCreated: 1468338842
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 16607
+  packageName: Foggy Lights
+  packageVersion: 1.08
+  assetPath: Assets/FoggyLights/Sample/Scene Android.unity
+  uploadId: 280650
