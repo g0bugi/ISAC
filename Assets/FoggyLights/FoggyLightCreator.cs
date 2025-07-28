@@ -17,10 +17,10 @@ public class FoggyLightCreator : Editor
         //Icon stuff
         Texture Icon = Resources.Load("FoggyLightsIcon") as Texture;
         Icon.hideFlags = HideFlags.HideAndDontSave;
-        var editorGUI = typeof(EditorGUIUtility);
-        var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.NonPublic;
-        var args = new object[] { FoggyLight, Icon };
-        editorGUI.InvokeMember("SetIconForObject", bindingFlags, null, null, args);
+        //var editorGUI = typeof(EditorGUIUtility);
+        //var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.NonPublic;
+        //var args = new object[] { FoggyLight, Icon };
+        //editorGUI.InvokeMember("SetIconForObject", bindingFlags, null, null, args);
 
         FoggyLight.name = "Foggy Light";
         

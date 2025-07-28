@@ -261,6 +261,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotspeed: 200
+--- !u!1 &916160503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916160504}
+  m_Layer: 0
+  m_Name: New Game Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &916160504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916160503}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1002405643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 1658351923}
   distortionFilter: {fileID: 1658351925}
-  circlePrefab: {fileID: 6115104724548583048, guid: ae8933fcf30d880469896e2608815b56, type: 3}
+  circlePrefab: {fileID: 4765362846409031842, guid: 33278c8c472d54f4cb908d82c02be875, type: 3}
   Waittime: 6
 --- !u!1 &1773894499
 GameObject:
@@ -1358,3 +1389,4 @@ SceneRoots:
   - {fileID: 1225284181}
   - {fileID: 219566318}
   - {fileID: 2022657723}
+  - {fileID: 916160504}
