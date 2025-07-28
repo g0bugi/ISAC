@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: cc0be31cecec3124c9e2b5515b06a60d
+timeCreated: 1468330400
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 16607
+  packageName: Foggy Lights
+  packageVersion: 1.08
+  assetPath: Assets/FoggyLights/EnableDepthInForwardCamera.cs
+  uploadId: 280650
