@@ -23,6 +23,7 @@ public class Playermove : MonoBehaviour
 
     private bool canMove = true; // 플레이어 이동 가능 여부 플래그
 
+    public DialogManager manager; // 대화 관리자
     void Awake()
     {
         // ⭐ CharacterController 컴포넌트 가져오기
@@ -61,6 +62,10 @@ public class Playermove : MonoBehaviour
 
     void Update()
     {
+        if (manager.isAction)
+            canMove = false;
+        else
+            canMove = true;
         if (!canMove) return;
 
         isGrounded = controller.isGrounded;
