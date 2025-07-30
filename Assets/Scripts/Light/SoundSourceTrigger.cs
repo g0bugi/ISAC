@@ -8,6 +8,7 @@ public class SoundSourceTrigger : MonoBehaviour
 
     public float initialDelay = 0f; // 게임 시작 후 첫 파장이 나타나기까지의 지연 시간
     public float repeatInterval = 1.0f; // 파장 효과가 반복되는 간격 (초)
+    public Sprite specificRippleSprite; // 파장 이미지  
 
     void Start()
     {
@@ -54,17 +55,14 @@ public class SoundSourceTrigger : MonoBehaviour
         if (audioSource != null)
         {
 
-            if (rippleManager != null)
+
+        }
+        if (rippleManager != null)
             {
                 // 현재 오브젝트의 위치를 파장 효과 매니저에게 전달
-                rippleManager.PlayRippleEffect(transform.position, audioSource.maxDistance);
+                rippleManager.PlayRippleEffect(transform.position, audioSource.maxDistance, specificRippleSprite);
             }
-        }
     }
 
-    
-    void Update()
-    {
-    
-    }
+
 }
