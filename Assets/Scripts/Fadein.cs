@@ -16,7 +16,6 @@ public class Fadein : MonoBehaviour
     }
     IEnumerator PlaySequence()
     {
-        yield return StartCoroutine(FadeOut());  // 1단계: 페이드 아웃
         yield return StartCoroutine(FadeIn());   // 2단계: 페이드 인
         yield return StartCoroutine(FadeOut());  // 3단계: 다시 페이드 아웃
     }
@@ -30,7 +29,6 @@ public class Fadein : MonoBehaviour
     
     IEnumerator FadeOut() 
     {
-        
         float fadetime = 5.0f;
         float activetime = 0.0f;
         while (activetime <= fadetime)

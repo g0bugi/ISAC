@@ -23,7 +23,7 @@ public class ScreenEffect : MonoBehaviour
         yield return new WaitForSeconds(waittime);
 
         grain.intensity.value = 1f;
-        Debug.Log(grain.intensity.value);
+        //Debug.Log(grain.intensity.value);
 
         float duration = 10f;
         float elapsed = 0f;

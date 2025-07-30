@@ -35,8 +35,8 @@ public class CamRotate : MonoBehaviour
         mx += mouse_X * rotspeed * Time.deltaTime;
         my += mouse_Y * rotspeed * Time.deltaTime;
 
-        my = Mathf.Clamp(my, -20f, 20f);
-        mx = Mathf.Clamp(mx, -30f, 30f);
+        my = Mathf.Clamp(my, -12f, 10f);
+        mx = Mathf.Clamp(mx, -10f, 10f);
         transform.eulerAngles = new Vector3(-my, mx, 0);
     }
 }

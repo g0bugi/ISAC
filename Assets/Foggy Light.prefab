@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8122883004546106027}
   - component: {fileID: 1319970192616475714}
   - component: {fileID: 3432561896858645918}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Foggy Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,9 +102,9 @@ MonoBehaviour:
   BlendMode: 0
   ApplyTonemap: 1
   PointLightColor: {r: 1, g: 1, b: 1, a: 1}
-  PointLightIntensity: 1
-  FoggyLightIntensity: 1
-  PointLightExponent: 5
+  PointLightIntensity: 8
+  FoggyLightIntensity: 2
+  PointLightExponent: 3
   Offset: -2
   IntersectionRange: 2
   DrawOrder: 1

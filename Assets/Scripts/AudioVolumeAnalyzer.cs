@@ -11,12 +11,13 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     public GameObject circlePrefab;
     private bool IsSpawned = false;
     public float Waittime = 6;
+    public GameObject BallParent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         clip = source.clip;
         StartCoroutine(Play());
-        source.volume = 1;
+        source.volume = 10;
     }
     IEnumerator Play()
     {
@@ -33,8 +34,12 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         if(timer> 0.05)
         {
             IsSpawned = false;
+            timer = 0f;
         }
-        
+
+        if (cycle == 3600)
+            Destroy(BallParent);
+
         clip.GetData(spectrum, cycle * 512);
         for (int i = 0; i < spectrum.Length; i++)
         {
@@ -50,7 +55,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     void SpawnCircle(float volume)
     {
         Vector3 spawnPos = new Vector3(Random.Range(-16f, 16f), Random.Range(-9f, 9f), 0f);
-        GameObject colorball = Instantiate(circlePrefab, spawnPos, Quaternion.identity);
+        GameObject colorball = Instantiate(circlePrefab, spawnPos, Quaternion.identity, BallParent.transform);
         colorball.transform.localScale *= 10f * volume;
         if (distortionFilter.distortionLevel < 0.98)
         {
