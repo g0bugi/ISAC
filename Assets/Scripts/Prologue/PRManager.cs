@@ -4,6 +4,7 @@ using UnityEngine;
 public class PRManager : MonoBehaviour
 {
     public FullScreenPassRendererFeature render;
+    public float time = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,7 +14,7 @@ public class PRManager : MonoBehaviour
 
     IEnumerator RenderOn()
     {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(time);
 
         render.SetActive(true);
 

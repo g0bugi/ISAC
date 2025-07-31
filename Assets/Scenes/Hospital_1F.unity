@@ -895,7 +895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee85dbbd8e9bb34a99936baa48973dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feature: {fileID: 3797517837929112937, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
 --- !u!4 &487138612
 Transform:
   m_ObjectHideFlags: 0
@@ -2044,7 +2043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 20
   playerDirection: {x: 0, y: 0, z: 0}
-  rotateSpeed: 800
+  rotateSpeed: 200
   minAngle: -45
   maxAngle: 75
   playerCamera: {fileID: 194283690}

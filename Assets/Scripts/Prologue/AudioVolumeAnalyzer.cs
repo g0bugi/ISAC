@@ -15,6 +15,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     public float Waittime = 6;
     public GameObject Parent_1;
     public GameObject Parent_2;
+    private bool IsDestroy = false;
     GameObject BallParent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,11 +34,12 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     }
     int cycle = 0;
     float timer = 0f;
+    float time = 0f;
     // Update is called once per frame
     void Update()
     {
         if (!source.isPlaying) return;
-        if (cycle > 7000)
+        if (time > 20f)
         {
             SceneManager.LoadScene("Hospital_1F");
         }
@@ -47,10 +49,11 @@ public class AudioVolumeAnalyzer : MonoBehaviour
             timer = 0f;
         }
 
-        if (cycle == 4000)
+        if (time > 37f && !IsDestroy)
         {
             BallParent = Parent_2;
             Destroy(Parent_1);
+            IsDestroy = true;
         }
         clip.GetData(spectrum, cycle * 512);
         for (int i = 0; i < spectrum.Length; i++)
@@ -63,6 +66,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         }
         cycle++;
         timer += Time.deltaTime;
+        time += Time.deltaTime;
     }
     void SpawnCircle(float volume)
     {

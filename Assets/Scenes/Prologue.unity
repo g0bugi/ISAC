@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   render: {fileID: 3797517837929112937, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
+  time: 60
 --- !u!4 &1010030
 Transform:
   m_ObjectHideFlags: 0
@@ -1088,7 +1089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 1740873677}
-  waittime: 10
+  waittime: 40
 --- !u!114 &1740873680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,6 +1103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   twirl: {fileID: -876546973899608171, guid: a908e7773aaa2864382a449c67ad2799, type: 3}
+  time: 60
   intensity: 0
 --- !u!1 &1747134881
 GameObject:

@@ -5,6 +5,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class EffectManage : MonoBehaviour
 {
     public Material twirl;
+    public float time = 40f;
     public float intensity = 0f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,7 +17,7 @@ public class EffectManage : MonoBehaviour
     
     IEnumerator IntenUp()
     {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(time);
         //Debug.Log("check");
         float fadetime = 5.0f;
         float activetime = 0.0f;
