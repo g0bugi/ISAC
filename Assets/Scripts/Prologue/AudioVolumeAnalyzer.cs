@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class AudioVolumeAnalyzer : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         BallParent = Parent_1;
         clip = source.clip;
         StartCoroutine(Play());
@@ -35,9 +37,9 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     void Update()
     {
         if (!source.isPlaying) return;
-        if (cycle * 512 > clip.samples)
+        if (cycle > 7000)
         {
-            SceneManager.LoadScene("New Scene");
+            SceneManager.LoadScene("Hospital_1F");
         }
         if(timer> 0.1)
         {

@@ -16,7 +16,7 @@ public class EffectManage : MonoBehaviour
     
     IEnumerator IntenUp()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(20);
         //Debug.Log("check");
         float fadetime = 5.0f;
         float activetime = 0.0f;
