@@ -11,6 +11,8 @@ public class ObjData : MonoBehaviour
     // 이 오브젝트가 NPC인지 여부를 나타내는 플래그입니다.
     public bool isNpc;
 
-    public string[] name;
+    public string[] Name;
     public string[] Text;
 }
+
+

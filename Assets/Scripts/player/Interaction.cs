@@ -22,10 +22,20 @@ public class Interaction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) 
         {
             // 플레이어의 정면으로 Raycast를 발사하여 상호작용 가능한 오브젝트를 찾습니다.
-            if (Physics.Raycast(transform.position, transform.forward, out hit, maxdistance, mask)) 
+            if (Physics.Raycast(transform.position, transform.forward, out hit, maxdistance, mask))
             {
-                // Raycast에 감지된 오브젝트와 상호작용을 시작하기 위해 DialogManager의 Action 함수를 호출합니다.
-                manager.Action(hit.collider.gameObject);
+                Debug.Log(hit.collider.name);
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("NPC"))
+                    {
+                    // Raycast에 감지된 오브젝트와 상호작용을 시작하기 위해 DialogManager의 Action 함수를 호출합니다.
+                    manager.Action(hit.collider.gameObject);
+                }
+                if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Object"))
+                {
+                    GameObject scanobj = hit.collider.gameObject;
+                    scanobj.GetComponent<IInteractiable>().Action();
+                }
+                
             }
         }
     }

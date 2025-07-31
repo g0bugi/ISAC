@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 
 // 대화 관리를 총괄하는 메인 스크립트입니다.
 public class DialogManager : MonoBehaviour
 {
     // UI 요소 및 상태 변수들을 선언합니다.
+    public TextMeshProUGUI NameBox;
     public TextMeshProUGUI dialogBox; // 대화 내용이 표시될 TextMeshPro UI
     GameObject scanObject; // 현재 상호작용 중인 게임 오브젝트
     public GameObject dialogPanel; // 대화창의 부모가 되는 패널 UI
@@ -18,6 +20,7 @@ public class DialogManager : MonoBehaviour
     // 게임이 시작될 때 대화창을 비활성화 상태로 초기화합니다.
     private void Start()
     {
+        talkIndex = 0;
         dialogPanel.SetActive(isAction);
     }
     private void Awake()
@@ -57,6 +60,20 @@ public class DialogManager : MonoBehaviour
             return "...";
         }
     }
+    public string GetName(int id, int talkIndex)
+    {
+        // 딕셔너리에서 ID와 인덱스에 맞는 대사를 찾아 반환합니다.
+        if (talkData.ContainsKey(id) && talkIndex < talkData[id].Length)
+        {
+            ObjData obj = scanObject.GetComponent<ObjData>();
+            return obj.Name[talkIndex];
+        }
+        else
+        {
+            // 요청한 데이터가 없는 경우, 오류를 방지하기 위해 null이나 기본 메시지를 반환합니다.
+            return "...";
+        }
+    }
     // 외부(Interaction.cs)에서 호출되어 대화 프로세스를 시작하거나 제어합니다.
     public void Action(GameObject scanObj)
     {
@@ -88,6 +105,7 @@ public class DialogManager : MonoBehaviour
         // 대상이 NPC인 경우에만 대화를 진행합니다.
         if (isNpc)
         {
+            NameBox.text = GetName(id, talkIndex);
             // TalkContent에서 현재 인덱스에 맞는 대사를 가져와 UI에 표시합니다.
             dialogBox.text = GetTalk(id, talkIndex);
             // 다음 대사를 위해 인덱스를 1 증가시킵니다.
@@ -95,7 +113,7 @@ public class DialogManager : MonoBehaviour
         }
         else
         {
-            // NPC가 아니면 대화를 진행하지 않고 함수를 종료합니다.
+            
             return;
         }
     }
