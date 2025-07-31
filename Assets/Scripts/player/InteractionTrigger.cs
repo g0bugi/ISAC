@@ -9,15 +9,14 @@ public class InteractionTrigger : MonoBehaviour
     public DialogueLine[] dialogueLines; // 이 트리거에서 시작할 대화 내용
 
     // 플레이어 위치 수정을 위한 변수
-    public Transform playerTransform; 
-    public Vector3 targetPlayerPosition; 
+    public Transform playerTransform;
+    public Vector3 targetPlayerPosition;
     public Quaternion targetPlayerRotation;
 
-    public Transform npcTransform; 
-    public Vector3 targetNpcPosition; 
+    public Transform npcTransform;
+    public Vector3 targetNpcPosition;
     public Quaternion targetNpcRotation;
     //public Vector3 targetNpcWalkPosition; // 대화 종료 후 NPC가 걸어갈 최종 목표 위치
-    
     public Vector3[] npcWalkWaypoints; // NPC가 걸어갈 경유지 배열
 
     public float delayBetweenFades = 1.0f;
@@ -71,7 +70,7 @@ public class InteractionTrigger : MonoBehaviour
         yield return StartCoroutine(fadeManager.FadeIn(1.0f)); // 1초 동안 페이드 인
 
 
-        
+
 
         // DialogueManager의 IsDialogueActive 속성을 사용하여 대화 종료를 감지
         yield return new WaitUntil(() => !dialogueManager.IsDialogueActive);
@@ -83,8 +82,8 @@ public class InteractionTrigger : MonoBehaviour
             foreach (Vector3 waypoint in npcWalkWaypoints)
             {
                 dialogueManager.npcController.StartWalkingTo(waypoint); // 다음 경유지로 이동 시작
-                
-                yield return new WaitUntil(() => !dialogueManager.npcController.GetIsMoving()); 
+
+                yield return new WaitUntil(() => !dialogueManager.npcController.GetIsMoving());
                 Debug.Log($"NPC가 경유지 {waypoint}에 도착.");
             }
             Debug.Log("NPC 모든 경유지 이동 완료!");
@@ -95,6 +94,7 @@ public class InteractionTrigger : MonoBehaviour
         }
 
 
-    
+
     }
+    
 }
