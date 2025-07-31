@@ -15,6 +15,9 @@ public class Playermove : MonoBehaviour
     private Vector3 playerVelocity; //플레이어의 현재 속도 (중력, 점프 등)
     private bool isGrounded; // 땅에 닿아있는지 여부
     private float cameraPitch = 0f;
+    private bool cameraPitchLocked = false; // 카메라 피치 고정 여부
+    private float lockedCameraPitchAngle;   // 고정할 피치 각도
+
 
     public Animator playerAnimator;
     public string getUpAnimationTrigger = "GetUp";
@@ -23,7 +26,9 @@ public class Playermove : MonoBehaviour
 
     public bool canMove = true; // 플레이어 이동 가능 여부 플래그
 
-    public DialogManager manager; // 대화 관리자
+    public DialogueManager dialogueManager_first;
+    public DialogueLine[] dialogueLines_first; // 이 트리거에서 시작할 대화 내용
+
     void Awake()
     {
         
@@ -64,10 +69,7 @@ public class Playermove : MonoBehaviour
 
     void Update()
     {
-        if (manager.isAction)
-            canMove = false;
-        else
-            canMove = true;
+
         if (!canMove) return;
 
         //Debug.Log($"[Update] → 이동 처리 시작");
@@ -130,16 +132,40 @@ public class Playermove : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+    public void SetCameraPitchLock(bool lockState, float targetAngle = 0f)
+    {
+        cameraPitchLocked = lockState;
+        if (lockState)
+        {
+            lockedCameraPitchAngle = targetAngle;
+            cameraPitch = targetAngle; // 고정 시 즉시 해당 각도로 설정
+            if (cameraTransform != null)
+            {
+                cameraTransform.localEulerAngles = new Vector3(cameraPitch, 0f, 0f); // 카메라를 즉시 고정 각도로 돌림
+            }
+        }
+        // 잠금 해제 시, cameraPitch는 마지막으로 고정되었던 값으로 유지됨
+        // 또는 특정 초기값으로 재설정할 수도 있음 (예: cameraPitch = 0f;)
+    }
+
     void RotateView()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        if (cameraPitchLocked)
+        {
+            cameraPitch = lockedCameraPitchAngle; // 고정된 각도 유지
+        }
+        else
+        {
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        transform.Rotate(Vector3.up * mouseX);
+            transform.Rotate(Vector3.up * mouseX);
 
-        cameraPitch -= mouseY;
-        cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f); 
-        cameraTransform.localEulerAngles = new Vector3(cameraPitch, 0f, 0f);
+            cameraPitch -= mouseY;
+            cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f); 
+            cameraTransform.localEulerAngles = new Vector3(cameraPitch, 0f, 0f);
+        }
+        
     }
 
     public void EnableMovement()
@@ -218,6 +244,7 @@ public class Playermove : MonoBehaviour
         yield return new WaitForSeconds(5.0f); // 임의의 대기 시간 (애니메이션 길이에 맞게 조절)
 
         EnableMovement();
+        dialogueManager_first.StartDialogue(dialogueLines_first);
         
     }
 
