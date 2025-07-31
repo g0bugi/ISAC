@@ -4,7 +4,9 @@ using System.Collections; // 코루틴을 사용하기 위해 필요합니다.
 
 public class SoundLight : MonoBehaviour
 {
-    public GameObject ripplePrefab; // 생성할 파장 UI Prefab
+    //public GameObject ripplePrefab; // 생성할 파장 UI Prefab
+    
+    public GameObject rippleBasePrefab; // 구름 Image
     public float rippleDuration = 1.0f; // 파장 효과 지속 시간 (초)
     public float maxRippleSize = 300f; // 파장이 최대로 커지는 크기 (UI 픽셀)
     public float minRippleSize = 50f;
@@ -40,32 +42,47 @@ public class SoundLight : MonoBehaviour
     
     // 이 함수는 외부에서 호출되어 파장 효과를 시작합니다.
     // soundSourcePosition: 소리가 나는 3D 월드 위치
-    public void PlayRippleEffect(Vector3 soundSourcePosition, float audioSourceMaxDistance)
+    public void PlayRippleEffect(Vector3 soundSourcePosition, float audioSourceMaxDistance, Sprite customRippleSprite = null)
     {
-        if (ripplePrefab == null || mainCamera == null || canvasRectTransform == null)
+        if (rippleBasePrefab == null || mainCamera == null || canvasRectTransform == null)
         {
             Debug.LogError("필수 컴포넌트 또는 프리팹이 할당되지 않았습니다.");
             return;
         }
 
-        float distanceToCamera = Vector3.Distance(soundSourcePosition, mainCamera.transform.position);
+        float distanceToCamera = Vector3.Distance(soundSourcePosition, mainCamera.transform.position); // 거리계산
 
         if (distanceToCamera > audioSourceMaxDistance)
         {
-            return; // 소리 감쇠 거리를 넘어가면 파장 생성 안 함
+            return; // 소리 들리는 거리를 넘어가면 파장 생성 안 함
         }
 
         float normalizedDistance = Mathf.InverseLerp(audioSourceMaxDistance, 0f, distanceToCamera);
         float initialRippleSize = Mathf.Lerp(minRippleSize, maxRippleSize, normalizedDistance); 
 
-        GameObject rippleGO = Instantiate(ripplePrefab, transform.parent); 
+        GameObject rippleGO = Instantiate(rippleBasePrefab, transform.parent);
         RectTransform rippleRect = rippleGO.GetComponent<RectTransform>();
         Image rippleImage = rippleGO.GetComponent<Image>();
+
+         // 인스턴스화된 프리팹에 Image 컴포넌트가 없다면 오류를 출력하고 파괴합니다.
+        if (rippleImage == null)
+        {
+            Debug.LogError("rippleBasePrefab에 Image 컴포넌트가 없습니다. UI Image 프리팹인지 확인하세요.");
+            Destroy(rippleGO);
+            return;
+        }
+
+        // customRippleSprite가 제공되면 Image 컴포넌트의 sprite를 변경합니다.
+        // 그렇지 않으면 rippleBasePrefab에 이미 할당된 기본 sprite가 사용됩니다.
+        if (customRippleSprite != null)
+        {
+            rippleImage.sprite = customRippleSprite;
+        }
 
         rippleRect.sizeDelta = new Vector2(initialRippleSize, initialRippleSize);
         rippleTransparency = 1.0f;
 
-        // --- 핵심 로직 수정: 카메라 뒤 오브젝트 위치 반전 처리 ---
+        // 카메라 뒤 오브젝트 위치 반전 처리 ---
         Vector3 screenPoint = mainCamera.WorldToScreenPoint(soundSourcePosition); // 3D 월드 -> 2D 화면 픽셀 좌표
 
         // 오브젝트가 카메라 뒤에 있는지 확인
@@ -77,7 +94,7 @@ public class SoundLight : MonoBehaviour
             // 이렇게 하면 소스 위치가 화면 뒤편의 왼쪽 위라면, 화면 앞의 오른쪽 아래로 매핑됩니다.
             screenPoint.x = Screen.width - screenPoint.x;
             screenPoint.y = Screen.height - screenPoint.y;
-            rippleTransparency = 0.5f;
+            rippleTransparency = 0.2f;
 
         }
         
