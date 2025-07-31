@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &29608038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 29608039}
+  m_Layer: 0
+  m_Name: Parent_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &29608039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29608038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.252625, y: -30.222023, z: -34.737537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219566314
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras:
   - {fileID: 219566317}
@@ -539,6 +570,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1773894499}
   runningtime: 20
+--- !u!1 &1221095042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221095043}
+  m_Layer: 0
+  m_Name: Parent_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1221095043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221095042}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.252625, y: -30.222023, z: -34.737537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225284179
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +990,7 @@ GameObject:
   - component: {fileID: 1740873678}
   - component: {fileID: 1740873677}
   - component: {fileID: 1740873679}
+  - component: {fileID: 1740873680}
   m_Layer: 0
   m_Name: ScreenEffector
   m_TagString: Untagged
@@ -980,7 +1043,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 1740873677}
-  waittime: 60
+  waittime: 10
+--- !u!114 &1740873680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740873676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fed12844ca1c8a428e1e6f83d1236fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  twirl: {fileID: -876546973899608171, guid: a908e7773aaa2864382a449c67ad2799, type: 3}
+  intensity: 0
 --- !u!1 &1747134881
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +1069,7 @@ GameObject:
   - component: {fileID: 1747134884}
   - component: {fileID: 1747134886}
   - component: {fileID: 1747134887}
+  - component: {fileID: 1747134888}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -1041,9 +1119,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 1658351923}
   distortionFilter: {fileID: 1658351925}
-  circlePrefab: {fileID: 4765362846409031842, guid: 33278c8c472d54f4cb908d82c02be875, type: 3}
+  circlePrefab: {fileID: 6115104724548583048, guid: ae8933fcf30d880469896e2608815b56, type: 3}
   Waittime: 6
-  BallParent: {fileID: 1657126521}
+  Parent_1: {fileID: 29608038}
+  Parent_2: {fileID: 1221095042}
+--- !u!114 &1747134888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747134881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d493e1bfeb332547b50a3dc67714b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circlePrefab: {fileID: 6115104724548583048, guid: ae8933fcf30d880469896e2608815b56, type: 3}
 --- !u!1 &1773894499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,3 +1483,5 @@ SceneRoots:
   - {fileID: 219566318}
   - {fileID: 2022657723}
   - {fileID: 1657126522}
+  - {fileID: 29608039}
+  - {fileID: 1221095043}

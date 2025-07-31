@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class AudioVolumeAnalyzer : MonoBehaviour
 {
@@ -11,10 +12,13 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     public GameObject circlePrefab;
     private bool IsSpawned = false;
     public float Waittime = 6;
-    public GameObject BallParent;
+    public GameObject Parent_1;
+    public GameObject Parent_2;
+    GameObject BallParent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        BallParent = Parent_1;
         clip = source.clip;
         StartCoroutine(Play());
         source.volume = 10;
@@ -31,19 +35,25 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     void Update()
     {
         if (!source.isPlaying) return;
-        if(timer> 0.05)
+        if (cycle * 512 > clip.samples)
+        {
+            SceneManager.LoadScene("New Scene");
+        }
+        if(timer> 0.1)
         {
             IsSpawned = false;
             timer = 0f;
         }
 
-        if (cycle == 3600)
-            Destroy(BallParent);
-
+        if (cycle == 4000)
+        {
+            BallParent = Parent_2;
+            Destroy(Parent_1);
+        }
         clip.GetData(spectrum, cycle * 512);
         for (int i = 0; i < spectrum.Length; i++)
         {
-            if (spectrum[i] > 0.1 && !IsSpawned)
+            if (spectrum[i] > 0.05 && !IsSpawned)
             {
                 SpawnCircle(spectrum[i]);
                 IsSpawned =true;
