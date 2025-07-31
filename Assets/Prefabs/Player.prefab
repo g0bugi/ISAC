@@ -308,6 +308,8 @@ MonoBehaviour:
   speedParameterName: Speed
   jumpParameterName: Jump
   canMove: 0
+  dialogueManager_first: {fileID: 0}
+  dialogueLines_first: []
 --- !u!4 &2279434123104111445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}

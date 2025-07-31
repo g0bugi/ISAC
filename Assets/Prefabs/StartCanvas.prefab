@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d91d2946dd2a4469c9bd3eb02edb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ripplePrefab: {fileID: 5004848364463661208, guid: 0575b4a372fffb346a8ff2959cb39062, type: 3}
+  rippleBasePrefab: {fileID: 0}
   rippleDuration: 1
   maxRippleSize: 1000
   minRippleSize: 10
