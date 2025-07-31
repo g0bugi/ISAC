@@ -7,6 +7,7 @@ using TMPro;
 public class DialogManager : MonoBehaviour
 {
     // UI 요소 및 상태 변수들을 선언합니다.
+    public TextMeshProUGUI nameBox;
     public TextMeshProUGUI dialogBox; // 대화 내용이 표시될 TextMeshPro UI
     GameObject scanObject; // 현재 상호작용 중인 게임 오브젝트
     public GameObject dialogPanel; // 대화창의 부모가 되는 패널 UI
@@ -57,6 +58,11 @@ public class DialogManager : MonoBehaviour
             return "...";
         }
     }
+    public string GetName(int id, int talkIndex)
+    {
+        ObjData obj = scanObject.GetComponent<ObjData>();
+        return obj.name[talkIndex];
+    }
     // 외부(Interaction.cs)에서 호출되어 대화 프로세스를 시작하거나 제어합니다.
     public void Action(GameObject scanObj)
     {
@@ -88,6 +94,7 @@ public class DialogManager : MonoBehaviour
         // 대상이 NPC인 경우에만 대화를 진행합니다.
         if (isNpc)
         {
+            nameBox.text = GetName(id, talkIndex);
             // TalkContent에서 현재 인덱스에 맞는 대사를 가져와 UI에 표시합니다.
             dialogBox.text = GetTalk(id, talkIndex);
             // 다음 대사를 위해 인덱스를 1 증가시킵니다.

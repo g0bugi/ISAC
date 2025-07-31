@@ -1326,9 +1326,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1000
   isNpc: 1
-  name: []
+  name:
+  - "\uB098"
+  - "\uB098"
+  - "\uAE30\uD0C0\uB9E8"
   Text:
-  - 
+  - "\uC640 \uAD6C\uB984\uC774 \uB108\uBB34 \uC608\uBED0\uC694!"
+  - "\uC606\uC5D0 \uC549\uC544\uB3C4 \uB418\uC694?"
+  - "\uAD6C\uB984?"
 --- !u!1 &910412609
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,7 +2401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20b360982bfac042a00d37161aec6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  manager: {fileID: 1407999209}
   mask:
     serializedVersion: 2
     m_Bits: 0
@@ -3586,6 +3591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c5284b8448d8c4ab86e87e9e0c1463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameBox: {fileID: 0}
   dialogBox: {fileID: 1667094697}
   dialogPanel: {fileID: 1179630978}
   isAction: 0
