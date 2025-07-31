@@ -15,10 +15,13 @@ public class InteractionTrigger : MonoBehaviour
 
     public Transform npcTransform; 
     public Vector3 targetNpcPosition; 
-    public Quaternion targetNpcRotation; 
-     public Vector3 targetNpcWalkPosition; // 대화 종료 후 NPC가 걸어갈 최종 목표 위치
+    public Quaternion targetNpcRotation;
+    //public Vector3 targetNpcWalkPosition; // 대화 종료 후 NPC가 걸어갈 최종 목표 위치
+    
+    public Vector3[] npcWalkWaypoints; // NPC가 걸어갈 경유지 배열
 
     public float delayBetweenFades = 1.0f;
+    public Playermove playerMovement; // 플레이어 움직임 제어용
 
     private bool hasTriggered = false; // 한 번만 트리거되도록
 
@@ -42,6 +45,13 @@ public class InteractionTrigger : MonoBehaviour
 
         yield return StartCoroutine(fadeManager.FadeOut(1.0f)); // 1초 동안 페이드 아웃
 
+        yield return new WaitForSeconds(delayBetweenFades);
+
+        if (playerMovement != null)
+        {
+            playerMovement.SetCanMove(false);
+        }
+
         if (playerTransform != null)
         {
             playerTransform.position = targetPlayerPosition;
@@ -56,8 +66,6 @@ public class InteractionTrigger : MonoBehaviour
             Debug.Log("NPC 위치 및 방향 수정 완료!");
         }
 
-        yield return new WaitForSeconds(delayBetweenFades);
-
         dialogueManager.StartDialogue(dialogueLines);
 
         yield return StartCoroutine(fadeManager.FadeIn(1.0f)); // 1초 동안 페이드 인
@@ -70,9 +78,20 @@ public class InteractionTrigger : MonoBehaviour
         Debug.Log("InteractionTrigger: 대화 종료 감지.");
 
         //대화가 끝나면 NPC가 걸어서 목표 위치로 이동
-        if (dialogueManager.npcController != null) // DialogueManager에 연결된 NpcController 사용
+        if (dialogueManager.npcController != null && npcWalkWaypoints.Length > 0)
         {
-            dialogueManager.npcController.StartWalkingTo(targetNpcWalkPosition);
+            foreach (Vector3 waypoint in npcWalkWaypoints)
+            {
+                dialogueManager.npcController.StartWalkingTo(waypoint); // 다음 경유지로 이동 시작
+                
+                yield return new WaitUntil(() => !dialogueManager.npcController.GetIsMoving()); 
+                Debug.Log($"NPC가 경유지 {waypoint}에 도착.");
+            }
+            Debug.Log("NPC 모든 경유지 이동 완료!");
+        }
+        else if (npcWalkWaypoints.Length == 0)
+        {
+            Debug.LogWarning("NPC 이동을 위한 경유지가 설정되지 않았습니다.");
         }
 
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using System.Collections; // Coroutine을 위해 필요
 
 public class NpcController : MonoBehaviour
@@ -70,5 +71,10 @@ public class NpcController : MonoBehaviour
             animator.SetBool("IsWalking", false);
         }
         Debug.Log("NPC 이동 완료!");
+    }
+
+    public bool GetIsMoving()
+    {
+        return isMoving;
     }
 }
