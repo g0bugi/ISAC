@@ -1144,7 +1144,7 @@ MonoBehaviour:
   getUpAnimationTrigger: GetUp
   speedParameterName: Speed
   jumpParameterName: Jump
-  canMove: 0
+  canMove: 1
   dialogueManager_first: {fileID: 0}
   dialogueLines_first:
   - characterName: "\uB098"
