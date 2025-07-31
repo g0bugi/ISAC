@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 // 게임 내 모든 대화 데이터를 관리하는 스크립트입니다.
 public class TalkContent : MonoBehaviour
 {
+    
     // 대화 데이터를 저장하는 Dictionary입니다. Key는 오브젝트 ID(int), Value는 대화 내용(string[])입니다.
+    
     public Dictionary<int, string[]> talkData;
 
     // 스크립트가 활성화될 때 한 번 호출되는 Awake 함수입니다.

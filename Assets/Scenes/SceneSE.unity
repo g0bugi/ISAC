@@ -625,6 +625,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1000
   isNpc: 1
+  Text:
+  - "\uC548\uB155 \uB098\uB294 \uAE30\uD0C0\uB9E8"
+  - "\uB108\uB97C \uB370\uB9AC\uB7EC \uC654\uC9C0"
+  - "\uC5EC\uAE30\uC11C \uBB50\uD558\uACE0 \uC788\uC5B4?"
 --- !u!1 &753580191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,7 +1411,6 @@ MonoBehaviour:
   dialogBox: {fileID: 313385316}
   dialogPanel: {fileID: 1695565942}
   isAction: 0
-  talk: {fileID: 1990271134}
   talkIndex: 0
 --- !u!4 &1679845815
 Transform:
@@ -1631,50 +1634,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1990271133
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1990271135}
-  - component: {fileID: 1990271134}
-  m_Layer: 0
-  m_Name: TalkContent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1990271134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990271133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c7ff2c5895f6584a906092ab759b427, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1990271135
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990271133}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 381.04022, y: 49.473663, z: -24.246195}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &2038786134 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6144204116183864148, guid: 0575b4a372fffb346a8ff2959cb39062, type: 3}
@@ -1963,4 +1922,3 @@ SceneRoots:
   - {fileID: 1434810352}
   - {fileID: 699590751}
   - {fileID: 1679845815}
-  - {fileID: 1990271135}
