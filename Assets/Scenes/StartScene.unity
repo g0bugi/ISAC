@@ -1405,7 +1405,7 @@ MonoBehaviour:
   - uiGroupToShow: {fileID: 1208294340}
     fadeDuration: 1
     displayDuration: 1
-  nextSceneName: Hospital_1F
+  nextSceneName: Prologue
 --- !u!114 &1842084578
 MonoBehaviour:
   m_ObjectHideFlags: 0
