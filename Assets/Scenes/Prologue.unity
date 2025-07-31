@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 1773894499}
-  runningtime: 20
+  runningtime: 55
 --- !u!1 &1221095042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   source: {fileID: 1658351923}
   distortionFilter: {fileID: 1658351925}
   circlePrefab: {fileID: 6115104724548583048, guid: ae8933fcf30d880469896e2608815b56, type: 3}
-  Waittime: 6
+  Waittime: 12
   Parent_1: {fileID: 29608038}
   Parent_2: {fileID: 1221095042}
 --- !u!114 &1747134888
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
