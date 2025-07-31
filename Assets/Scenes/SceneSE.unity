@@ -1634,7 +1634,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1654,6 +1654,7 @@ RectTransform:
   - {fileID: 111799517}
   - {fileID: 2038786134}
   - {fileID: 918496753}
+  - {fileID: 1695565943}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2503,6 +2504,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2142537256}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2142537259}
   m_SourcePrefab: {fileID: 100100000, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
 --- !u!1 &2142537254 stripped
 GameObject:
@@ -2556,6 +2560,7 @@ MonoBehaviour:
   getUpAnimationTrigger: GetUp
   speedParameterName: Speed
   jumpParameterName: Jump
+  manager: {fileID: 1679845814}
   canMove: 0
 --- !u!95 &2142537257 stripped
 Animator:
@@ -2567,6 +2572,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
   m_PrefabInstance: {fileID: 2142537253}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2142537259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142537254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20b360982bfac042a00d37161aec6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 1679845814}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &7873921554261263511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2694,3 +2715,5 @@ SceneRoots:
   - {fileID: 363519109}
   - {fileID: 1819076650}
   - {fileID: 376942167}
+  - {fileID: 699590751}
+  - {fileID: 1679845815}

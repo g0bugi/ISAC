@@ -23,6 +23,7 @@ public class Playermove : MonoBehaviour
 
     public bool canMove = true; // 플레이어 이동 가능 여부 플래그
 
+    public DialogManager manager; // 대화 관리자
     void Awake()
     {
         
@@ -63,8 +64,10 @@ public class Playermove : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log($"[Update] canMove: {canMove}");
-
+        if (manager.isAction)
+            canMove = false;
+        else
+            canMove = true;
         if (!canMove) return;
 
         //Debug.Log($"[Update] → 이동 처리 시작");
