@@ -61,7 +61,7 @@ public class Playermove : MonoBehaviour
             }
         }
 
-        canMove = false;
+        //canMove = false;
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

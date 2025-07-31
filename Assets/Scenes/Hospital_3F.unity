@@ -1144,7 +1144,7 @@ MonoBehaviour:
   getUpAnimationTrigger: GetUp
   speedParameterName: Speed
   jumpParameterName: Jump
-  canMove: 0
+  canMove: 1
   dialogueManager_first: {fileID: 0}
   dialogueLines_first:
   - characterName: "\uB098"
@@ -3893,7 +3893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c5284b8448d8c4ab86e87e9e0c1463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameBox: {fileID: 1179687141}
   dialogBox: {fileID: 1667094697}
   dialogPanel: {fileID: 1179630978}
   isAction: 0
