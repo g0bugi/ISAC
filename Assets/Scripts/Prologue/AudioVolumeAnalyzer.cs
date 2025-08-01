@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class AudioVolumeAnalyzer : MonoBehaviour
 {
@@ -16,8 +14,8 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     public GameObject Parent_1;
     public GameObject Parent_2;
     private bool IsDestroy = false;
-    
     GameObject BallParent;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,15 +25,18 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         StartCoroutine(Play());
         source.volume = 10;
     }
+
     IEnumerator Play()
     {
         yield return new WaitForSeconds(Waittime);
         source.Play();
         yield break;
     }
+
     int cycle = 0;
     float timer = 0f;
     float time = 0f;
+
     // Update is called once per frame
     void Update()
     {
@@ -75,6 +76,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         timer += Time.deltaTime;
         time += Time.deltaTime;
     }
+
     void SpawnCircle(float volume)
     {
         Vector3 spawnPos = new Vector3(Random.Range(-16f, 16f), Random.Range(-9f, 9f), 0f);
