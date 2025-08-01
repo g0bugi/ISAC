@@ -1,30 +1,23 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class Fadein : MonoBehaviour
 {
     public GameObject panel;
     public float runningtime = 50f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         panel.GetComponent<CanvasRenderer>().SetAlpha(1f);
         panel.SetActive(true);
 
-        StartCoroutine(PlaySequence()); // ÄÚ·çÆ¾ ¹­¾î¼­ ¼øÂ÷ ½ÇÇà
+        StartCoroutine(PlaySequence()); // ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
     IEnumerator PlaySequence()
     {
-        yield return StartCoroutine(FadeIn());   // 2´Ü°è: ÆäÀÌµå ÀÎ
-        yield return StartCoroutine(FadeOut());  // 3´Ü°è: ´Ù½Ã ÆäÀÌµå ¾Æ¿ô
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return StartCoroutine(FadeIn());   // 2ï¿½Ü°ï¿½: ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½
+        yield return StartCoroutine(FadeOut());  // 3ï¿½Ü°ï¿½: ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Æ¿ï¿½
     }
     
     IEnumerator FadeOut() 
@@ -37,9 +30,6 @@ public class Fadein : MonoBehaviour
             activetime += Time.deltaTime;
             yield return null;
         }
-        
-        
-
     }
     IEnumerator FadeIn()
     {

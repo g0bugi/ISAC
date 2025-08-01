@@ -21,7 +21,7 @@ public class Interaction : MonoBehaviour
     void Update()
     {
         // 'R' 키가 눌렸는지 확인합니다.
-        if (Input.GetKeyDown(KeyCode.R)) 
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
             // 플레이어의 정면으로 Raycast를 발사하여 상호작용 가능한 오브젝트를 찾습니다.
             if (Physics.Raycast(transform.position, transform.forward, out hit, maxdistance, mask))
@@ -35,11 +35,16 @@ public class Interaction : MonoBehaviour
                     
                     // Raycast에 감지된 오브젝트와 상호작용을 시작하기 위해 DialogManager의 Action 함수를 호출합니다.
                     manager.Action(hit.collider.gameObject);
+                    if (!IsInteraction)
+                    {
+                        move.canMove = true;
+                    }
                 }
                 if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Object"))
                 {
                     GameObject scanobj = hit.collider.gameObject;
                     scanobj.GetComponent<IInteractiable>().Action();
+                    move.canMove = true;
                 }
                 
             }

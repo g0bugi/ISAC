@@ -1,14 +1,14 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Curtain : MonoBehaviour, IInteractiable
 {
     public bool IsOutSpreaded = false;
     bool IsWorking = false;
+
     public void Action()
     {
-        if(!IsWorking)
+        if (!IsWorking)
             StartCoroutine(Swap());
     }
 
@@ -17,7 +17,6 @@ public class Curtain : MonoBehaviour, IInteractiable
         IsWorking = true;
 
         Vector3 scale = transform.localScale;
-        Vector3 position = transform.position;
         Vector3 startPos = transform.position;
 
 
@@ -31,7 +30,6 @@ public class Curtain : MonoBehaviour, IInteractiable
                 scale.x = Mathf.Lerp(4, 2, t);
                 transform.localScale = scale;
 
-                // 기준점을 기준으로 이동
                 transform.position = new Vector3(Mathf.Lerp(startPos.x, startPos.x + 1, t), startPos.y, startPos.z);
 
                 time += Time.deltaTime;
