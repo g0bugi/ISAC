@@ -440,7 +440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ff306a8e7eff6a419806097e8cbdd10, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 3ff306a8e7eff6a419806097e8cbdd10, type: 3}
       propertyPath: m_Controller
@@ -863,7 +863,7 @@ Transform:
   m_GameObject: {fileID: 385019196}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -4.298, y: 2.06, z: 16.48}
+  m_LocalPosition: {x: -4.298, y: 1, z: 16.48}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1768,7 +1768,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
   m_PrefabInstance: {fileID: 1018852365}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &817742557
+--- !u!65 &817742557
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817742552}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &817742558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1777,14 +1798,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 817742552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a20b360982bfac042a00d37161aec6a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 18761b4295184fe4a91412d666997dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chair: {fileID: 385019196}
+  guitarman: {fileID: 2005103339}
   manager: {fileID: 1407999209}
-  mask:
-    serializedVersion: 2
-    m_Bits: 320
-  IsInteraction: 0
 --- !u!4 &818218303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8593240627173546481, guid: 3cd05ab6de143fd499488ac5ebbff0a5, type: 3}
@@ -2620,6 +2639,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 817742557}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 817742558}
   m_SourcePrefab: {fileID: 100100000, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
 --- !u!1001 &1024199258
 PrefabInstance:
@@ -4821,6 +4843,7 @@ MonoBehaviour:
   dialogPanel: {fileID: 1179630978}
   isAction: 0
   talkIndex: 0
+  inter: {fileID: 0}
 --- !u!1001 &1411827923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6981,11 +7004,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 4, z: 4}
+  m_Size: {x: 5, y: 4, z: 5}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2051858616
 GameObject:

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Unity.VisualScripting;
 
@@ -16,6 +17,7 @@ public class DialogManager : MonoBehaviour
     //public TalkContent talk; // 대화 데이터를 담고 있는 스크립터블 오브젝트 또는 컴포넌트
     public int talkIndex = 0; // 현재 대화의 진행도를 나타내는 인덱스
     public Dictionary<int, string[]> talkData;
+    public Interaction inter;
    
     // 게임이 시작될 때 대화창을 비활성화 상태로 초기화합니다.
     private void Start()
@@ -96,8 +98,11 @@ public class DialogManager : MonoBehaviour
         // 현재 대화 ID에 해당하는 모든 대화 내용이 끝났는지 확인합니다.
         if (talkIndex == talkData[id].Length)
         {
+            SceneManager.LoadScene("EndScene");
             // 대화가 종료되면 isAction 플래그를 false로 설정하고 인덱스를 초기화합니다.
             isAction = false;
+            Interaction inter = GetComponent<Interaction>();
+            inter.IsInteraction = false;
             talkIndex = 0;
             return; // 함수 실행을 종료합니다.
         }
