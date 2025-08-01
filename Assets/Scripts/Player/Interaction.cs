@@ -35,11 +35,13 @@ public class Interaction : MonoBehaviour
                     
                     // Raycast에 감지된 오브젝트와 상호작용을 시작하기 위해 DialogManager의 Action 함수를 호출합니다.
                     manager.Action(hit.collider.gameObject);
+                    move.canMove = true;
                 }
                 if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Object"))
                 {
                     GameObject scanobj = hit.collider.gameObject;
                     scanobj.GetComponent<IInteractiable>().Action();
+                    move.canMove = true;
                 }
                 
             }
