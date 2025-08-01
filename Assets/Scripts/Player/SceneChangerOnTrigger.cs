@@ -45,6 +45,7 @@ public class SceneChangerOnTrigger : MonoBehaviour
         }
 
         // 페이드 아웃이 끝나면 씬을 로드합니다.
+        SceneManage.Instance.entryPointID = 1;
         SceneManager.LoadScene(targetSceneName);
     }
 }
