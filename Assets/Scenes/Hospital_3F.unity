@@ -565,12 +565,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -909,10 +909,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f34c98534e7f72b40b7582f84fc13033, type: 3}
+  m_Resource: {fileID: 8300000, guid: f34c98534e7f72b40b7582f84fc13033, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -956,7 +956,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1010,8 +1010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 399304312}
   initialDelay: 0
-  repeatInterval: 0.2
-  specificRippleSprite: {fileID: 21300000, guid: 70b0abeb62c76ae4faa64ed23b5463c1, type: 3}
+  repeatInterval: 0.5
+  specificRippleSprite: {fileID: 21300000, guid: 0a703394a7c720144a59010d6930734d, type: 3}
 --- !u!1 &402593656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,8 +1156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 402593658}
   initialDelay: 0
-  repeatInterval: 1
-  specificRippleSprite: {fileID: 21300000, guid: 9385b83e89820d04fb866deac6831a3f, type: 3}
+  repeatInterval: 0.3
+  specificRippleSprite: {fileID: 21300000, guid: c70ad08318038c24684541acb438b1a7, type: 3}
 --- !u!4 &404699673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3869251202973729005, guid: db6d6b412c63fd247b39625ca000c353, type: 3}
@@ -1662,13 +1662,7 @@ MonoBehaviour:
   jumpParameterName: Jump
   canMove: 1
   dialogueManager_first: {fileID: 0}
-  dialogueLines_first:
-  - characterName: "\uB098"
-    dialogueText: "\uBC16\uC73C\uB85C \uB098\uAC08\uB798"
-    triggerNpcMovement: 0
-    targetMovePosition: {x: 0, y: 0, z: 0}
-    moveSpeed: 3
-    returnAfterMovement: 0
+  dialogueLines_first: []
 --- !u!143 &817742554
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3473,9 +3467,9 @@ RectTransform:
   m_Father: {fileID: 332318470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: -200, y: -300}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179630980
 MonoBehaviour:
@@ -3549,7 +3543,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -25}
+  m_AnchoredPosition: {x: 150, y: -50}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179687141
@@ -3581,8 +3575,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279755519
+  m_fontColor: {r: 1, g: 0.8874445, b: 0.08962262, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5564,8 +5558,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 100, y: 50}
+  m_SizeDelta: {x: -200, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667094697
 MonoBehaviour:
@@ -5614,8 +5608,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -241,7 +241,7 @@ public class Playermove : MonoBehaviour
         // 일어나는 애니메이션 클립의 정확한 길이를 아는 것이 가장 좋습니다.
         // 또는 애니메이션 이벤트 (Animation Event)를 사용하세요.
         // 예시: yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(0).length);
-        yield return new WaitForSeconds(5.0f); // 임의의 대기 시간 (애니메이션 길이에 맞게 조절)
+        yield return new WaitForSeconds(1.0f); // 임의의 대기 시간 (애니메이션 길이에 맞게 조절)
 
         EnableMovement();
         dialogueManager_first.StartDialogue(dialogueLines_first);
