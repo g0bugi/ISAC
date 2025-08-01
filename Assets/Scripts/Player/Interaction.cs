@@ -14,23 +14,25 @@ public class Interaction : MonoBehaviour
     // MonoBehaviour의 생명주기 함수 Start (현재는 내용 없음)
     void Start()
     {
-       Playermove move = GetComponent<Playermove>();
+       
     }
 
     // 매 프레임마다 호출되는 MonoBehaviour의 생명주기 함수입니다.
     void Update()
     {
         // 'R' 키가 눌렸는지 확인합니다.
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.R)) 
         {
             // 플레이어의 정면으로 Raycast를 발사하여 상호작용 가능한 오브젝트를 찾습니다.
             if (Physics.Raycast(transform.position, transform.forward, out hit, maxdistance, mask))
             {
+                Playermove move = GetComponent<Playermove>();
+                move.canMove = false;
                 IsInteraction = true;
                 Debug.Log(hit.collider.name);
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("NPC"))
                     {
-                    move.canMove = false;
+                    
                     // Raycast에 감지된 오브젝트와 상호작용을 시작하기 위해 DialogManager의 Action 함수를 호출합니다.
                     manager.Action(hit.collider.gameObject);
                 }
