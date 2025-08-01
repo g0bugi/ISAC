@@ -1,32 +1,14 @@
-﻿/*1.06 CHANGE LOG
- * Tonemap is optional now
- * Intersection softness between effect and scene can be adjusted now
- * Color, exposure, tonemap and blend corrections
- * */
-
 using UnityEngine;
 using System.Collections;
-using System.Reflection;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 [ExecuteInEditMode]
-
-
 public class FoggyLight : MonoBehaviour
 {
-
-
-   
-    
     public enum BlendModeEnum { Additive, AlphaBlended };
-    public BlendModeEnum BlendMode=0;
+    public BlendModeEnum BlendMode = 0;
     public bool ApplyTonemap = true;
-    private Component FogVolumeComponent = null;
 
     public Color PointLightColor = Color.white;
-    Vector3 Position;
     [Range(0, 8)]
     public float PointLightIntensity = 1;
     [Range(0, 20)]
@@ -35,97 +17,69 @@ public class FoggyLight : MonoBehaviour
     [Range(1, 40)]
     public float IntersectionRange = 2;
     public int DrawOrder = 1;
-    public bool /*HideWireframe = true,*/ AttatchLight = false;
-    Light AttachedLight = null;
-    Material FoggyLightMaterial;
-   // Renderer _renderer;
-    [SerializeField]
-    GameObject FogVolumeContainer = null;
-    public bool InsideFogVolume = false;
+    public bool AttatchLight = false;
 
-    public Material GetMaterial()
+    private Light AttachedLight = null;
+    private Material FoggyLightMaterial;
+    private Renderer _renderer;
+
+    // --- MaterialPropertyBlock 추가 ---
+    private MaterialPropertyBlock propertyBlock;
+
+    void OnEnable()
     {
-        
-            return FoggyLightMaterial;
-        
+        _renderer = GetComponent<Renderer>();
+        propertyBlock = new MaterialPropertyBlock(); // 프로퍼티 블록 초기화
+        CreateMaterial();
     }
-  
-//    public void Wireframe(GameObject Obj, bool Enable)
-//    {
-//#if UNITY_EDITOR
-//        //EditorUtility.SetSelectedWireframeHidden(Obj.GetComponent<Renderer>(), Enable);
-//        if(Enable)
-//        EditorUtility.SetSelectedRenderState(_renderer, EditorSelectedRenderState.Wireframe);
-//        #endif
-//    }
+
     void CreateMaterial()
     {
         if (!FoggyLightMaterial)
         {
+            // 중요: 이제 모든 인스턴스가 이 하나의 머티리얼을 공유하게 됩니다.
+            // 하지만 프로퍼티 블록 덕분에 각자 다른 모습으로 보일 수 있습니다.
             FoggyLightMaterial = new Material(Shader.Find("Hidden/FoggyLight"));
-            FoggyLightMaterial.name = this.name.ToString() + " Material";
-            gameObject.GetComponent<Renderer>().sharedMaterial = FoggyLightMaterial;
-            FoggyLightMaterial.hideFlags = HideFlags.HideAndDontSave;
+            FoggyLightMaterial.name = "Shared FoggyLight Material";
+            // HideFlags를 설정하지 않아 씬에 남아있도록 할 수 있습니다.
         }
-    }
-    void Start()
-    {
-        
-    }
-  
-    void OnEnable()
-    {
-
-        CreateMaterial();
-       // _renderer = GetComponent<Renderer>();
-
-
+        _renderer.sharedMaterial = FoggyLightMaterial;
     }
 
-    void OnWillRenderObject()
-    {
-     
-      
-        GetComponent<Renderer>().sortingOrder = DrawOrder;
-        Position = gameObject.transform.position;
-        PointLightExponent = Mathf.Max(1, PointLightExponent);
-  
-        //#if UNITY_EDITOR
-        //        Wireframe(gameObject, HideWireframe);
-        //#endif
+    void Update() // OnWillRenderObject 대신 Update 사용
+    { 
+        if (_renderer == null) return;
 
-        Position = gameObject.transform.position;
-        GetComponent<Renderer>().sharedMaterial.SetColor("PointLightColor", PointLightColor);
+        // 프로퍼티 블록에 현재 오브젝트의 고유한 값을 설정합니다.
+        // 머티리얼에 직접 설정하는 대신, 블록에 설정하는 것이 핵심입니다.
+        _renderer.GetPropertyBlock(propertyBlock);
 
-        if (FogVolumeContainer && InsideFogVolume)
-        {
-            if (!FogVolumeComponent)
-                FogVolumeComponent = FogVolumeContainer.GetComponent("FogVolume");
+        propertyBlock.SetColor("_PointLightColor", PointLightColor);
+        propertyBlock.SetVector("_PointLightPosition", transform.position);
+        propertyBlock.SetFloat("_PointLightIntensity", PointLightIntensity * FoggyLightIntensity);
+        propertyBlock.SetFloat("_PointLightExponent", Mathf.Max(1, PointLightExponent));
+        propertyBlock.SetFloat("_Offset", Offset);
+        propertyBlock.SetFloat("_IntersectionRange", IntersectionRange);
 
-
-            FoggyLightMaterial.EnableKeyword("_FOG_CONTAINER");
-            //            renderer.sharedMaterial.SetFloat("_Visibility", FogVolumeComponent.Visibility);
-            float valueVisibility = (float)FogVolumeComponent.GetType().GetMethod("GetVisibility").Invoke(FogVolumeComponent, null);
-            GetComponent<Renderer>().sharedMaterial.SetFloat("_Visibility", valueVisibility);
-
-
-
-        }
-        else
-            FoggyLightMaterial.DisableKeyword("_FOG_CONTAINER");
-        if(ApplyTonemap)
+        // 키워드 설정은 머티리얼에 직접 해야 할 수 있습니다.
+        // 하지만 이 부분은 모든 인스턴스가 공유해도 괜찮을 수 있습니다.
+        // 만약 각 인스턴스마다 블렌드 모드를 다르게 하고 싶다면, 이 로직도 변경이 필요합니다.
+        BlendValues(FoggyLightMaterial, BlendMode);
+        if (ApplyTonemap)
             FoggyLightMaterial.EnableKeyword("TONEMAP");
         else
             FoggyLightMaterial.DisableKeyword("TONEMAP");
 
-        FoggyLightMaterial.SetVector("PointLightPosition", Position);
-        FoggyLightMaterial.SetFloat("PointLightIntensity", PointLightIntensity * FoggyLightIntensity);
-        FoggyLightMaterial.SetFloat("PointLightExponent", PointLightExponent);
-        FoggyLightMaterial.SetFloat("Offset", Offset);
-        FoggyLightMaterial.SetFloat("IntersectionRange", IntersectionRange);
-        
+        // 최종적으로 렌더러에 이 오브젝트만을 위한 프로퍼티 블록을 적용합니다.
+        _renderer.SetPropertyBlock(propertyBlock);
+        _renderer.sortingOrder = DrawOrder;
 
+        // 연결된 라이트 관리 로직 (기존과 동일)
+        HandleAttachedLight();
+    }
 
+    void HandleAttachedLight()
+    {
         if (AttatchLight)
         {
             if (!gameObject.GetComponent<Light>())
@@ -133,46 +87,33 @@ public class FoggyLight : MonoBehaviour
                 gameObject.AddComponent<Light>();
                 gameObject.GetComponent<Light>().shadows = LightShadows.Hard;
             }
-
             AttachedLight = gameObject.GetComponent<Light>();
-
-            if (AttachedLight)
-            {
-                AttachedLight.intensity = PointLightIntensity / 2;
-                AttachedLight.color = PointLightColor;
-
-                AttachedLight.enabled = true;
-            }
+            AttachedLight.intensity = PointLightIntensity / 2;
+            AttachedLight.color = PointLightColor;
+            AttachedLight.enabled = true;
         }
         else
-        {            
-                if (AttachedLight)
-
-                    AttachedLight.enabled = false;
-           
+        {
+            if (AttachedLight)
+                AttachedLight.enabled = false;
         }
-
-
-        BlendValues(BlendMode);
     }
 
-    void BlendValues(BlendModeEnum BlendMode)
+    // 머티리얼을 인자로 받도록 수정
+    void BlendValues(Material mat, BlendModeEnum blendMode)
     {
-       
-        switch (BlendMode)
+        switch (blendMode)
         {
             case BlendModeEnum.Additive:
-                FoggyLightMaterial.EnableKeyword("_ADDITIVE");
-                FoggyLightMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                FoggyLightMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                mat.EnableKeyword("_ADDITIVE");
+                mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.One);
                 break;
-                
             case BlendModeEnum.AlphaBlended:
-                 FoggyLightMaterial.DisableKeyword("_ADDITIVE");
-                 FoggyLightMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                 FoggyLightMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                 break;
-                
+                mat.DisableKeyword("_ADDITIVE");
+                mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                break;
         }
     }
 }
