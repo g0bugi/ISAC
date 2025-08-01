@@ -43,6 +43,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         if (!source.isPlaying) return;
         if (time > 60f)
         {
+            SceneManage.Instance.entryPointID = 0;
             SceneManager.LoadScene("Hospital_1F");
         }
         if(timer> 0.1)
@@ -89,4 +90,5 @@ public class AudioVolumeAnalyzer : MonoBehaviour
             
         }
     }
+   
 }
