@@ -598,7 +598,7 @@ MonoBehaviour:
   audioSource: {fileID: 106201343}
   initialDelay: 0
   repeatInterval: 1.1
-  specificRippleSprite: {fileID: 21300000, guid: 0a703394a7c720144a59010d6930734d, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: 36658a23565cebf46adc8acee97b8458, type: 3}
 --- !u!82 &106201343
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2939,7 +2939,7 @@ MonoBehaviour:
   audioSource: {fileID: 610939811}
   initialDelay: 0
   repeatInterval: 1
-  specificRippleSprite: {fileID: 21300000, guid: 357c5d87bc279424fae315be17fd5ee0, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: 2f6e230c090d88640b6830d28a2a389f, type: 3}
 --- !u!4 &611964239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: efa7cf83928a3bd42935d7898c6fe1df, type: 3}
@@ -2993,7 +2993,7 @@ MonoBehaviour:
   audioSource: {fileID: 626124070}
   initialDelay: 0
   repeatInterval: 1.1
-  specificRippleSprite: {fileID: 21300000, guid: 0a703394a7c720144a59010d6930734d, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: 36658a23565cebf46adc8acee97b8458, type: 3}
 --- !u!82 &626124070
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4244,7 +4244,7 @@ MonoBehaviour:
   audioSource: {fileID: 1083358704}
   initialDelay: 0
   repeatInterval: 0.8
-  specificRippleSprite: {fileID: 21300000, guid: fecae189e139cdd4bab68554ef0ed42f, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: b6eddb0c95f20a445a3c3ddbba4a4b2a, type: 3}
 --- !u!1001 &1100909750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4566,7 +4566,7 @@ MonoBehaviour:
   audioSource: {fileID: 1165528472}
   initialDelay: 0
   repeatInterval: 0.9
-  specificRippleSprite: {fileID: 21300000, guid: ae40c3351541c9747aaac9cf96a6f504, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: c70ad08318038c24684541acb438b1a7, type: 3}
 --- !u!1 &1176459542 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5609180663307322257, guid: db6d6b412c63fd247b39625ca000c353, type: 3}
@@ -5236,7 +5236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 1.281
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5673,7 +5673,7 @@ MonoBehaviour:
   audioSource: {fileID: 1654397118}
   initialDelay: 0
   repeatInterval: 0.7
-  specificRippleSprite: {fileID: 21300000, guid: 357c5d87bc279424fae315be17fd5ee0, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: 2f6e230c090d88640b6830d28a2a389f, type: 3}
 --- !u!1 &1702231521
 GameObject:
   m_ObjectHideFlags: 0
@@ -6745,7 +6745,7 @@ MonoBehaviour:
   audioSource: {fileID: 2024416328}
   initialDelay: 0
   repeatInterval: 0.5
-  specificRippleSprite: {fileID: 21300000, guid: 4eb1e4a39da9af94ba87a25a989683aa, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: 253399d2d35dd244881d447195cd0531, type: 3}
 --- !u!1001 &2027121861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6858,7 +6858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC5EC\uAE34 \uC5B4\uB514 \uB098\uB294 \uB204\uAD6C?"
+  m_text: "\uB0B4\uAC00 \uC65C \uC5EC\uAE30\uC5D0 \uC788\uC9C0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 712d088cf53eb094aaf1790024aaca81, type: 2}
   m_sharedMaterial: {fileID: -1863978878774487986, guid: 712d088cf53eb094aaf1790024aaca81, type: 2}
@@ -7223,7 +7223,7 @@ MonoBehaviour:
   audioSource: {fileID: 2141512924}
   initialDelay: 0
   repeatInterval: 1.1
-  specificRippleSprite: {fileID: 21300000, guid: 0a703394a7c720144a59010d6930734d, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: 36658a23565cebf46adc8acee97b8458, type: 3}
 --- !u!82 &2141512924
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7756,7 +7756,7 @@ MonoBehaviour:
   dialogueManager_first: {fileID: 983376224}
   dialogueLines_first:
   - characterName: "\uB098"
-    dialogueText: "\uBC16\uC73C\uB85C \uB098\uAC08\uB798"
+    dialogueText: "\uB108\uBB34 \uC5B4\uC9C0\uB7EC\uC6CC \uB098\uAC00\uACE0\uC2F6\uC5B4"
     triggerNpcMovement: 0
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
