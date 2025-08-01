@@ -92,9 +92,6 @@ public class InteractionTrigger : MonoBehaviour
         {
             Debug.LogWarning("NPC 이동을 위한 경유지가 설정되지 않았습니다.");
         }
-
-
-
     }
     
 }

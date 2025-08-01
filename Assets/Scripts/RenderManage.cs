@@ -8,6 +8,4 @@ public class RenderManage : MonoBehaviour
     {
         render.SetActive(false);
     }
-
-   
 }
