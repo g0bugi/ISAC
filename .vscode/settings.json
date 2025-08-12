@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ISAC.sln"
+    "dotnet.defaultSolution": "ISAC.sln",
+    "dotnet.preferCSharpExtension": true
 }

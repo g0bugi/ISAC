@@ -5,6 +5,7 @@
 [Bb]uilds/
 [Ll]ogs/
 [Uu]serSettings/
+[Rr]ecordings/
 .vs/
 .idea/
 *.csproj
@@ -23,3 +24,4 @@
 .DS_Store
 *.apk
 *.aab
+Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
