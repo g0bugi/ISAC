@@ -6498,6 +6498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b07c69f1be67a045af054b6be40b045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 817742552}
   entryPointID: 0
 --- !u!4 &1883979318
 Transform:
