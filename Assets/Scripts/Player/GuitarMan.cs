@@ -8,6 +8,7 @@ public class GuitarMan : MonoBehaviour
     public DialogManager manager;
     private bool IsSitting = false;
     public Playermove playerMovement;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +33,8 @@ public class GuitarMan : MonoBehaviour
         if (cc != null) cc.enabled = false;
 
         transform.position = chair.transform.position;
+        Vector3 dir = guitarman.transform.position - transform.position;
+        transform.forward = dir;
 
         if (cc != null) cc.enabled = true;
         IsSitting = true;

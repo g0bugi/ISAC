@@ -1805,6 +1805,23 @@ MonoBehaviour:
   guitarman: {fileID: 2005103339}
   manager: {fileID: 1407999209}
   playerMovement: {fileID: 817742553}
+--- !u!114 &817742559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817742552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20b360982bfac042a00d37161aec6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  IsInteraction: 0
 --- !u!4 &818218303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8593240627173546481, guid: 3cd05ab6de143fd499488ac5ebbff0a5, type: 3}
@@ -2643,6 +2660,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 817742558}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 817742559}
   m_SourcePrefab: {fileID: 100100000, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
 --- !u!1001 &1024199258
 PrefabInstance:
