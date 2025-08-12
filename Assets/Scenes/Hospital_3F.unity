@@ -1360,8 +1360,7 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 1.8
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9173165298126303341, guid: bd724f9ea4a1441439dd41113d644d62, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1817,10 +1816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20b360982bfac042a00d37161aec6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   IsInteraction: 0
 --- !u!4 &818218303 stripped
 Transform:
