@@ -17,8 +17,11 @@ public class DialogueManager : MonoBehaviour
 
     public Playermove playerMovement; // 움직임 제어
 
+    public static bool IsTalkWithNurse = false;
+
     public void StartDialogue(DialogueLine[] dialogueLines)
     {
+        IsTalkWithNurse = true;
         currentDialogueLines = dialogueLines;
         currentDialogueIndex = 0;
         dialoguePanel.SetActive(true);

@@ -8523,6 +8523,7 @@ MonoBehaviour:
   targetTag: Player
   fadeManager: {fileID: 1004890018}
   fadeOutDuration: 1
+  manager: {fileID: 902074768}
 --- !u!65 &1212417305
 BoxCollider:
   m_ObjectHideFlags: 0
