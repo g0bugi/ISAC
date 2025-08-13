@@ -12,7 +12,10 @@ public class SoundSourceTrigger : MonoBehaviour
 
     void Start()
     {
-
+        OnEnable();
+    }
+    public void OnEnable()
+    {
         // 여기서는 FindObjectOfType을 사용합니다. (씬에 하나만 있다고 가정)
         rippleManager = FindObjectOfType<SoundLight>();
         if (rippleManager == null)
