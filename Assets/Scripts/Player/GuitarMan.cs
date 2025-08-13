@@ -6,6 +6,7 @@ public class GuitarMan : MonoBehaviour
     public GameObject chair;
     public GameObject guitarman;
     public DialogManager manager;
+    public AudioSource guitarmanVoice;
     private bool IsSitting = false;
     public Playermove playerMovement;
     
@@ -47,7 +48,7 @@ public class GuitarMan : MonoBehaviour
             playerMovement = GetComponent<Playermove>();
             playerMovement.SetCanMove(false);
             Sit();
-
+            guitarmanVoice.Play();
             
 
             manager.Action(guitarman);

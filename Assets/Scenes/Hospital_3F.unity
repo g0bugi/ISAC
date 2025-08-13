@@ -1094,7 +1094,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1803,6 +1803,7 @@ MonoBehaviour:
   chair: {fileID: 385019196}
   guitarman: {fileID: 2005103339}
   manager: {fileID: 1407999209}
+  guitarmanVoice: {fileID: 402593658}
   playerMovement: {fileID: 817742553}
 --- !u!114 &817742559
 MonoBehaviour:
