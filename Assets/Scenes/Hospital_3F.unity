@@ -3377,6 +3377,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 825486844534958846, guid: 8d8107a647d3386408e6ba4c6870f7a2, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1100425579795775620, guid: 8d8107a647d3386408e6ba4c6870f7a2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7315,7 +7319,9 @@ MonoBehaviour:
   targetSceneName: Hospital_1F
   targetTag: Player
   fadeManager: {fileID: 1908405975}
-  fadeOutDuration: 1
+  fadeOutDuration: 3
+  move: {fileID: 817742553}
+  player: {fileID: 817742552}
 --- !u!65 &2074527140
 BoxCollider:
   m_ObjectHideFlags: 0

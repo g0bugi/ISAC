@@ -8,12 +8,20 @@ public class SceneChangerOnTrigger : MonoBehaviour
     public string targetTag = "Player"; // 여기에 특정 오브젝트의 태그를 입력합니다. (기본값: Player)
     public FadeManager fadeManager; // --- FadeManager 참조 추가 ---
     public float fadeOutDuration = 1.0f; // --- 페이드 아웃에 걸릴 시간 추가 ---
+    public Playermove move;
+    public GameObject player;
 
     private void OnTriggerEnter(Collider other)
     {
         // 충돌한 오브젝트의 태그가 'targetTag'에 설정된 태그와 일치하는지 확인합니다.
         if (other.CompareTag(targetTag))
         {
+            if(!DialogueManager.DidTalkWithNurse)
+            { 
+                StartCoroutine(Sequence());
+                
+                return;
+            }
             if (!string.IsNullOrEmpty(targetSceneName))
             {
                 // --- 씬 전환 전에 페이드 아웃 코루틴 시작 ---
@@ -48,5 +56,17 @@ public class SceneChangerOnTrigger : MonoBehaviour
         SceneManage.Instance.entryPointID = 1;
         Debug.Log(SceneManage.Instance.entryPointID);
         SceneManager.LoadScene(targetSceneName);
+    }
+    private IEnumerator Sequence()
+    {
+        move.SetCanMove(false);
+        yield return StartCoroutine(fadeManager.FadeOut(3));
+
+        yield return new WaitForSeconds(3);
+        player.transform.position = new Vector3(13, 0.2f, 2);
+        player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+
+        yield return StartCoroutine(fadeManager.FadeIn(3));
+        move.SetCanMove(true);
     }
 }
