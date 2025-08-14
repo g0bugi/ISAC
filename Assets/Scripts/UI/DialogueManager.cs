@@ -21,7 +21,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueLine[] dialogueLines)
     {
-        IsTalkWithNurse = true;
+        DidTalkWithNurse = true;
         currentDialogueLines = dialogueLines;
         currentDialogueIndex = 0;
         dialoguePanel.SetActive(true);
