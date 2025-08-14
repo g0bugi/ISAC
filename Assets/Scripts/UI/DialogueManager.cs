@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     public Playermove playerMovement; // 움직임 제어
 
-    public static bool IsTalkWithNurse = false;
+    public static bool DidTalkWithNurse = false;
 
     public void StartDialogue(DialogueLine[] dialogueLines)
     {
@@ -81,6 +81,7 @@ public class DialogueManager : MonoBehaviour
     private void OnNpcMovementComplete()
     {
         Debug.Log("DialogueManager가 NPC 이동 완료 신호를 받음.");
+        DidTalkWithNurse = true;
         waitingForNpcMovement = false; // 이동 대기 상태 해제
         currentDialogueIndex++; // NPC 이동 후 다음 대화 줄로 넘어감
         // 만약 이동 후 바로 다음 대사가 나오게 하려면 아래 줄의 주석을 해제

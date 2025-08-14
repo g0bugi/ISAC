@@ -43,7 +43,7 @@ public class SceneManage : MonoBehaviour
                     break;
                 case 1:
                     player.transform.position = new Vector3(13, 0.2f, 2);
-                    player.transform.rotation = Quaternion.Euler(0f, -90f, 0f); 
+                    player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
                     break;
                 default:
                     // You can add a default behavior or a log message here if you want

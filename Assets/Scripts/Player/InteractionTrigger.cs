@@ -38,7 +38,7 @@ public class InteractionTrigger : MonoBehaviour
             StartCoroutine(FadeModifyPlayerAndStartDialogue());
         }
     }
-
+ 
     private IEnumerator FadeModifyPlayerAndStartDialogue()
     {
 
