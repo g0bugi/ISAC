@@ -10,6 +10,7 @@ public class FadeInAndDestroy : MonoBehaviour
 
     public float initialDelay = 1.0f;
     public Playermove playerMovementAndRotation;
+    
 
     void Start()
     {
@@ -54,12 +55,16 @@ public class FadeInAndDestroy : MonoBehaviour
 
         targetImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
 
-        if (playerMovementAndRotation != null)
+        if (playerMovementAndRotation != null && SceneManage.Instance.entryPointID == 0)
         {
             playerMovementAndRotation.StartGettingUpAnimation();
         }
+        else
+        {
+           playerMovementAndRotation.EnableMovement();
+        }
 
-        Debug.Log($"playerMovementAndRotation: {playerMovementAndRotation}");
+            Debug.Log($"playerMovementAndRotation: {playerMovementAndRotation}");
         Destroy(gameObject);
         
     }

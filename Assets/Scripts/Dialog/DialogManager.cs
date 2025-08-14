@@ -103,8 +103,8 @@ public class DialogManager : MonoBehaviour
             StartCoroutine(ChangeSceneWithFadeOut());
             // 대화가 종료되면 isAction 플래그를 false로 설정하고 인덱스를 초기화합니다.
             isAction = false;
-            Interaction inter = GetComponent<Interaction>();
-            inter.IsInteraction = false;
+            
+  
             talkIndex = 0;
             return; // 함수 실행을 종료합니다.
         }
