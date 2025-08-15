@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class AudioVolumeAnalyzer : MonoBehaviour
 {
@@ -11,16 +12,14 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     public GameObject circlePrefab;
     private bool IsSpawned = false;
     public float Waittime = 8;
-    public GameObject Parent_1;
-    public GameObject Parent_2;
     private bool IsDestroy = false;
+    public Sprite specificRippleSprite;
+    public SoundLight rippleManager;
     GameObject BallParent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        BallParent = Parent_1;
         clip = source.clip;
         StartCoroutine(Play());
         source.volume = 10;
@@ -57,13 +56,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
             source.volume -= 0.005f;
         }
 
-        if (time > 37f && !IsDestroy)
-        {
-            BallParent = Parent_2;
-            Destroy(Parent_1);
-            IsDestroy = true;
-            
-        }
+       
         int offset = cycle * 512;
         if (clip != null && clip.loadState == AudioDataLoadState.Loaded && offset + 512 <= clip.samples)
         {
@@ -75,7 +68,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         {
             if (spectrum[i] > 0.05 && !IsSpawned)
             {
-                SpawnCircle(spectrum[i]);
+                rippleManager.PlayRippleEffect(transform.position, source.maxDistance, specificRippleSprite);
                 IsSpawned =true;
             }
         }
@@ -83,17 +76,6 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         time += Time.deltaTime;
     }
 
-    void SpawnCircle(float volume)
-    {
-        Vector3 spawnPos = new Vector3(Random.Range(-16f, 16f), Random.Range(-9f, 9f), 0f);
-        GameObject colorball = Instantiate(circlePrefab, spawnPos, Quaternion.identity, BallParent.transform);
-        colorball.transform.localScale *= 10f * volume;
-        if (distortionFilter.distortionLevel < 0.98)
-        {
-            
-            distortionFilter.distortionLevel += 0.005f;
-            
-        }
-    }
+   
    
 }
