@@ -12,7 +12,6 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     public GameObject circlePrefab;
     private bool IsSpawned = false;
     public float Waittime = 8;
-    private bool IsDestroy = false;
     public Sprite specificRippleSprite;
     public SoundLight rippleManager;
     GameObject BallParent;
@@ -68,7 +67,8 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         {
             if (spectrum[i] > 0.05 && !IsSpawned)
             {
-                rippleManager.PlayRippleEffect(transform.position, source.maxDistance, specificRippleSprite);
+                Vector3 Randir = new Vector3 (Random.Range(-10f, 10f), Random.Range(-10f,10f),Random.Range(-10f,10f));
+                rippleManager.PlayRippleEffect(transform.position + Randir , source.maxDistance, specificRippleSprite);
                 IsSpawned =true;
             }
         }
