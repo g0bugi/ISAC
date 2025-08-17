@@ -13,7 +13,7 @@ public class NpcController : MonoBehaviour
     private Vector3 initialDialoguePosition; // 대화 시작 시 NPC의 원래 위치
     private Quaternion initialDialogueRotation; // 원래 회전값
     private Action onMovementCompleteCallback; // 이동 완료 시 호출할 콜백
-    private bool isMoving = false;
+    public static bool isMoving = false;
 
     void Awake()
     {
