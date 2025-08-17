@@ -64,7 +64,13 @@ public class AudioVolumeAnalyzer : MonoBehaviour
             IsDestroy = true;
             
         }
-        clip.GetData(spectrum, cycle * 512);
+        int offset = cycle * 512;
+        if (clip != null && clip.loadState == AudioDataLoadState.Loaded && offset + 512 <= clip.samples)
+        {
+            clip.GetData(spectrum, offset);
+            cycle++;
+        }
+
         for (int i = 0; i < spectrum.Length; i++)
         {
             if (spectrum[i] > 0.05 && !IsSpawned)
@@ -73,7 +79,6 @@ public class AudioVolumeAnalyzer : MonoBehaviour
                 IsSpawned =true;
             }
         }
-        cycle++;
         timer += Time.deltaTime;
         time += Time.deltaTime;
     }

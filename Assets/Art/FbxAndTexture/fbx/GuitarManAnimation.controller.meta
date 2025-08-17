@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Material/Emission.mat.meta
+guid: 40541d73ba4214b489a06cdf9c7caa30
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+========
+guid: 3d1c6b919f70b764cab460f5b2db3784
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+>>>>>>>> 2862a0d45086a32abc3c6de65513b797be21e57c:Assets/FbxAndTexture/fbx/GuitarManAnimation.controller.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
