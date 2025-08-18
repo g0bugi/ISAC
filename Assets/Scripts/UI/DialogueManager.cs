@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     public Playermove playerMovement; // 움직임 제어
 
     public static bool DidTalkWithNurse = false;
+    public static bool NurseTalkEnd = false;
 
     public void StartDialogue(DialogueLine[] dialogueLines)
     {
@@ -57,6 +59,11 @@ public class DialogueManager : MonoBehaviour
         if (nameText != null) // 이름 텍스트 컴포넌트가 연결되어 있다면
         {
             nameText.text = currentLine.characterName;
+        }
+
+        if (currentLine.TalkEnd == true)
+        {
+            NurseTalkEnd = true;
         }
         
         // 대사 내용 표시
