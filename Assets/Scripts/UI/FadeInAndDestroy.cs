@@ -23,10 +23,10 @@ public class FadeInAndDestroy : MonoBehaviour
         }
 
 
-        if (playerMovementAndRotation != null)
-        {
-            playerMovementAndRotation.enabled = false;
-        }
+        //if (playerMovementAndRotation != null)
+        //{
+        //    playerMovementAndRotation.enabled = false;
+        //}
 
 
         StartCoroutine(FadeIn());
@@ -42,6 +42,7 @@ public class FadeInAndDestroy : MonoBehaviour
 
         if (playerMovementAndRotation != null && SceneManage.Instance.entryPointID == 0)
         {
+            playerMovementAndRotation.SetCanMove(false);
             playerMovementAndRotation.StartGettingUpAnimation();
         }
         else

@@ -166,6 +166,8 @@ public class Playermove : MonoBehaviour
 
     void RotateView()
     {
+        if (!canMove) return;
+
         if (cameraPitchLocked)
         {
             cameraPitch = lockedCameraPitchAngle; // 고정된 각도 유지
@@ -178,7 +180,7 @@ public class Playermove : MonoBehaviour
             transform.Rotate(Vector3.up * mouseX);
 
             cameraPitch -= mouseY;
-            cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f); 
+            cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
             cameraTransform.localEulerAngles = new Vector3(cameraPitch, 0f, 0f);
         }
         
@@ -233,6 +235,7 @@ public class Playermove : MonoBehaviour
     {
         canMove = false;
         Debug.Log("StartGettingUpAnimation 플레이어 이동 비활성화.");
+        mainCam = Camera.main;
 
         if (playerAnimator != null && !string.IsNullOrEmpty(getUpAnimationTrigger))
         {
@@ -243,12 +246,13 @@ public class Playermove : MonoBehaviour
             if (playerCamHead != null)
             {
                 playerCamHead.gameObject.SetActive(true);
+                cameraTransform = playerCamHead.transform;
             }
 
             playerAnimator.SetTrigger(getUpAnimationTrigger);
             Debug.Log($"일어나는 애니메이션 '{getUpAnimationTrigger}' 트리거됨.");
 
-            
+
 
             // 일어나는 애니메이션이 끝난 후 이동 활성화.
             // 애니메이션 이벤트(Animation Event)를 사용하는 것이 가장 좋지만,
@@ -277,6 +281,7 @@ public class Playermove : MonoBehaviour
         if (mainCam != null)
         {
             mainCam.gameObject.SetActive(true);
+            cameraTransform = mainCam.transform;
         }
 
         EnableMovement();
