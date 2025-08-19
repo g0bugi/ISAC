@@ -1,5 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Interaction : MonoBehaviour
 {
@@ -17,6 +20,10 @@ public class Interaction : MonoBehaviour
     private RaycastHit hit;
     private Playermove move;
 
+    public GameObject marker; //플레이어한테 조작키 안내할 위치
+    public Sprite sprite; // 조작키 이미지
+
+    private bool IsMarker = false;
     void Awake()
     {
         move = GetComponent<Playermove>();
@@ -32,17 +39,21 @@ public class Interaction : MonoBehaviour
         if (hasHit && hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Object"))
         {
             GameObject target = hit.collider.gameObject;
-
+           
             // 2) 대상이 바뀌었는지 확인
             if (current != target)
             {
                 // 이전 대상에서 아웃라인 제거
-                if (current != null) RemoveOutline(currentRenderers);
-
+                if (current != null)
+                {
+                    RemoveOutline(currentRenderers);
+                    RemoveMarker();
+                }
                 // 새 대상 설정 & 아웃라인 추가
                 current = target;
                 currentRenderers = current.GetComponentsInChildren<Renderer>(true);
                 AddOutline(currentRenderers);
+                AddMarker(current);
             }
 
             // 3) 상호작용
@@ -69,14 +80,41 @@ public class Interaction : MonoBehaviour
             if (current != null)
             {
                 RemoveOutline(currentRenderers);
+                RemoveMarker();
                 current = null;
-                currentRenderers = null;
+                currentRenderers = null; 
             }
         }
     }
 
     // ---------- 머티리얼 조작 유틸 ----------
-
+    void AddMarker(GameObject target)
+    {
+        if (!IsMarker)
+        {
+            marker = new GameObject("Marker");
+            marker.AddComponent<SpriteRenderer>();
+            SpriteRenderer sr = marker.GetComponent<SpriteRenderer>();
+            var sa = sr.color;
+            sa.a = 0f;
+            sr.color = sa;
+            Vector3 up = new Vector3(0, 2, 0);
+            marker.transform.position = target.transform.GetChild(0).transform.position + up;
+           
+            
+            sr.sprite = sprite;
+            sr.transform.localScale *= 0.5f;
+            StartCoroutine(Alpha(sr, true));
+            IsMarker = true;
+        }
+        else
+            return;
+    }
+    void RemoveMarker()
+    {
+        Destroy(marker);
+        IsMarker = false;
+    }   
     void AddOutline(Renderer[] renderers)
     {
         if (outline == null || renderers == null) return;
@@ -122,5 +160,21 @@ public class Interaction : MonoBehaviour
             if (removed)
                 r.materials = mats.ToArray();
         }
+    }
+
+    IEnumerator Alpha(SpriteRenderer a, bool up)
+    {
+        var sprite = a.color;
+        float time = 0f;
+        float runtime = 1f;
+        while (time < runtime)
+        {
+            sprite.a = Mathf.Lerp(0f, 1f, time/runtime);
+            a.color = sprite;
+            time += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log("알파값 바꿨다");
+        yield break;
     }
 }
