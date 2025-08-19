@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     public static bool DidTalkWithNurse = false;
     public static bool NurseTalkEnd = false;
+    public CheckingPlayer checkingPlayer;
 
     public void StartDialogue(DialogueLine[] dialogueLines)
     {
@@ -29,6 +30,7 @@ public class DialogueManager : MonoBehaviour
         IsDialogueActive = true;
         waitingForNpcMovement = false;
         Debug.Log("대화 활성화");
+
 
         if (npcController != null)
         {
@@ -40,7 +42,7 @@ public class DialogueManager : MonoBehaviour
             playerMovement.SetCanMove(false);
             playerMovement.SetCameraPitchLock(true, dialogueCameraPitch);
         }
-
+        DisplayNextSentence();
     }
 
     public void DisplayNextSentence()
@@ -52,8 +54,25 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
+        
          // 현재 대화 라인 가져오기
         DialogueLine currentLine = currentDialogueLines[currentDialogueIndex];
+
+        if (npcController != null)
+        {
+            if (currentLine.freezeNpcOnTalk == true)
+            {
+                npcController.isFrozenByDialogue = true;
+            }
+            else
+            {
+                npcController.isFrozenByDialogue = false;
+            }
+        }
+
+
+        
 
         // 이름 표시
         if (nameText != null) // 이름 텍스트 컴포넌트가 연결되어 있다면
@@ -81,6 +100,18 @@ public class DialogueManager : MonoBehaviour
         {
             // NPC 이동이 없으면 바로 다음 대화 줄 인덱스 증가
             currentDialogueIndex++;
+            if (currentLine.PassThis)
+            {
+                // 다음 대사가 아직 남아있으면 재귀 호출
+                if (currentDialogueIndex < currentDialogueLines.Length)
+                {
+                    DisplayNextSentence();
+                }
+                else // 모든 대사가 끝났다면
+                {
+                    EndDialogue();
+                }
+            }
         }
     }
     
@@ -102,6 +133,7 @@ public class DialogueManager : MonoBehaviour
 
         if (npcController != null)
         {
+            npcController.isFrozenByDialogue = false;
             npcController.SetSitting(false);
         }
 
@@ -109,6 +141,10 @@ public class DialogueManager : MonoBehaviour
         {
             playerMovement.SetCanMove(true);
             playerMovement.SetCameraPitchLock(false);
+        }
+        if (checkingPlayer != null)
+        {
+            checkingPlayer.DialogueEnd();
         }
 
         Debug.Log("대화 종료!");

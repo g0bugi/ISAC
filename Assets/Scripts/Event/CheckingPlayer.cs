@@ -1,41 +1,82 @@
 using Unity.Mathematics.Geometry;
 using UnityEngine;
+using System.Collections;
 
 public class CheckingPlayer : MonoBehaviour
 {
-    public GameObject player; // ÇÃ·¹ÀÌ¾î
-    public GameObject Nurse; //°£È£»ç NPC 
-    public float limit = 10; //Á¦ÇÑ °Å¸® ÁöÁ¤
-    public float TPposition = 5; // player°¡ °­Á¦ÀûÀ¸·Î À§Ä¡ÇÏ°Ô µÇ´Â °Å¸®
-   
+    public GameObject player; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½
+    public GameObject Nurse; //ï¿½ï¿½È£ï¿½ï¿½ NPC 
+    public float limit = 10; //ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float TPposition = 5; // playerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï°ï¿½ ï¿½Ç´ï¿½ ï¿½Å¸ï¿½
+
+    public Playermove playerMoveScript;
+    public NpcController NurseMoveScript;
+    public DialogueManager dialogueManager;
+    public DialogueLine[] scoldingDialogue;
+    public FadeManager fadeEffect;
+
+    private bool isScolding = false; // ëŒ€í™” ì§„í–‰ì¤‘?
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(DialogueManager.NurseTalkEnd == true) //°£È£»ç°¡ ¿òÁ÷ÀÌ´Â ÁßÀÌ¶ó¸é
+        if (DialogueManager.NurseTalkEnd == true && !isScolding) //ï¿½ï¿½È£ï¿½ç°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½
         {
-            Debug.Log("Ã¼Å© ½ÃÀÛ");
+            Debug.Log("ì²´í¬ ì‹œì‘");
             check();
         }
     }
     void check()
     {
-        float distance = Mathf.Sqrt(Mathf.Pow(player.transform.position.x -  Nurse.transform.position.x,2)+Mathf.Pow(player.transform.position.y - Nurse.transform.position.y,2));//player¿Í Nurse»çÀÌ °Å¸®
-        if(distance > limit)
-        {
-            CharacterController cc = player.GetComponent<CharacterController>();
-            if (cc != null) cc.enabled = false;
-
-            player.transform.position = Nurse.transform.position - Nurse.transform.forward * TPposition;
-            Vector3 dir =Nurse.transform.position - player.transform.position;
-            player.transform.forward = dir;
-
-            if (cc != null) cc.enabled = true;
+        float distance = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - Nurse.transform.position.x, 2) + Mathf.Pow(player.transform.position.y - Nurse.transform.position.y, 2));//playerï¿½ï¿½ Nurseï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
+        if (distance > limit)
+        {   
+            StartCoroutine(TeleportAndScold());
         }
+    }
+    private IEnumerator TeleportAndScold()
+    {
+        // âœ¨ëŒ€í™” ì‹œì‘ ìƒíƒœë¡œ ë³€ê²½
+        isScolding = true;
+
+        if (playerMoveScript != null) playerMoveScript.SetCanMove(false);
+        if (NurseMoveScript != null) NurseMoveScript.SetCanMove(false); // ê°„í˜¸ì‚¬ë„ ë©ˆì¶¤
+
+        yield return StartCoroutine(fadeEffect.FadeOut(0.5f));
+
+        CharacterController cc = player.GetComponent<CharacterController>();
+        if (cc != null) cc.enabled = false;
+
+        player.transform.position = Nurse.transform.position - Nurse.transform.forward * TPposition;
+        Vector3 dir = Nurse.transform.position - player.transform.position;
+        player.transform.forward = dir;
+
+
+
+        yield return StartCoroutine(fadeEffect.FadeIn(0.5f));
+
+
+        if (dialogueManager != null && scoldingDialogue.Length > 0)
+        {
+            dialogueManager.StartDialogue(scoldingDialogue);
+
+            // ëŒ€í™”ê°€ ëë‚˜ë©´ ë‹¤ì‹œ ì›€ì§ì„ì„ í™œì„±í™”
+            // DialogueManager ìŠ¤í¬ë¦½íŠ¸ì—ì„œ í˜¸ì¶œí•´ì•¼ í•¨
+        }
+        if (cc != null) cc.enabled = true;
+    }
+    
+    // DialogueManagerì—ì„œ ëŒ€í™”ê°€ ëë‚¬ì„ ë•Œ ì´ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì•¼ í•©ë‹ˆë‹¤.
+    public void DialogueEnd()
+    {
+        isScolding = false;
+        if (playerMoveScript != null) playerMoveScript.SetCanMove(true);
+        if (NurseMoveScript != null) NurseMoveScript.SetCanMove(true);
     }
 }

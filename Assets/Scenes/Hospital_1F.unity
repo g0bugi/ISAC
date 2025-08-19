@@ -2333,6 +2333,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 857262442}
     - target: {fileID: 8038310322572365333, guid: 06e38b3798bd613478e4de86fdad1c9e, type: 3}
+      propertyPath: checkingPlayer
+      value: 
+      objectReference: {fileID: 1492222017}
+    - target: {fileID: 8038310322572365333, guid: 06e38b3798bd613478e4de86fdad1c9e, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 5031634771259574144}
@@ -10104,6 +10108,19 @@ MonoBehaviour:
   Nurse: {fileID: 1667360708}
   limit: 8
   TPposition: 2
+  playerMoveScript: {fileID: 5031634771259574144}
+  NurseMoveScript: {fileID: 857262442}
+  dialogueManager: {fileID: 902074768}
+  scoldingDialogue:
+  - characterName: "\uAC04\uD638\uC0AC"
+    dialogueText: "\uB530\uB77C\uC640!"
+    triggerNpcMovement: 0
+    targetMovePosition: {x: 0, y: 0, z: 0}
+    moveSpeed: 0
+    returnAfterMovement: 0
+    TalkEnd: 1
+    PassBeforeThis: 0
+  fadeEffect: {fileID: 1004890018}
 --- !u!4 &1492222018
 Transform:
   m_ObjectHideFlags: 0
@@ -12642,6 +12659,8 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassBeforeThis: 0
   - characterName: "\uB098"
     dialogueText: "\uC544\uBB34\uAC83\uB3C4 \uC548\uBCF4\uC774\uACE0 \uC5EC\uAE30\uC11C
       \uB098\uAC00\uACE0\uC2F6\uC5B4\uC694!!"
@@ -12649,6 +12668,8 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassBeforeThis: 0
   - characterName: "\uAC04\uD638\uC0AC"
     dialogueText: "\uC544\uC9C1 \uC544\uD508\uB370 \uD568\uBD80\uB85C \uB098\uAC00\uBA74
       \uC704\uD5D8\uD574"
@@ -12656,6 +12677,8 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassBeforeThis: 0
   - characterName: "\uAC04\uD638\uC0AC"
     dialogueText: "3\uCE35 \uC785\uC6D0\uC2E4\uC5D0\uC11C \uAE30\uB2E4\uB9AC\uB294\uAC74
       \uC5B4\uB54C? \uC5B4\uBA38\uB2C8\uAED8 \uB9D0\uC500 \uB4DC\uB9AC\uACE0\uC62C\uD14C\uB2C8
@@ -12664,6 +12687,8 @@ MonoBehaviour:
     targetMovePosition: {x: -1.39, y: 0.0000001192093, z: -8.57}
     moveSpeed: 1.5
     returnAfterMovement: 1
+    TalkEnd: 0
+    PassBeforeThis: 0
   - characterName: "\uAC04\uD638\uC0AC"
     dialogueText: "\uC5B4\uBA38\uB2C8\uAED8 \uC598\uAE30\uB4DC\uB838\uC5B4. \uC785\uC6D0\uC2E4\uC740
       \uC774\uCABD\uC774\uC57C"
@@ -12671,6 +12696,8 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 1
+    PassBeforeThis: 0
   playerTransform: {fileID: 2056425382}
   targetPlayerPosition: {x: -6.7, y: 0, z: -6.7}
   targetPlayerRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -14486,6 +14513,8 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassBeforeThis: 0
 --- !u!114 &5994249262064781104
 MonoBehaviour:
   m_ObjectHideFlags: 0
