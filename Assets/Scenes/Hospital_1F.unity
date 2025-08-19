@@ -932,7 +932,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8084642765211965393, guid: e5247f15185a60b4293da8c0821070f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1404330100}
   m_SourcePrefab: {fileID: 100100000, guid: e5247f15185a60b4293da8c0821070f2, type: 3}
 --- !u!1 &92883814
 GameObject:
@@ -2302,7 +2305,7 @@ PrefabInstance:
     - target: {fileID: 8038310322572365333, guid: 06e38b3798bd613478e4de86fdad1c9e, type: 3}
       propertyPath: npcController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1404330100}
     - target: {fileID: 8038310322572365333, guid: 06e38b3798bd613478e4de86fdad1c9e, type: 3}
       propertyPath: playerMovement
       value: 
@@ -10784,6 +10787,31 @@ PrefabInstance:
       addedObject: {fileID: 403278140}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7c035cdee4609f4689888a8474b63b7, type: 3}
+--- !u!1 &1404330098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8084642765211965393, guid: e5247f15185a60b4293da8c0821070f2, type: 3}
+  m_PrefabInstance: {fileID: 88152086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1404330099 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3285824231008999185, guid: e5247f15185a60b4293da8c0821070f2, type: 3}
+  m_PrefabInstance: {fileID: 88152086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1404330100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404330098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbf896a447f86b49b96ba2358e5cce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1404330099}
+  walkSpeed: 2
+  rotationSpeed: 5
 --- !u!1 &1422824468
 GameObject:
   m_ObjectHideFlags: 0
@@ -14215,7 +14243,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
