@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
 
         if (npcController != null)
         {
-            if (currentLine.freezeNpcOnTalk == true)
+            if (currentLine.freezeNpcOnTalk == true) // 얘 버그 아니었음 딱히 다 꺼놔도 똑같은 문제나네
             {
                 npcController.isFrozenByDialogue = true;
             }
@@ -88,7 +88,7 @@ public class DialogueManager : MonoBehaviour
         // 대사 내용 표시
         dialogueText.text = currentLine.dialogueText;
 
-        if (currentLine.triggerNpcMovement && npcController != null)
+        if (currentLine.triggerNpcMovement && npcController != null) //대화중에 NPC 이동시 사용함
         {
             waitingForNpcMovement = true; // NPC 이동을 기다리는 중으로 설정
             Debug.Log("NPC 이동 트리거!");

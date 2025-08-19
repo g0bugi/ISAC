@@ -46,7 +46,7 @@ public class CheckingPlayer : MonoBehaviour
         isScolding = true;
 
         if (playerMoveScript != null) playerMoveScript.SetCanMove(false);
-        if (NurseMoveScript != null) NurseMoveScript.SetCanMove(false); // 간호사도 멈춤
+        if (NurseMoveScript != null) NurseMoveScript.PauseMovement();
 
         yield return StartCoroutine(fadeEffect.FadeOut(0.5f));
 
@@ -77,6 +77,6 @@ public class CheckingPlayer : MonoBehaviour
     {
         isScolding = false;
         if (playerMoveScript != null) playerMoveScript.SetCanMove(true);
-        if (NurseMoveScript != null) NurseMoveScript.SetCanMove(true);
+        if (NurseMoveScript != null) NurseMoveScript.ResumeMovement();
     }
 }

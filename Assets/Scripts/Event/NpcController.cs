@@ -16,6 +16,8 @@ public class NpcController : MonoBehaviour
     public bool isMoving = false;
     public bool isFrozenByDialogue = false;
 
+    private bool isPaused = false;
+
     void Awake()
     {
         // Animator 컴포넌트가 연결되지 않았다면, 같은 오브젝트에서 찾기 시도
@@ -23,6 +25,28 @@ public class NpcController : MonoBehaviour
         {
             animator = GetComponent<Animator>();
         }
+    }
+
+    public void PauseMovement()
+    {
+        isPaused = true;
+        if (animator != null)
+        {
+            // 걷기 애니메이션만 멈춤
+            animator.SetBool("IsWalking", false);
+        }
+        Debug.Log("NPC 이동 일시정지.");
+    }
+
+    public void ResumeMovement()
+    {
+        isPaused = false;
+        if (isMoving && animator != null) // isMoving 상태일 때만 애니메이션 재개
+        {
+            // 걷기 애니메이션 다시 시작
+            animator.SetBool("IsWalking", true);
+        }
+        Debug.Log("NPC 이동 재개.");
     }
 
     public void SetCanMove(bool state)
@@ -53,7 +77,7 @@ public class NpcController : MonoBehaviour
 
     public void MoveToPosition(Vector3 targetPos, float speed, Action callback = null, bool returnToInitial = false)
     {
-        StopAllCoroutines();
+        
         if (isMoving) return; // 이미 이동 중이면 무시
 
         isMoving = true;
@@ -134,9 +158,10 @@ public class NpcController : MonoBehaviour
     // NPC가 특정 위치로 걷기 시작하는 함수
     public void StartWalkingTo(Vector3 targetPosition)
     {
-        StopAllCoroutines();
+        
         currentTargetPosition = targetPosition;
         isMoving = true;
+        isPaused = false; 
         if (animator != null)
         {
             // Animator에 "IsWalking"이라는 bool 파라미터가 있다고 가정
@@ -151,6 +176,10 @@ public class NpcController : MonoBehaviour
     {
         while (isMoving && Vector3.Distance(transform.position, currentTargetPosition) > 0.1f)
         {
+            while (isPaused)
+            {
+                yield return null; // 일시정지 상태에서는 아무것도 하지 않고 대기
+            }
             while (isFrozenByDialogue)
             {
                 yield return null;
@@ -169,12 +198,15 @@ public class NpcController : MonoBehaviour
         }
 
         // 목표 위치에 도달하면 걷는 애니메이션 끄기
-        isMoving = false;
-        if (animator != null)
+        if (!isPaused)
         {
-            animator.SetBool("IsWalking", false);
+            isMoving = false;
+            if (animator != null)
+            {
+                animator.SetBool("IsWalking", false);
+            }
+            Debug.Log("NPC 이동 완료!");
         }
-        Debug.Log("NPC 이동 완료!");
     }
 
     public bool GetIsMoving()
