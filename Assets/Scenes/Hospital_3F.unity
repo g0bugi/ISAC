@@ -355,6 +355,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6407479126030990779, guid: 68b860862ca8e6243b1497d2f93d21f9, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407479126030990779, guid: 68b860862ca8e6243b1497d2f93d21f9, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b5242dcd147f68e42a108343e2ffdcf0, type: 2}
     - target: {fileID: 6558278849681177677, guid: 68b860862ca8e6243b1497d2f93d21f9, type: 3}
       propertyPath: m_Name
       value: Curtain (0)
@@ -1818,10 +1826,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20b360982bfac042a00d37161aec6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxdistance: 15
   mask:
     serializedVersion: 2
     m_Bits: 256
   IsInteraction: 0
+  cam: {fileID: 0}
 --- !u!4 &818218303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8593240627173546481, guid: 3cd05ab6de143fd499488ac5ebbff0a5, type: 3}
