@@ -15,13 +15,13 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     public Sprite specificRippleSprite;
     public SoundLight rippleManager;
     GameObject BallParent;
-
+    private bool TimeToSilence = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         clip = source.clip;
         StartCoroutine(Play());
-        source.volume = 10;
+        source.volume = 1;
     }
 
     IEnumerator Play()
@@ -52,7 +52,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
 
         if(time > 50f)
         {
-            source.volume -= 0.005f;
+            StartSilence();
         }
 
        
@@ -75,7 +75,31 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         timer += Time.deltaTime;
         time += Time.deltaTime;
     }
+    void StartSilence()
+    {
+        if(TimeToSilence)
+        {
+            StartCoroutine(Silence());
+            TimeToSilence = false;
+        }
+        else
+        {
+            return;
+        }
+    }
 
-   
+    IEnumerator Silence()
+    {
+        float time = 0f;
+        float active = 10f;
+        while (time < active)
+        {
+            source.volume = Mathf.Lerp(1f, 0f, time / active);
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+        yield break;
+    }
    
 }
