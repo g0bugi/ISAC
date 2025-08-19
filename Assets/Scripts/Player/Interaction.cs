@@ -20,10 +20,11 @@ public class Interaction : MonoBehaviour
     private RaycastHit hit;
     private Playermove move;
 
-    public GameObject marker; //플레이어한테 조작키 안내할 위치
+    private GameObject marker; //플레이어한테 조작키 안내할 위치
     public Sprite sprite; // 조작키 이미지
 
     private bool IsMarker = false;
+    private bool running = false;
     void Awake()
     {
         move = GetComponent<Playermove>();
@@ -39,21 +40,27 @@ public class Interaction : MonoBehaviour
         if (hasHit && hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Object"))
         {
             GameObject target = hit.collider.gameObject;
-           
+
             // 2) 대상이 바뀌었는지 확인
             if (current != target)
             {
                 // 이전 대상에서 아웃라인 제거
-                if (current != null)
+                if (current != null && IsMarker)
                 {
                     RemoveOutline(currentRenderers);
                     RemoveMarker();
                 }
                 // 새 대상 설정 & 아웃라인 추가
-                current = target;
-                currentRenderers = current.GetComponentsInChildren<Renderer>(true);
-                AddOutline(currentRenderers);
-                AddMarker(current);
+                else
+                {
+                    if (!IsMarker)
+                    {
+                        current = target;
+                        currentRenderers = current.GetComponentsInChildren<Renderer>(true);
+                        AddOutline(currentRenderers);
+                        AddMarker(current);
+                    }
+                }
             }
 
             // 3) 상호작용
@@ -76,13 +83,13 @@ public class Interaction : MonoBehaviour
         }
         else
         {
-            // 레이를 못 맞추거나 레이어가 다르면, 기존 대상에서 아웃라인 제거
             if (current != null)
             {
+                // 레이를 못 맞추거나 레이어가 다르면, 기존 대상에서 아웃라인&마커 제거
                 RemoveOutline(currentRenderers);
                 RemoveMarker();
                 current = null;
-                currentRenderers = null; 
+                currentRenderers = null;
             }
         }
     }
@@ -90,30 +97,48 @@ public class Interaction : MonoBehaviour
     // ---------- 머티리얼 조작 유틸 ----------
     void AddMarker(GameObject target)
     {
-        if (!IsMarker)
+        if (!running)
         {
-            marker = new GameObject("Marker");
-            marker.AddComponent<SpriteRenderer>();
-            SpriteRenderer sr = marker.GetComponent<SpriteRenderer>();
-            var sa = sr.color;
-            sa.a = 0f;
-            sr.color = sa;
-            Vector3 up = new Vector3(0, 2, 0);
-            marker.transform.position = target.transform.GetChild(0).transform.position + up;
-           
-            
-            sr.sprite = sprite;
-            sr.transform.localScale *= 0.5f;
-            StartCoroutine(Alpha(sr, true));
-            IsMarker = true;
+            if (marker == null)// marker가 없는지 확인
+            {
+                marker = new GameObject("Marker");
+                marker.AddComponent<SpriteRenderer>();
+                SpriteRenderer sr = marker.GetComponent<SpriteRenderer>();
+                var sa = sr.color;
+                sa.a = 0f;
+                sr.color = sa;
+                Vector3 up = new Vector3(0, 2, 0);
+                if (target.transform.childCount > 0)
+                {
+                    // 자식이 있으면 첫 번째 자식 기준
+                    marker.transform.position = target.transform.GetChild(0).position + up;
+                }
+                else
+                {
+                    // 자식이 없으면 target 자체 기준
+                    marker.transform.position = target.transform.position + up;
+                }
+                Debug.Log(target.name);
+
+                sr.sprite = sprite;
+                sr.transform.localScale *= 0.5f;
+                StartCoroutine(Alpha(sr, true));
+            }
+            else
+                return;
+            if (IsMarker)
+                running = false;
         }
-        else
-            return;
+        
     }
     void RemoveMarker()
     {
+        StopCoroutine(Alpha(marker.GetComponent<SpriteRenderer>(), true));
         Destroy(marker);
         IsMarker = false;
+        running = false;
+        Debug.Log("없앤다");
+          
     }   
     void AddOutline(Renderer[] renderers)
     {
@@ -167,12 +192,32 @@ public class Interaction : MonoBehaviour
         var sprite = a.color;
         float time = 0f;
         float runtime = 1f;
-        while (time < runtime)
+        if (up)
         {
-            sprite.a = Mathf.Lerp(0f, 1f, time/runtime);
-            a.color = sprite;
-            time += Time.deltaTime;
-            yield return null;
+            while (time < runtime)
+            {
+                sprite.a = Mathf.Lerp(0f, 1f, time / runtime);
+                a.color = sprite;
+                time += Time.deltaTime;
+                yield return null;
+            }
+            IsMarker = true;
+        }
+        else
+        {
+            
+            while (time < runtime)
+            {
+                sprite.a = Mathf.Lerp(1f, 0f, time / runtime);
+                a.color = sprite;
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+
+            Destroy(marker);
+            IsMarker = false;
+            running = false;
         }
         Debug.Log("알파값 바꿨다");
         yield break;
