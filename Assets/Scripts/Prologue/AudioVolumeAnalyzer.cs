@@ -8,7 +8,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     public AudioSource source;
     AudioClip clip;
     public AudioDistortionFilter distortionFilter;
-    float[] spectrum = new float[512];
+    float[] samples = new float[1024];
     public GameObject circlePrefab;
     private bool IsSpawned = false;
     public float Waittime = 8;
@@ -56,16 +56,16 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         }
 
        
-        int offset = cycle * 512;
-        if (clip != null && clip.loadState == AudioDataLoadState.Loaded && offset + 512 <= clip.samples)
+        int offset = cycle * samples.Length;
+        if (clip != null && clip.loadState == AudioDataLoadState.Loaded && offset + samples.Length <= clip.samples)
         {
-            clip.GetData(spectrum, offset);
+            clip.GetData(samples, offset);
             cycle++;
         }
 
-        for (int i = 0; i < spectrum.Length; i++)
+        for (int i = 0; i < samples.Length; i++)
         {
-            if (spectrum[i] > 0.05 && !IsSpawned)
+            if (Mathf.Abs(samples[i]) > 0.05 && !IsSpawned)
             {
                 Vector3 Randir = new Vector3 (Random.Range(-10f, 10f), Random.Range(-10f,10f),Random.Range(-10f,10f));
                 rippleManager.PlayRippleEffect(transform.position + Randir , source.maxDistance, specificRippleSprite);
