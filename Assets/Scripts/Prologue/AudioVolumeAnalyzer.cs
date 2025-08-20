@@ -46,7 +46,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     private double lastSpawnDsp = -999.0;   // 마지막 “스폰” 시각(메인 스레드에서 기록)
 
     private bool silenceStarted = false;
-
+    private bool Stop = false;
     public GameObject AudioSource;
 
     void Awake()
@@ -74,7 +74,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     void Update()
     {
         if (startDspTime < 0 || source == null) return;
-
+        Stop = AudioListener.pause;
         double dspNow = AudioSettings.dspTime;
         double playhead = dspNow - startDspTime; // 재생 기준 경과 시간(초)
 
@@ -92,27 +92,33 @@ public class AudioVolumeAnalyzer : MonoBehaviour
             SceneManager.LoadScene(nextSceneName);
             return;
         }
-
-        // 오디오 스레드에서 신호 감지되면, DSP 시계 기준 쿨다운으로 스폰
-        double detectedAt;
-        lock (eventLock) detectedAt = lastDetectionDsp;
-
-        if (detectedAt > 0 && (dspNow - lastSpawnDsp) >= spawnCooldownSec)
+        if (!Stop)
         {
-            // 재현성 있는 랜덤: “감지 시각(초)×샘플레이트”로 시드 파생
-            int seed = Mathf.Abs((int)(detectedAt * sampleRate));
-            var rand = new System.Random(seed);
-            Vector3 dir = new Vector3(
-                (float)(rand.NextDouble() * 2 - 1),
-                (float)(rand.NextDouble() * 2 - 1),
-                (float)(rand.NextDouble() * 2 - 1)
-            ).normalized;
-            Vector3 offset = dir * rippleRadius * (float)rand.NextDouble();
-            Vector3 range = new Vector3(UnityEngine.Random.Range(-10f, 10f),UnityEngine.Random.Range(-5f,5f),0);
-            if (rippleManager != null)
-                rippleManager.PlayRippleEffect(AudioSource.transform.position +range, source.maxDistance, specificRippleSprite);
+            // 오디오 스레드에서 신호 감지되면, DSP 시계 기준 쿨다운으로 스폰
+            double detectedAt;
+            lock (eventLock) detectedAt = lastDetectionDsp;
 
-            lock (eventLock) lastSpawnDsp = detectedAt;
+            if (detectedAt > 0 && (dspNow - lastSpawnDsp) >= spawnCooldownSec)
+            {
+                // 재현성 있는 랜덤: “감지 시각(초)×샘플레이트”로 시드 파생
+                int seed = Mathf.Abs((int)(detectedAt * sampleRate));
+                var rand = new System.Random(seed);
+                Vector3 dir = new Vector3(
+                    (float)(rand.NextDouble() * 2 - 1),
+                    (float)(rand.NextDouble() * 2 - 1),
+                    (float)(rand.NextDouble() * 2 - 1)
+                ).normalized;
+                Vector3 offset = dir * rippleRadius * (float)rand.NextDouble();
+                Vector3 range = new Vector3(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-5f, 5f), 0);
+                if (rippleManager != null)
+                    rippleManager.PlayRippleEffect(AudioSource.transform.position + range, source.maxDistance, specificRippleSprite);
+
+                lock (eventLock) lastSpawnDsp = detectedAt;
+            }
+        }
+        else
+        {
+            StopAllCoroutines();
         }
     }
     
@@ -120,6 +126,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     void OnAudioFilterRead(float[] data, int channels)
     {
         if (startDspTime < 0 || data == null || channels <= 0) return;
+        if (Stop) return;
 
         int n = data.Length / channels;          // 채널당 샘플 수
         if (n <= 0) return;
