@@ -83,7 +83,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
             TimeToSilence = false;
         }
         else
-        {
+        {  
             return;
         }
     }
