@@ -2336,6 +2336,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 857262442}
     - target: {fileID: 8038310322572365333, guid: 06e38b3798bd613478e4de86fdad1c9e, type: 3}
+      propertyPath: checkingPlayer
+      value: 
+      objectReference: {fileID: 1492222017}
+    - target: {fileID: 8038310322572365333, guid: 06e38b3798bd613478e4de86fdad1c9e, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 5031634771259574144}
@@ -8741,7 +8745,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6671021455032526645, guid: e5247f15185a60b4293da8c0821070f2, type: 3}
   m_PrefabInstance: {fileID: 88152086}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1667360708}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fbf896a447f86b49b96ba2358e5cce2, type: 3}
@@ -15917,6 +15921,68 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1441078645}
   m_SourcePrefab: {fileID: 100100000, guid: db6d6b412c63fd247b39625ca000c353, type: 3}
+--- !u!1 &1492222016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1492222018}
+  - component: {fileID: 1492222017}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1492222017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492222016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20cc3357888a30544a004ec8b9f86dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1223967256}
+  Nurse: {fileID: 1667360708}
+  limit: 8
+  TPposition: 2
+  playerMoveScript: {fileID: 5031634771259574144}
+  NurseMoveScript: {fileID: 857262442}
+  dialogueManager: {fileID: 902074768}
+  scoldingDialogue:
+  - characterName: "\uAC04\uD638\uC0AC"
+    dialogueText: "\uB530\uB77C\uC640!"
+    triggerNpcMovement: 0
+    targetMovePosition: {x: 0, y: 0, z: 0}
+    moveSpeed: 0
+    returnAfterMovement: 0
+    TalkEnd: 1
+    PassThis: 0
+    freezeNpcOnTalk: 1
+  fadeEffect: {fileID: 1004890018}
+--- !u!4 &1492222018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492222016}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.9431305, y: -5.8543386, z: -2.5406218}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1497841340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16776,6 +16842,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658223640}
   m_Mesh: {fileID: -2714530077652590187, guid: 9c59534df4e053a4e823dc9ced656558, type: 3}
+--- !u!1 &1667360708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8084642765211965393, guid: e5247f15185a60b4293da8c0821070f2, type: 3}
+  m_PrefabInstance: {fileID: 88152086}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1670355167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 87dd643ab949229418ba9400e67cf1c0, type: 3}
@@ -18641,6 +18712,9 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
   - characterName: "\uB098"
     dialogueText: "\uC544\uBB34\uAC83\uB3C4 \uC548\uBCF4\uC774\uACE0 \uC5EC\uAE30\uC11C
       \uB098\uAC00\uACE0\uC2F6\uC5B4\uC694!!"
@@ -18648,6 +18722,9 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
   - characterName: "\uAC04\uD638\uC0AC"
     dialogueText: "\uC544\uC9C1 \uC544\uD508\uB370 \uD568\uBD80\uB85C \uB098\uAC00\uBA74
       \uC704\uD5D8\uD574"
@@ -18655,6 +18732,9 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
   - characterName: "\uAC04\uD638\uC0AC"
     dialogueText: "3\uCE35 \uC785\uC6D0\uC2E4\uC5D0\uC11C \uAE30\uB2E4\uB9AC\uB294\uAC74
       \uC5B4\uB54C? \uC5B4\uBA38\uB2C8\uAED8 \uB9D0\uC500 \uB4DC\uB9AC\uACE0\uC62C\uD14C\uB2C8
@@ -18663,6 +18743,9 @@ MonoBehaviour:
     targetMovePosition: {x: -1.39, y: 0.0000001192093, z: -8.57}
     moveSpeed: 1.5
     returnAfterMovement: 1
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
   - characterName: "\uAC04\uD638\uC0AC"
     dialogueText: "\uC5B4\uBA38\uB2C8\uAED8 \uC598\uAE30\uB4DC\uB838\uC5B4. \uC785\uC6D0\uC2E4\uC740
       \uC774\uCABD\uC774\uC57C"
@@ -18670,6 +18753,9 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 1
+    PassThis: 0
+    freezeNpcOnTalk: 0
   playerTransform: {fileID: 2056425382}
   targetPlayerPosition: {x: -6.7, y: 0, z: -6.7}
   targetPlayerRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -20605,3 +20691,4 @@ SceneRoots:
   - {fileID: 1606946824}
   - {fileID: 1549565871}
   - {fileID: 508554792}
+  - {fileID: 1492222018}
