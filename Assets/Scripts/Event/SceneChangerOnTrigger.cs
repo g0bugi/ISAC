@@ -61,13 +61,13 @@ public class SceneChangerOnTrigger : MonoBehaviour
     private IEnumerator Sequence()
     {
         move.SetCanMove(false);
-        yield return StartCoroutine(fadeManager.FadeOut(3));
+        yield return StartCoroutine(fadeManager.FadeOut(1));
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.5f);
         player.transform.position = new Vector3(13, 0.2f, 2);
         player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
-        yield return StartCoroutine(fadeManager.FadeIn(3));
+        yield return StartCoroutine(fadeManager.FadeIn(1));
         move.SetCanMove(true);
     }
 }

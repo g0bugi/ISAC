@@ -7,9 +7,12 @@ public class Playermove : MonoBehaviour
     public float runSpeed = 10f;
     public float jumpForce = 8f; // 점프 높이 조절
     public float gravity = -9.81f; // 중력 값 (유니티 기본 중력)
+    private float moveSpeedInAir;
 
     public float mouseSensitivity = 2f;
     public Transform cameraTransform;
+    public Camera playerCamHead;
+    private Camera mainCam;
 
     private CharacterController controller; 
     private Vector3 playerVelocity; //플레이어의 현재 속도 (중력, 점프 등)
@@ -41,7 +44,7 @@ public class Playermove : MonoBehaviour
 
         if (cameraTransform == null)
         {
-            Camera mainCam = Camera.main;
+            mainCam = Camera.main;
             if (mainCam != null)
             {
                 cameraTransform = mainCam.transform;
@@ -98,7 +101,20 @@ public class Playermove : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+        float currentSpeed = walkSpeed;
+
+        if (isGrounded)
+        {
+            currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+            
+            moveSpeedInAir = currentSpeed;
+
+        }
+        else // 캐릭터가 공중에 있을 때
+        {
+            currentSpeed = moveSpeedInAir;
+        }
+
 
         
         Vector3 moveDirection = transform.right * h + transform.forward * v;
@@ -150,6 +166,8 @@ public class Playermove : MonoBehaviour
 
     void RotateView()
     {
+        if (!canMove) return;
+
         if (cameraPitchLocked)
         {
             cameraPitch = lockedCameraPitchAngle; // 고정된 각도 유지
@@ -162,7 +180,7 @@ public class Playermove : MonoBehaviour
             transform.Rotate(Vector3.up * mouseX);
 
             cameraPitch -= mouseY;
-            cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f); 
+            cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
             cameraTransform.localEulerAngles = new Vector3(cameraPitch, 0f, 0f);
         }
         
@@ -217,11 +235,24 @@ public class Playermove : MonoBehaviour
     {
         canMove = false;
         Debug.Log("StartGettingUpAnimation 플레이어 이동 비활성화.");
+        mainCam = Camera.main;
 
         if (playerAnimator != null && !string.IsNullOrEmpty(getUpAnimationTrigger))
         {
+            if (mainCam != null)
+            {
+                mainCam.gameObject.SetActive(false);
+            }
+            if (playerCamHead != null)
+            {
+                playerCamHead.gameObject.SetActive(true);
+                cameraTransform = playerCamHead.transform;
+            }
+
             playerAnimator.SetTrigger(getUpAnimationTrigger);
             Debug.Log($"일어나는 애니메이션 '{getUpAnimationTrigger}' 트리거됨.");
+
+
 
             // 일어나는 애니메이션이 끝난 후 이동 활성화.
             // 애니메이션 이벤트(Animation Event)를 사용하는 것이 가장 좋지만,
@@ -241,7 +272,17 @@ public class Playermove : MonoBehaviour
         // 일어나는 애니메이션 클립의 정확한 길이를 아는 것이 가장 좋습니다.
         // 또는 애니메이션 이벤트 (Animation Event)를 사용하세요.
         // 예시: yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(0).length);
-        yield return new WaitForSeconds(1.0f); // 임의의 대기 시간 (애니메이션 길이에 맞게 조절)
+        yield return new WaitForSeconds(7.0f); // 임의의 대기 시간 (애니메이션 길이에 맞게 조절)
+
+        if (playerCamHead != null)
+        {
+            playerCamHead.gameObject.SetActive(false);
+        }
+        if (mainCam != null)
+        {
+            mainCam.gameObject.SetActive(true);
+            cameraTransform = mainCam.transform;
+        }
 
         EnableMovement();
         dialogueManager_first.StartDialogue(dialogueLines_first);

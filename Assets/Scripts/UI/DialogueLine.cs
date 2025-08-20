@@ -11,4 +11,8 @@ public class DialogueLine
     public Vector3 targetMovePosition; // NPC가 이동할 목표 위치
     public float moveSpeed = 1.5f; // NPC 이동 속도
     public bool returnAfterMovement; // 이동 후 다시 원래 위치로 돌아올지 여부
+    public bool TalkEnd; // 대화 끝남 여부
+    public bool PassThis;
+    public bool freezeNpcOnTalk = false;
+
 }

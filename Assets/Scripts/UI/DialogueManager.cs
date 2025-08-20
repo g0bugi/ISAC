@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     public Playermove playerMovement; // 움직임 제어
 
     public static bool DidTalkWithNurse = false;
+    public static bool NurseTalkEnd = false;
+    public CheckingPlayer checkingPlayer;
 
     public void StartDialogue(DialogueLine[] dialogueLines)
     {
@@ -27,6 +30,7 @@ public class DialogueManager : MonoBehaviour
         IsDialogueActive = true;
         waitingForNpcMovement = false;
         Debug.Log("대화 활성화");
+
 
         if (npcController != null)
         {
@@ -38,7 +42,7 @@ public class DialogueManager : MonoBehaviour
             playerMovement.SetCanMove(false);
             playerMovement.SetCameraPitchLock(true, dialogueCameraPitch);
         }
-
+        DisplayNextSentence();
     }
 
     public void DisplayNextSentence()
@@ -50,19 +54,41 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
+        
          // 현재 대화 라인 가져오기
         DialogueLine currentLine = currentDialogueLines[currentDialogueIndex];
+
+        if (npcController != null)
+        {
+            if (currentLine.freezeNpcOnTalk == true) // 얘 버그 아니었음 딱히 다 꺼놔도 똑같은 문제나네
+            {
+                npcController.isFrozenByDialogue = true;
+            }
+            else
+            {
+                npcController.isFrozenByDialogue = false;
+            }
+        }
+
+
+        
 
         // 이름 표시
         if (nameText != null) // 이름 텍스트 컴포넌트가 연결되어 있다면
         {
             nameText.text = currentLine.characterName;
         }
+
+        if (currentLine.TalkEnd == true)
+        {
+            NurseTalkEnd = true;
+        }
         
         // 대사 내용 표시
         dialogueText.text = currentLine.dialogueText;
 
-        if (currentLine.triggerNpcMovement && npcController != null)
+        if (currentLine.triggerNpcMovement && npcController != null) //대화중에 NPC 이동시 사용함
         {
             waitingForNpcMovement = true; // NPC 이동을 기다리는 중으로 설정
             Debug.Log("NPC 이동 트리거!");
@@ -74,6 +100,18 @@ public class DialogueManager : MonoBehaviour
         {
             // NPC 이동이 없으면 바로 다음 대화 줄 인덱스 증가
             currentDialogueIndex++;
+            if (currentLine.PassThis)
+            {
+                // 다음 대사가 아직 남아있으면 재귀 호출
+                if (currentDialogueIndex < currentDialogueLines.Length)
+                {
+                    DisplayNextSentence();
+                }
+                else // 모든 대사가 끝났다면
+                {
+                    EndDialogue();
+                }
+            }
         }
     }
     
@@ -95,6 +133,7 @@ public class DialogueManager : MonoBehaviour
 
         if (npcController != null)
         {
+            npcController.isFrozenByDialogue = false;
             npcController.SetSitting(false);
         }
 
@@ -102,6 +141,10 @@ public class DialogueManager : MonoBehaviour
         {
             playerMovement.SetCanMove(true);
             playerMovement.SetCameraPitchLock(false);
+        }
+        if (checkingPlayer != null)
+        {
+            checkingPlayer.DialogueEnd();
         }
 
         Debug.Log("대화 종료!");
