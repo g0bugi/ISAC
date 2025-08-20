@@ -15959,7 +15959,7 @@ MonoBehaviour:
   dialogueManager: {fileID: 902074768}
   scoldingDialogue:
   - characterName: "\uAC04\uD638\uC0AC"
-    dialogueText: "\uB530\uB77C\uC640!"
+    dialogueText: "\uB0A0 \uB530\uB77C\uC624\uB834"
     triggerNpcMovement: 0
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 0
@@ -20580,18 +20580,33 @@ MonoBehaviour:
   dialogueManager_first: {fileID: 983376224}
   dialogueLines_first:
   - characterName: "\uB098"
+    dialogueText: "\uC5EC\uAE34 \uC5B4\uB514\uC9C0?"
+    triggerNpcMovement: 0
+    targetMovePosition: {x: 0, y: 0, z: 0}
+    moveSpeed: 3
+    returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
+  - characterName: "\uB098"
     dialogueText: "\uC73C\u2026 \uC5B4\uC9C0\uB7FD\uACE0 \uC2DC\uB044\uB7EC\uC6CC.
       \uC800 \uBE5B\uB4E4\uC740 \uB2E4 \uBB50\uC57C?"
     triggerNpcMovement: 0
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
   - characterName: "\uB098"
     dialogueText: "\uB098\uAC00\uC57C\uACA0\uC5B4. \uCD9C\uAD6C\uAC00 \uC5B4\uB514\uC9C0?"
     triggerNpcMovement: 0
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
 --- !u!114 &5031634771259574145
 MonoBehaviour:
   m_ObjectHideFlags: 0
