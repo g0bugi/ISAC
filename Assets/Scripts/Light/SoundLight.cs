@@ -17,7 +17,7 @@ public class SoundLight : MonoBehaviour
     public float screenEdgePadding = 50f;
     private RectTransform canvasRectTransform;
     
-    
+    private int orderCounter = 0; 
 
     private Camera mainCamera; // 메인 카메라 참조
 
@@ -72,12 +72,15 @@ public class SoundLight : MonoBehaviour
             return;
         }
 
+        //렌더링 순서 조절 코드
+        rippleRect.SetAsLastSibling();
+
         // customRippleSprite가 제공되면 Image 컴포넌트의 sprite를 변경합니다.
-        // 그렇지 않으면 rippleBasePrefab에 이미 할당된 기본 sprite가 사용됩니다.
-        if (customRippleSprite != null)
-        {
-            rippleImage.sprite = customRippleSprite;
-        }
+            // 그렇지 않으면 rippleBasePrefab에 이미 할당된 기본 sprite가 사용됩니다.
+            if (customRippleSprite != null)
+            {
+                rippleImage.sprite = customRippleSprite;
+            }
 
         rippleRect.sizeDelta = new Vector2(initialRippleSize, initialRippleSize);
         rippleTransparency = 1.0f;
@@ -137,6 +140,8 @@ public class SoundLight : MonoBehaviour
             timer += Time.deltaTime;
             yield return null; // 다음 프레임까지 대기
         }
+
+        image.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
 
         // 애니메이션 완료 후 오브젝트 파괴
         Destroy(rect.gameObject);

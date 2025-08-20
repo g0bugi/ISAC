@@ -10,9 +10,13 @@ public class SoundSourceTrigger : MonoBehaviour
     public float repeatInterval = 1.0f; // 파장 효과가 반복되는 간격 (초)
     public Sprite specificRippleSprite; // 파장 이미지  
 
+    
+
+    public bool RanOn; // 랜덤 생성
+
     void Start()
     {
-        OnEnable();
+
     }
     public void OnEnable()
     {
@@ -47,7 +51,17 @@ public class SoundSourceTrigger : MonoBehaviour
         {
             PlayRipple();
 
-            yield return new WaitForSeconds(repeatInterval);
+            if (RanOn)
+            {
+                // Use a random value when RanOn is true
+                float randomInterval = Random.Range(0.1f, 1.0f);
+                yield return new WaitForSeconds(randomInterval);
+            }
+            else
+            {
+                // Use the fixed repeatInterval as before
+                yield return new WaitForSeconds(repeatInterval);
+            }
         }
     }
 
