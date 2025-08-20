@@ -1,7 +1,10 @@
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class AudioSubManage : MonoBehaviour
 {
+    public Sprite specificRippleSprite;
+    public SoundLight rippleManager;
     public GameObject circlePrefab;
     int Count = 0;
 
@@ -11,16 +14,18 @@ public class AudioSubManage : MonoBehaviour
     {
         if(timer > 50.5f && Count == 0)
         {
-            Vector3 spawnPos = new Vector3(Random.Range(-16f, 16f), Random.Range(-9f, 9f), 0f);
-            GameObject colorball = Instantiate(circlePrefab, spawnPos, Quaternion.identity);
-            colorball.transform.localScale *= 5f;
+            Vector3 spawnPos = new Vector3(Random.Range(-10f, 10f), Random.Range(-5f, 5f), 0f);
+            
+            rippleManager.PlayRippleEffect(spawnPos , 1000, specificRippleSprite);
+           
             Count++;
         }
         if(timer > 52f && Count == 1)
         {
-            Vector3 spawnPos = new Vector3(Random.Range(-16f, 16f), Random.Range(-9f, 9f), 0f);
-            GameObject colorball = Instantiate(circlePrefab, spawnPos, Quaternion.identity);
-            colorball.transform.localScale *= 10f;
+            Vector3 spawnPos = new Vector3(Random.Range(-10f, 10f), Random.Range(-5f, 5f), 0f);
+
+            rippleManager.PlayRippleEffect(spawnPos, 1000, specificRippleSprite);
+
             Count++;
         }
         timer += Time.deltaTime;
