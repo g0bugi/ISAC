@@ -1057,6 +1057,7 @@ MonoBehaviour:
   initialDelay: 0
   repeatInterval: 0.5
   specificRippleSprite: {fileID: 21300000, guid: 0a703394a7c720144a59010d6930734d, type: 3}
+  RanOn: 0
 --- !u!1 &402593656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1204,7 @@ MonoBehaviour:
   initialDelay: 0
   repeatInterval: 0.3
   specificRippleSprite: {fileID: 21300000, guid: c70ad08318038c24684541acb438b1a7, type: 3}
+  RanOn: 0
 --- !u!4 &404699673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3869251202973729005, guid: db6d6b412c63fd247b39625ca000c353, type: 3}
@@ -1733,6 +1735,7 @@ MonoBehaviour:
   gravity: -9.81
   mouseSensitivity: 2
   cameraTransform: {fileID: 1407387852}
+  playerCamHead: {fileID: 0}
   playerAnimator: {fileID: 817742555}
   getUpAnimationTrigger: GetUp
   speedParameterName: Speed
@@ -1826,12 +1829,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a20b360982bfac042a00d37161aec6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxdistance: 15
+  outline: {fileID: 0}
+  cam: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 256
-  IsInteraction: 0
-  cam: {fileID: 0}
+  maxdistance: 15
+  sprite: {fileID: 0}
 --- !u!4 &818218303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8593240627173546481, guid: 3cd05ab6de143fd499488ac5ebbff0a5, type: 3}
@@ -3685,7 +3689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -50}
+  m_AnchoredPosition: {x: 150, y: -65.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179687141
@@ -5703,10 +5707,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1179630979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 50}
-  m_SizeDelta: {x: -200, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 59.19}
+  m_SizeDelta: {x: 1589.53, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667094697
 MonoBehaviour:
@@ -6836,24 +6840,34 @@ MonoBehaviour:
   Name:
   - "\uB098"
   - "\uB098"
-  - "\uAE30\uD0C0\uB9E8"
+  - "\uC544\uC800\uC528"
   - "\uB098"
-  - "\uAE30\uD0C0\uB9E8"
+  - "\uC544\uC800\uC528"
   - "\uB098"
-  - "\uAE30\uD0C0\uB9E8"
-  - "\uAE30\uD0C0\uB9E8"
+  - "\uC544\uC800\uC528"
+  - "\uC544\uC800\uC528"
   - "\uB098"
-  - "\uAE30\uD0C0\uB9E8"
+  - "\uC544\uC800\uC528"
   - "\uB098"
-  - "\uAE30\uD0C0\uB9E8"
-  - "\uB098"
-  - "\uB098"
-  - "\uAE30\uD0C0\uB9E8"
-  - "\uB098"
-  - "\uAE30\uD0C0\uB9E8"
-  - "\uAE30\uD0C0\uB9E8"
+  - "\uC544\uC800\uC528"
   - "\uB098"
   - "\uB098"
+  - "\uC544\uC800\uC528"
+  - "\uB098"
+  - "\uC544\uC800\uC528"
+  - "\uC544\uC800\uC528"
+  - "\uB098"
+  - "\uC544\uC800\uC528"
+  - "\uB098"
+  - "\uC544\uC800\uC528"
+  - "\uB098"
+  - "\uC544\uC800\uC528"
+  - "\uB098"
+  - "\uC544\uC800\uC528"
+  - "\uC544\uC800\uC528"
+  - "\uC544\uC800\uC528"
+  - "\uC544\uC800\uC528"
+  - "\uC544\uC800\uC528"
   Text:
   - "\uC640, \uAD6C\uB984\uC774 \uB108\uBB34 \uC608\uBED0\uC694!"
   - "\uC606\uC5D0 \uC549\uC544\uB3C4 \uB3FC\uC694?"
@@ -6896,7 +6910,29 @@ MonoBehaviour:
     \uB550 \uAD1C\uCC2E\uC558\uC5B4\uC694. \uAE30\uD0C0\uC5D0\uC11C \uB098\uC624\uB294
     \uAD6C\uB984\uC740 \uBAA8\uC591\uB3C4 \uC608\uC058\uACE0, \uBA38\uB9AC\uB97C
     \uC544\uD504\uAC8C \uD558\uC9C0\uB3C4 \uC54A\uC544\uC694. \uB108\uBB34 \uC2E0\uAE30\uD574\uC694."
-  - "\uD55C \uBC88 \uCCD0\uBCFC \uC218 \uC788\uC744\uAE4C\uC694?"
+  - "\uC74C\uC545\uD68C\uC5D0 \uAC14\uC5C8\uB2E4\uACE0 \uD588\uC9C0?"
+  - "\uB124."
+  - "\uC74C\uC545\uC744 \uC88B\uC544\uD558\uB098\uBCF4\uAD6C\uB098."
+  - "\uBD80\uBAA8\uB2D8\uC774 \uC88B\uC544\uD558\uC138\uC694. \uC800\uB3C4 \uC74C\uC545
+    \uB4E3\uB294 \uAC78 \uC88B\uC544\uD558\uC9C0\uB9CC, \uBD80\uBAA8\uB2D8\uB9CC\uD07C\uC740
+    \uC798 \uBAB0\uB77C\uC694."
+  - "\uCF00\uC774\uD2C0\uB9B0 \uD638\uBC14\uB77C\uB294 \uBC14\uC774\uC62C\uB9B0 \uC5F0\uC8FC\uC790\uC5D0
+    \uB300\uD574 \uB4E4\uC5B4\uBCF8 \uC801 \uC788\uB2C8?"
+  - "\uC544\uB2C8\uC694, \uCC98\uC74C \uB4E4\uC5B4\uBD10\uC694."
+  - "\uB124 \uC598\uAE30\uB97C \uB4E4\uC5B4\uBCF4\uB2C8 \uCF00\uC774\uD2C0\uB9B0
+    \uD638\uBC14\uAC00 \uB5A0\uC62C\uB77C."
+  - "\uCF00\uC774\uD2C0\uB9B0 \uD638\uBC14\uB294 \uB108\uCC98\uB7FC \uC0C9\uCCAD\uC744
+    \uAC00\uC9C0\uACE0 \uC788\uC5C8\uB294\uB370, \uC624\uD788\uB824 \uC0C9\uC774
+    \uBCF4\uC774\uB294 \uC99D\uC0C1\uC744 \uC790\uC2E0\uC758 \uBC14\uC774\uC62C\uB9B0
+    \uC5F0\uC8FC\uC5D0 \uD65C\uC6A9\uD558\uACE4 \uD588\uC5B4."
+  - "\uC74C\uC815\uC5D0 \uB530\uB77C \uB2EC\uB77C\uC9C0\uB294 \uAD6C\uB984\uC758
+    \uC0C9\uC744 \uC774\uC6A9\uD574, \uB178\uB798\uB97C \uB4E4\uC73C\uBA74 \uC5B4\uB5A4
+    \uC74C\uC778\uC9C0 \uC54C\uC558\uB2E4\uACE0 \uD574."
+  - "\uB108\uB3C4 \uB2F9\uC7A5\uC740 \uB290\uB08C\uC774 \uC774\uC0C1\uD558\uACE0
+    \uBA38\uB9AC\uAC00 \uC544\uD50C \uC9C0 \uBAB0\uB77C\uB3C4\u2026"
+  - "\uC5B8\uC820\uAC00\uB294 \uB124\uAC00 \uAC00\uC9C4 \uB2A5\uB825\uC744 \uB124\uAC8C
+    \uC720\uB9AC\uD55C \uBC29\uD5A5\uC73C\uB85C \uC4F8 \uC218 \uC788\uAC8C \uB420
+    \uC9C0\uB3C4 \uBAB0\uB77C."
 --- !u!65 &2005103343
 BoxCollider:
   m_ObjectHideFlags: 0
