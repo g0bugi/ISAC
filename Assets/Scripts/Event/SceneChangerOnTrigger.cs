@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class SceneChangerOnTrigger : MonoBehaviour
 {
@@ -20,7 +19,6 @@ public class SceneChangerOnTrigger : MonoBehaviour
             if(!DialogueManager.DidTalkWithNurse)
             { 
                 StartCoroutine(Sequence());
-                
                 return;
             }
             if (!string.IsNullOrEmpty(targetSceneName))
