@@ -1,4 +1,3 @@
-using Unity.Mathematics.Geometry;
 using UnityEngine;
 using System.Collections;
 
@@ -17,29 +16,19 @@ public class CheckingPlayer : MonoBehaviour
 
     private bool isScolding = false; // 대화 진행중?
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (DialogueManager.NurseTalkEnd == true && !isScolding) //��ȣ�簡 �����̴� ���̶��
-        {
-            Debug.Log("체크 시작");
-            check();
-        }
+        Debug.Log(DialogueManager.NurseTalkEnd);
+        if (DialogueManager.NurseTalkEnd && !isScolding) { Check(); }
     }
-    void check()
+
+    void Check()
     {
         float distance = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - Nurse.transform.position.x, 2) + Mathf.Pow(player.transform.position.y - Nurse.transform.position.y, 2));//player�� Nurse���� �Ÿ�
-        if (distance > limit)
-        {   
-            StartCoroutine(TeleportAndScold());
-        }
+        if (distance > limit) { StartCoroutine(TeleportAndScold()); }
     }
+
     private IEnumerator TeleportAndScold()
     {
         // ✨대화 시작 상태로 변경
@@ -57,10 +46,7 @@ public class CheckingPlayer : MonoBehaviour
         Vector3 dir = Nurse.transform.position - player.transform.position;
         player.transform.forward = dir;
 
-
-
         yield return StartCoroutine(fadeEffect.FadeIn(0.5f));
-
 
         if (dialogueManager != null && scoldingDialogue.Length > 0)
         {
