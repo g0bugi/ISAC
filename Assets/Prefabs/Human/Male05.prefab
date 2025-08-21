@@ -44,7 +44,7 @@ Animator:
   m_GameObject: {fileID: 7641002665324927906}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 50c8fe73844fb0a42bdb72b9873224e6, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2997bc7702ae68543baa69146708c8e9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 62283de8ca021c34aa5e61353fb9a6f4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -202,6 +202,7 @@ MonoBehaviour:
   initialDelay: 0
   repeatInterval: 0.75
   specificRippleSprite: {fileID: 21300000, guid: b6eddb0c95f20a445a3c3ddbba4a4b2a, type: 3}
+  RanOn: 0
 --- !u!1001 &7052833602422946342
 PrefabInstance:
   m_ObjectHideFlags: 0

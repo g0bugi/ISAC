@@ -146,6 +146,7 @@ MonoBehaviour:
   initialDelay: 0
   repeatInterval: 1
   specificRippleSprite: {fileID: 21300000, guid: c70ad08318038c24684541acb438b1a7, type: 3}
+  RanOn: 0
 --- !u!1 &4498029305842940336
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3492257008000896257}
+  - component: {fileID: -8043888084772808680}
   m_Layer: 0
   m_Name: Halmoni
   m_TagString: Untagged
@@ -179,6 +181,28 @@ Transform:
   - {fileID: 7546941922764043081}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &-8043888084772808680
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4498029305842940336}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: e9603e7a3938b4e47abbb7121bcbae61, type: 3}
+  m_Controller: {fileID: 9100000, guid: 62283de8ca021c34aa5e61353fb9a6f4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6961559165914762694
 PrefabInstance:
   m_ObjectHideFlags: 0
