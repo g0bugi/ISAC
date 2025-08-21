@@ -17,8 +17,8 @@ public class SoundLight : MonoBehaviour
     public float screenEdgePadding = 50f;
     private RectTransform canvasRectTransform;
     
-    private int orderCounter = 0;
-    private bool Stop = false;
+    private int orderCounter = 0; 
+
     private Camera mainCamera; // 메인 카메라 참조
 
     void Start()
@@ -38,17 +38,12 @@ public class SoundLight : MonoBehaviour
         }
     
     }
-    void Update()
-    {
-        Stop = AudioListener.pause;
-    }
 
+    
     // 이 함수는 외부에서 호출되어 파장 효과를 시작합니다.
     // soundSourcePosition: 소리가 나는 3D 월드 위치
     public void PlayRippleEffect(Vector3 soundSourcePosition, float audioSourceMaxDistance, Sprite customRippleSprite = null)
     {
-        if (Stop)
-            return;
         if (rippleBasePrefab == null || mainCamera == null || canvasRectTransform == null)
         {
             Debug.LogError("필수 컴포넌트 또는 프리팹이 할당되지 않았습니다.");
