@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d6507fc54afe84bbf92b40f5fc857d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1049900286}
+  panel: {fileID: 1013657868}
 --- !u!1 &1002405643
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +802,82 @@ MonoBehaviour:
   spawnCooldownSec: 0.1
   rippleRadius: 10
   AudioSource: {fileID: 1747134881}
+--- !u!1 &1013657868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013657869}
+  - component: {fileID: 1013657871}
+  - component: {fileID: 1013657870}
+  m_Layer: 5
+  m_Name: Setting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1013657869
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013657868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1978862609}
+  m_Father: {fileID: 1158827715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1013657870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013657868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1013657871
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013657868}
+  m_CullTransparentMesh: 1
 --- !u!1 &1052546785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1078,7 @@ RectTransform:
   m_Children:
   - {fileID: 1773894500}
   - {fileID: 799028210}
-  - {fileID: 1049900287}
+  - {fileID: 1013657869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1634,7 +1710,6 @@ GameObject:
   - component: {fileID: 1747134884}
   - component: {fileID: 1747134886}
   - component: {fileID: 1747134887}
-  - component: {fileID: 1747134888}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -1677,14 +1752,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747134881}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ca717fa484692d48ae004ec032ccfd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1658351923}
   distortionFilter: {fileID: 1658351925}
-  specificRippleSprite: {fileID: 21300000, guid: 0a703394a7c720144a59010d6930734d, type: 3}
+  specificRippleSprite: {fileID: 21300000, guid: c70ad08318038c24684541acb438b1a7, type: 3}
   rippleManager: {fileID: 1251056466}
   waitTime: 8
   startSilenceAt: 50
@@ -1695,22 +1770,7 @@ MonoBehaviour:
   emaTauSec: 0.3
   spawnCooldownSec: 0.1
   rippleRadius: 10
-  AudioSource: {fileID: 1747134881}
---- !u!114 &1747134888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747134881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d493e1bfeb332547b50a3dc67714b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  specificRippleSprite: {fileID: 21300000, guid: ae40c3351541c9747aaac9cf96a6f504, type: 3}
-  rippleManager: {fileID: 1251056466}
-  circlePrefab: {fileID: 6115104724548583048, guid: ae8933fcf30d880469896e2608815b56, type: 3}
+  AudioSource: {fileID: 1658351922}
 --- !u!1 &1773894499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,15 +1874,15 @@ RectTransform:
   m_GameObject: {fileID: 1978862608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.01, y: 1.01, z: 1}
+  m_LocalScale: {x: 2.3363855, y: 2.3363855, z: 2.313253}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1985141049}
-  m_Father: {fileID: 1049900287}
+  m_Father: {fileID: 1013657869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1978862610
