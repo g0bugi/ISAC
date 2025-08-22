@@ -4,8 +4,13 @@ using UnityEngine.Video;
 public class Television : MonoBehaviour, IInteractiable
 {
     public VideoPlayer player;
+    public GameObject sound;
     bool IsPlay = false;
-    public AudioSource noise;
+    
+    void Start()
+    {
+        sound.SetActive(false);
+    }
    public void Action()
     {
         Debug.Log("Æ¼ºñ´Ù~~");
@@ -13,12 +18,12 @@ public class Television : MonoBehaviour, IInteractiable
         if (IsPlay)
         {
             TurnOn();
-            noise.Play();
+            sound.SetActive(true);
         }
         else
         {
             TurnOff();
-            noise.Stop();
+            sound.SetActive(false);
         }
     }
 
