@@ -3972,6 +3972,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bed Unit (1-3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4088924570929689637, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8640486740189822464, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.75
@@ -5188,6 +5192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bed Unit (2-1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4088924570929689637, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8640486740189822464, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7
@@ -6322,6 +6330,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bed Unit (2-2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4088924570929689637, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5582980193399886813, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 8640486740189822464, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.5
@@ -6516,6 +6532,10 @@ PrefabInstance:
     - target: {fileID: 1075786342737618301, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_Name
       value: Bed Unit (2-4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088924570929689637, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8640486740189822464, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7861,6 +7881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bed Unit (2-3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4088924570929689637, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8640486740189822464, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8192,6 +8216,10 @@ PrefabInstance:
     - target: {fileID: 1075786342737618301, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_Name
       value: Bed Unit (1-4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088924570929689637, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8640486740189822464, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9540,6 +9568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bed Unit (1-2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4088924570929689637, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8640486740189822464, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.25
@@ -10419,6 +10451,10 @@ PrefabInstance:
     - target: {fileID: 1075786342737618301, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_Name
       value: Bed Unit (1-1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088924570929689637, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8640486740189822464, guid: 92fa70228c0b8c94588b8d27f8c4963c, type: 3}
       propertyPath: m_LocalPosition.x
