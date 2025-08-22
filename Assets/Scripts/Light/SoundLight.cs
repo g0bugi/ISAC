@@ -20,6 +20,7 @@ public class SoundLight : MonoBehaviour
     private int orderCounter = 0; 
 
     private Camera mainCamera; // 메인 카메라 참조
+    private bool Stop = false;
 
     void Start()
     {
@@ -38,11 +39,14 @@ public class SoundLight : MonoBehaviour
         }
     
     }
+    void Update()
+    {
+        Stop = AudioListener.pause;
+    }
 
-    
     // 이 함수는 외부에서 호출되어 파장 효과를 시작합니다.
     // soundSourcePosition: 소리가 나는 3D 월드 위치
-    public void PlayRippleEffect(Vector3 soundSourcePosition, float audioSourceMaxDistance, Sprite customRippleSprite = null)
+    public void PlayRippleEffect(Vector3 soundSourcePosition, float audioSourceMaxDistance, Sprite customRippleSprite)
     {
         if (rippleBasePrefab == null || mainCamera == null || canvasRectTransform == null)
         {
@@ -64,6 +68,9 @@ public class SoundLight : MonoBehaviour
         RectTransform rippleRect = rippleGO.GetComponent<RectTransform>();
         Image rippleImage = rippleGO.GetComponent<Image>();
 
+        Debug.Log($"[SoundLight] Received custom sprite: {(customRippleSprite != null ? customRippleSprite.name : "null")}");
+        Debug.Log($"[SoundLight] Prefab's initial sprite: {(rippleImage.sprite != null ? rippleImage.sprite.name : "null")}");
+
          // 인스턴스화된 프리팹에 Image 컴포넌트가 없다면 오류를 출력하고 파괴합니다.
         if (rippleImage == null)
         {
@@ -76,11 +83,14 @@ public class SoundLight : MonoBehaviour
         rippleRect.SetAsLastSibling();
 
         // customRippleSprite가 제공되면 Image 컴포넌트의 sprite를 변경합니다.
-            // 그렇지 않으면 rippleBasePrefab에 이미 할당된 기본 sprite가 사용됩니다.
-            if (customRippleSprite != null)
-            {
-                rippleImage.sprite = customRippleSprite;
-            }
+        // 그렇지 않으면 rippleBasePrefab에 이미 할당된 기본 sprite가 사용됩니다.
+        if (customRippleSprite != null)
+        {
+            rippleImage.overrideSprite = null;
+            rippleImage.sprite = customRippleSprite;
+        }
+
+        Debug.Log($"[SoundLight] Sprite after assignment: {(rippleImage.sprite != null ? rippleImage.sprite.name : "null")}");
 
         rippleRect.sizeDelta = new Vector2(initialRippleSize, initialRippleSize);
         rippleTransparency = 1.0f;
@@ -115,6 +125,8 @@ public class SoundLight : MonoBehaviour
 
     IEnumerator AnimateRipple(RectTransform rect, Image image, float startSizeForAnim)
     {
+        if(Stop)
+            yield return null;
         //Debug.Log("AnimateRipple 코루틴 시작됨!");
         float timer = 0f;
         float endSizeForAnim = startSizeForAnim * rippleScaleMultiplier;

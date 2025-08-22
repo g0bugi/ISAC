@@ -14,12 +14,7 @@ public class Setting : MonoBehaviour
     {
         Time.timeScale = 0;
         panel.SetActive(IsStopped);
-        AudioSource[] audios = FindObjectsOfType<AudioSource>();
-        foreach (AudioSource audio in audios)
-        {
-            if (audio.isPlaying)
-                audio.Pause(); // ��� ��ġ ���, Resume ����
-        }
+        AudioListener.pause = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Debug.Log("�ν� �Ϸ�");
@@ -28,13 +23,8 @@ public class Setting : MonoBehaviour
     {
         Time.timeScale = 1;
         panel.SetActive(IsStopped);
-        AudioSource[] audios = FindObjectsOfType<AudioSource>();
-        foreach (AudioSource audio in audios)
-        {
-            if (!audio.isPlaying)
-                audio.UnPause(); // ��� ��ġ ���, Resume ����
-        }
-        Cursor.lockState = CursorLockMode.Locked;
+        AudioListener.pause = false;
+        Cursor.lockState= CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
