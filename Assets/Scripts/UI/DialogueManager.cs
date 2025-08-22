@@ -151,7 +151,7 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (IsDialogueActive && Input.GetKeyDown(KeyCode.Space)) // 스페이스바를 누르면
+        if (IsDialogueActive && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Space))) // F || 스페이스바를 누르면
         {
             DisplayNextSentence();
         }
