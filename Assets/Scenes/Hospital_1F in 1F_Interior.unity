@@ -11999,7 +11999,7 @@ MonoBehaviour:
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
     returnAfterMovement: 0
-    TalkEnd: 0
+    TalkEnd: 1
     PassThis: 0
     freezeNpcOnTalk: 0
   playerTransform: {fileID: 1306009707}

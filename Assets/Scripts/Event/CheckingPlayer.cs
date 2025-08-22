@@ -19,7 +19,6 @@ public class CheckingPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(DialogueManager.NurseTalkEnd);
         if (DialogueManager.NurseTalkEnd && !isScolding) { Check(); }
     }
 
