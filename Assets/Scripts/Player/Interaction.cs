@@ -107,7 +107,7 @@ public class Interaction : MonoBehaviour
                 var sa = sr.color;
                 sa.a = 0f;
                 sr.color = sa;
-                Vector3 up = new Vector3(0, 2, 0);
+                Vector3 up = new Vector3(2, 0, 0);
                 if (target.transform.childCount > 0)
                 {
                     // 자식이 있으면 첫 번째 자식 기준
