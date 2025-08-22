@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d6507fc54afe84bbf92b40f5fc857d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1049900286}
+  panel: {fileID: 0}
 --- !u!1 &1002405643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1002,6 @@ RectTransform:
   m_Children:
   - {fileID: 1773894500}
   - {fileID: 799028210}
-  - {fileID: 1049900287}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1818,7 +1817,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1985141049}
-  m_Father: {fileID: 1049900287}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2332,3 +2331,4 @@ SceneRoots:
   - {fileID: 1183791222}
   - {fileID: 1052546789}
   - {fileID: 1002405646}
+  - {fileID: 1978862609}

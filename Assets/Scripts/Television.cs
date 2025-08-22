@@ -4,6 +4,7 @@ using UnityEngine.Video;
 public class Television : MonoBehaviour, IInteractiable
 {
     public VideoPlayer player;
+    public GameObject sound;
     bool IsPlay = false;
     public GameObject noise;
     
@@ -13,7 +14,7 @@ public class Television : MonoBehaviour, IInteractiable
     }
    public void Action()
     {
-        Debug.Log("Æ¼ºñ´Ù~~");
+        Debug.Log("Æ¼ï¿½ï¿½ï¿½~~");
        IsPlay = !IsPlay;
         if (IsPlay)
         {
