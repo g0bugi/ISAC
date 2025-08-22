@@ -889,7 +889,7 @@ MonoBehaviour:
   analysisWindowSec: 0.0464
   thresholdK: 2
   emaTauSec: 0.3
-  spawnCooldownSec: 0.1
+  spawnCooldownSec: 0.4
   rippleRadius: 10
   AudioSource: {fileID: 1658351922}
   beforeEnd: {fileID: 799028216}
@@ -2484,8 +2484,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ae3af356d9a8ca744a4f0bb075b2ea11, type: 2}
-  m_sharedMaterial: {fileID: 7746391393140052674, guid: ae3af356d9a8ca744a4f0bb075b2ea11, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 712d088cf53eb094aaf1790024aaca81, type: 2}
+  m_sharedMaterial: {fileID: -1863978878774487986, guid: 712d088cf53eb094aaf1790024aaca81, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2913,4 +2913,3 @@ SceneRoots:
   - {fileID: 1183791222}
   - {fileID: 1052546789}
   - {fileID: 1002405646}
-  - {fileID: 1978862609}

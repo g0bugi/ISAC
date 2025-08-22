@@ -68,9 +68,6 @@ public class SoundLight : MonoBehaviour
         RectTransform rippleRect = rippleGO.GetComponent<RectTransform>();
         Image rippleImage = rippleGO.GetComponent<Image>();
 
-        Debug.Log($"[SoundLight] Received custom sprite: {(customRippleSprite != null ? customRippleSprite.name : "null")}");
-        Debug.Log($"[SoundLight] Prefab's initial sprite: {(rippleImage.sprite != null ? rippleImage.sprite.name : "null")}");
-
          // 인스턴스화된 프리팹에 Image 컴포넌트가 없다면 오류를 출력하고 파괴합니다.
         if (rippleImage == null)
         {
@@ -89,8 +86,6 @@ public class SoundLight : MonoBehaviour
             rippleImage.overrideSprite = null;
             rippleImage.sprite = customRippleSprite;
         }
-
-        Debug.Log($"[SoundLight] Sprite after assignment: {(rippleImage.sprite != null ? rippleImage.sprite.name : "null")}");
 
         rippleRect.sizeDelta = new Vector2(initialRippleSize, initialRippleSize);
         rippleTransparency = 1.0f;

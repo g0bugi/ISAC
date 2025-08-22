@@ -82,15 +82,20 @@ public class Interaction : MonoBehaviour
                         else
                             return;
                     }
+                    move.canMove = true;
                 }
                 else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("NPC"))
                 {
+                    manager.TalkEnd = false;
                     if (target.GetComponent<ObjData>() != null)
                     {
                         manager.Action(target);
+                       
                     }
+                    if(manager.TalkEnd == true)
+                        move.canMove= true;
                 }
-                    move.canMove = true;
+                    
             }
         }
         else

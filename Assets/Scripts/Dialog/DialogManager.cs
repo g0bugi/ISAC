@@ -18,6 +18,7 @@ public class DialogManager : MonoBehaviour
     public Dictionary<int, string[]> talkData;
     public FadeManager fadeManager; // --- FadeManager 참조 추가 ---
     public float fadeOutDuration = 1.0f; // --- 페이드 아웃에 걸릴 시간 추가 ---
+    public bool TalkEnd = false;
 
     // 게임이 시작될 때 대화창을 비활성화 상태로 초기화합니다.
     private void Start()
@@ -98,8 +99,11 @@ public class DialogManager : MonoBehaviour
         // 현재 대화 ID에 해당하는 모든 대화 내용이 끝났는지 확인합니다.
         if (talkIndex == talkData[id].Length)
         {
-            if(scanObject.name == "GuitarMan")
-            StartCoroutine(ChangeSceneWithFadeOut());
+            TalkEnd = true;
+            if (scanObject.name == "GuitarMan")
+            {
+                StartCoroutine(ChangeSceneWithFadeOut());
+            }
             // 대화가 종료되면 isAction 플래그를 false로 설정하고 인덱스를 초기화합니다.
             isAction = false;
             
