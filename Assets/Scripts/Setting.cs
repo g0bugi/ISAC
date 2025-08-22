@@ -1,16 +1,15 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+
 public class Setting : MonoBehaviour
 {
     private bool IsStopped = false;
     public GameObject panel;
-   
+
     private void Start()
     {
         panel.SetActive(false);
     }
-    
+
     public void TheWorld()
     {
         Time.timeScale = 0;
@@ -19,11 +18,11 @@ public class Setting : MonoBehaviour
         foreach (AudioSource audio in audios)
         {
             if (audio.isPlaying)
-                audio.Pause(); // Àç»ý À§Ä¡ ±â¾ï, Resume °¡´É
+                audio.Pause(); // ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½, Resume ï¿½ï¿½ï¿½ï¿½
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Debug.Log("ÀÎ½Ä ¿Ï·á");
+        Debug.Log("ï¿½Î½ï¿½ ï¿½Ï·ï¿½");
     }
     public void Resume()
     {
@@ -33,9 +32,9 @@ public class Setting : MonoBehaviour
         foreach (AudioSource audio in audios)
         {
             if (!audio.isPlaying)
-                audio.UnPause(); // Àç»ý À§Ä¡ ±â¾ï, Resume °¡´É
+                audio.UnPause(); // ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½, Resume ï¿½ï¿½ï¿½ï¿½
         }
-        Cursor.lockState= CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
@@ -44,9 +43,9 @@ public class Setting : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit(); // ¾îÇÃ¸®ÄÉÀÌ¼Ç Á¾·á
+        Application.Quit(); // ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 #endif
-        Debug.Log("Á¾·á~~");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½~~");
     }
 
 
@@ -64,9 +63,9 @@ public class Setting : MonoBehaviour
                 Resume();
             }
         }
-        
+
     }
 
-   
+
 
 }

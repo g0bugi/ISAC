@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
-using Unity.VisualScripting;
 using System.Collections;
 
 // 대화 관리를 총괄하는 메인 스크립트입니다.
