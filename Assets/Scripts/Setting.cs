@@ -17,7 +17,7 @@ public class Setting : MonoBehaviour
         AudioListener.pause = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Debug.Log("�ν� �Ϸ�");
+        
     }
     public void Resume()
     {
@@ -35,7 +35,7 @@ public class Setting : MonoBehaviour
 #else
         Application.Quit(); // ���ø����̼� ����
 #endif
-        Debug.Log("����~~");
+        Debug.Log("");
     }
 
 

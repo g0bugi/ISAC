@@ -19,7 +19,7 @@ public class AudioSubManage : MonoBehaviour
            
             Count++;
         }
-        if(timer > 51.4f && Count == 1)
+        if(timer > 51.6f && Count == 1)
         {
             Vector3 spawnPos = new Vector3(Random.Range(-10f, 10f), Random.Range(-5f, 5f), 0f);
 

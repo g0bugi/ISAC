@@ -28,7 +28,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
 
     [Header("Spawning (main-thread)")]
     [Tooltip("스폰 쿨다운(초). DSP 시계 기준 유지")]
-    [Range(0.01f, 0.5f)] public float spawnCooldownSec = 0.10f;
+    [Range(0.01f, 10f)] public float spawnCooldownSec = 0.1f;
     [Tooltip("리플 랜덤 오프셋 반경")]
     public float rippleRadius = 10f;
 
@@ -49,8 +49,10 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     private bool Stop = false;
 
     public GameObject AudioSource;
-    public BeforeSceneEnd beforeEnd;
+    public BeforeSceneEnd beforeEnd; // tip 화면
+    public double Size;
 
+    
     void Awake()
     {
         if (!source) source = GetComponent<AudioSource>();
@@ -71,6 +73,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         startDspTime = now + waitTime;
         if (source && source.clip)
             source.PlayScheduled(startDspTime);
+        rippleManager.maxRippleSize = 1200;
     }
 
     void Update()
@@ -85,14 +88,21 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         if (!silenceStarted && playhead >= startSilenceAt)
         {
             silenceStarted = true;
-            StartCoroutine(FadeOutVolume(10f));
+            StartCoroutine(FadeOutVolume(2f));
         }
 
         if (playhead >= changeSceneAt)
         {
             // 프로젝트별 사용자 코드 유지
+            Size *= 5;
             beforeEnd.BeforeSceneEndPanel.SetActive(true);
             StartCoroutine(beforeEnd.Sequence());
+           
+        }
+
+        if(playhead >= changeSceneAt + 3f)
+        {
+            rippleManager.maxRippleSize = 500;
             SceneManage.Instance.entryPointID = 0;
             SceneManager.LoadScene(nextSceneName);
             return;
@@ -117,11 +127,13 @@ public class AudioVolumeAnalyzer : MonoBehaviour
                 Vector3 range = new Vector3(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-5f, 5f), 0);
                 if (rippleManager != null)
                 {
-                    
-                    rippleManager.PlayRippleEffect(AudioSource.transform.position + range, source.maxDistance, null);
+                    for (int i = 0; i < UnityEngine.Random.Range(1, 5); i++)
+                    { 
+                        rippleManager.PlayRippleEffect(AudioSource.transform.position + range, source.maxDistance * (float)Size, null); 
+                    }
                 }
 
-                lock (eventLock) lastSpawnDsp = detectedAt;
+                lock (eventLock) lastSpawnDsp = dspNow;
             }
         }
     }
@@ -157,7 +169,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
             sumAbs += Math.Abs(s);
         }
         double meanAbs = sumAbs / n;
-
+        Size = meanAbs * 15;
         // 적응형 임계값: EMA * K
         ema = (1.0 - emaAlpha) * ema + emaAlpha * meanAbs;
         double threshold = ema * thresholdK;
@@ -170,6 +182,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
             {
                 // 메인 스레드에서 최종 쿨다운을 적용하므로 여기서는 마지막 감지 시각만 업데이트
                 lastDetectionDsp = chunkCenterDsp;
+            
             }
         }
     }

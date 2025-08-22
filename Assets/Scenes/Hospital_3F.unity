@@ -5068,6 +5068,7 @@ MonoBehaviour:
   talkIndex: 0
   fadeManager: {fileID: 1908405975}
   fadeOutDuration: 1
+  TalkEnd: 0
 --- !u!1001 &1411827923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7001,7 +7002,7 @@ PrefabInstance:
     - target: {fileID: 5895883185073893319, guid: c47a834bd5d4ce64eb949f6444d3cb8b, type: 3}
       propertyPath: rippleBasePrefab
       value: 
-      objectReference: {fileID: 5004848364463661208, guid: 0575b4a372fffb346a8ff2959cb39062, type: 3}
+      objectReference: {fileID: 3608500876580069699, guid: 364200d6286decc47b2d9f35ce85b0eb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5142042438361389276, guid: c47a834bd5d4ce64eb949f6444d3cb8b, type: 3}
