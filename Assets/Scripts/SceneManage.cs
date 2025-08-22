@@ -39,7 +39,7 @@ public class SceneManage : MonoBehaviour
             switch (entryPointID)
             {
                 case 0:
-                    player.transform.position = new Vector3(2, 1, -9);
+                    player.transform.position = new Vector3(1.75f, 1, -10);
                     break;
                 case 1:
                     player.transform.position = new Vector3(13, 0.2f, 2);

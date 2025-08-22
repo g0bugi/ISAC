@@ -7683,6 +7683,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: b2c6f81cc029e534a8cf6370918f7b8b, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
+      propertyPath: m_AnimatePhysics
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 507b06707f64e144ab139fd0cb0e8bcb, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -8976,8 +8984,8 @@ Transform:
   m_GameObject: {fileID: 1306009706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 1.75, y: 1, z: -10}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1571800139}
@@ -9011,7 +9019,26 @@ MonoBehaviour:
   dialogueManager_first: {fileID: 983376224}
   dialogueLines_first:
   - characterName: "\uB098"
-    dialogueText: "\uB108\uBB34 \uC5B4\uC9C0\uB7EC\uC6CC \uB098\uAC00\uACE0 \uC2F6\uC5B4"
+    dialogueText: "\uC5EC\uAE34 \uC5B4\uB514\uC9C0?"
+    triggerNpcMovement: 0
+    targetMovePosition: {x: 0, y: 0, z: 0}
+    moveSpeed: 3
+    returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
+  - characterName: "\uB098"
+    dialogueText: "\uC73C\u2026 \uC5B4\uC9C0\uB7FD\uACE0 \uC2DC\uB044\uB7EC\uC6CC.
+      \uC800 \uBE5B\uB4E4\uC740 \uB2E4 \uBB50\uC57C?"
+    triggerNpcMovement: 0
+    targetMovePosition: {x: 0, y: 0, z: 0}
+    moveSpeed: 3
+    returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
+  - characterName: "\uB098"
+    dialogueText: "\uB098\uAC00\uC57C\uACA0\uC5B4. \uCD9C\uAD6C\uAC00 \uC5B4\uB514\uC9C0?"
     triggerNpcMovement: 0
     targetMovePosition: {x: 0, y: 0, z: 0}
     moveSpeed: 3
@@ -9041,7 +9068,7 @@ CharacterController:
   m_Radius: 0.125
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.008
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!95 &1306009710
@@ -13909,6 +13936,14 @@ PrefabInstance:
     - target: {fileID: 3466317680858418816, guid: d4552a5d54e501342a0eeae8e7917385, type: 3}
       propertyPath: m_Name
       value: Bed02 (1-1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3466317680858418816, guid: d4552a5d54e501342a0eeae8e7917385, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336906877771278345, guid: d4552a5d54e501342a0eeae8e7917385, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
