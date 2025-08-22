@@ -1466,7 +1466,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD5E4\uB4DC\uD3F0 \uCC29\uC6A9\uC744 \uAD8C\uC7A5\uD569\uB2C8\uB2E4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ae3af356d9a8ca744a4f0bb075b2ea11, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 712d088cf53eb094aaf1790024aaca81, type: 2}
   m_sharedMaterial: {fileID: 7746391393140052674, guid: ae3af356d9a8ca744a4f0bb075b2ea11, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1781862628
