@@ -1,19 +1,27 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Setting : MonoBehaviour
 {
     private bool IsStopped = false;
-    public GameObject panel;
+    public GameObject setting;
+    public Canvas can;
+    
+    void Awake()
+    {
+        DontDestroyOnLoad(can);
+       
+    }
 
     private void Start()
     {
-        panel.SetActive(false);
+        setting.SetActive(false);
     }
 
     public void TheWorld()
     {
         Time.timeScale = 0;
-        panel.SetActive(IsStopped);
+        setting.SetActive(IsStopped);
         AudioListener.pause = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -22,7 +30,7 @@ public class Setting : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1;
-        panel.SetActive(IsStopped);
+        setting.SetActive(IsStopped);
         AudioListener.pause = false;
         Cursor.lockState= CursorLockMode.Locked;
         Cursor.visible = false;
@@ -33,7 +41,7 @@ public class Setting : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit(); // ���ø����̼� ����
+        Application.Quit(); 
 #endif
         Debug.Log("");
     }
