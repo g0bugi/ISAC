@@ -15,7 +15,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     [Header("Flow & Scene")]
     public float waitTime = 8f;          // 재생 지연(초) – DSP 시계 기준
     public float startSilenceAt = 50f;   // 재생 후 몇 초에 페이드 아웃 시작할지
-    public float changeSceneAt = 60f;    // 재생 후 몇 초에 씬 전환할지
+    public float changeSceneAt = 63f;    // 재생 후 몇 초에 씬 전환할지
     public string nextSceneName = "Hospital_1F";
 
     [Header("Detection (audio-thread)")]
@@ -49,6 +49,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
     private bool Stop = false;
 
     public GameObject AudioSource;
+    public BeforeSceneEnd beforeEnd;
 
     void Awake()
     {
@@ -90,6 +91,8 @@ public class AudioVolumeAnalyzer : MonoBehaviour
         if (playhead >= changeSceneAt)
         {
             // 프로젝트별 사용자 코드 유지
+            beforeEnd.BeforeSceneEndPanel.SetActive(true);
+            StartCoroutine(beforeEnd.Sequence());
             SceneManage.Instance.entryPointID = 0;
             SceneManager.LoadScene(nextSceneName);
             return;
@@ -114,7 +117,7 @@ public class AudioVolumeAnalyzer : MonoBehaviour
                 Vector3 range = new Vector3(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-5f, 5f), 0);
                 if (rippleManager != null)
                 {
-                    Debug.Log($"[AudioVolumeAnalyzer] Passing sprite: {(specificRippleSprite != null ? specificRippleSprite.name : "null")}");
+                    
                     rippleManager.PlayRippleEffect(AudioSource.transform.position + range, source.maxDistance, null);
                 }
 
