@@ -5,7 +5,12 @@ public class Television : MonoBehaviour, IInteractiable
 {
     public VideoPlayer player;
     bool IsPlay = false;
-    public AudioSource noise;
+    public GameObject noise;
+    
+    void Start()
+    {
+        noise.SetActive(false);
+    }
    public void Action()
     {
         Debug.Log("Æ¼ºñ´Ù~~");
@@ -13,12 +18,12 @@ public class Television : MonoBehaviour, IInteractiable
         if (IsPlay)
         {
             TurnOn();
-            noise.Play();
+            noise.SetActive(true);
         }
         else
         {
             TurnOff();
-            noise.Stop();
+            noise.SetActive(false);
         }
     }
 
