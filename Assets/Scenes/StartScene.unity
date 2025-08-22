@@ -1603,7 +1603,8 @@ MonoBehaviour:
   m_text: "'\uC0C9\uC774 \uD53C\uC544\uB178\uC758 \uAC74\uBC18\uC774\uB77C\uBA74,\r\n\uB208\uC740
     \uD53C\uC544\uB178\uC758 \uC904\uC744 \uB54C\uB9AC\uB294 \uD574\uBA38\uC774\uBA70,\r\n\uC601\uD63C\uC740
     \uC5EC\uB7EC \uAC1C\uC758 \uD604\uC744 \uAC00\uC9C4 \uD53C\uC544\uB178\uC774\uB2E4\u2019
-    \n                                                             - \uCE78\uB518\uC2A4\uD0A4"
+    \n\n                                                             - \uBC14\uC2E4\uB9AC
+    \uCE78\uB518\uC2A4\uD0A4, 1912"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 712d088cf53eb094aaf1790024aaca81, type: 2}
   m_sharedMaterial: {fileID: -1863978878774487986, guid: 712d088cf53eb094aaf1790024aaca81, type: 2}
