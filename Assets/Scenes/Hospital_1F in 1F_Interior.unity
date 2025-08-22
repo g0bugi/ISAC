@@ -2051,7 +2051,7 @@ PrefabInstance:
       objectReference: {fileID: 1306009708}
     - target: {fileID: 8038310322572365333, guid: 06e38b3798bd613478e4de86fdad1c9e, type: 3}
       propertyPath: dialogueCameraPitch
-      value: -15
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 8341776471252286389, guid: 06e38b3798bd613478e4de86fdad1c9e, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

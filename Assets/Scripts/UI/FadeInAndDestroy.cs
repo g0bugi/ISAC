@@ -23,10 +23,10 @@ public class FadeInAndDestroy : MonoBehaviour
         }
 
 
-        //if (playerMovementAndRotation != null)
-        //{
-        //    playerMovementAndRotation.enabled = false;
-        //}
+        if (playerMovementAndRotation != null)
+        {
+            playerMovementAndRotation.enabled = false;
+        }
 
 
         StartCoroutine(FadeIn());
