@@ -3763,6 +3763,7 @@ MonoBehaviour:
   talkIndex: 0
   fadeManager: {fileID: 1004890018}
   fadeOutDuration: 1
+  TalkEnd: 0
 --- !u!4 &424978433
 Transform:
   m_ObjectHideFlags: 0
@@ -8250,6 +8251,18 @@ MonoBehaviour:
   fadeOutDuration: 1
   move: {fileID: 1306009708}
   player: {fileID: 1306009706}
+  dialogueManager: {fileID: 983376224}
+  monologueLines:
+  - characterName: "\uB098"
+    dialogueText: "\uC774\uCABD\uC740 \uB098\uAC00\uB294 \uAE38\uC774 \uC544\uB2CC
+      \uAC83 \uAC19\uC544"
+    triggerNpcMovement: 0
+    targetMovePosition: {x: 0, y: 0, z: 0}
+    moveSpeed: 0
+    returnAfterMovement: 0
+    TalkEnd: 0
+    PassThis: 0
+    freezeNpcOnTalk: 0
 --- !u!1001 &1221680614
 PrefabInstance:
   m_ObjectHideFlags: 0

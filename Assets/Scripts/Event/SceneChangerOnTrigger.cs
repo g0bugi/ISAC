@@ -10,14 +10,16 @@ public class SceneChangerOnTrigger : MonoBehaviour
     public float fadeOutDuration = 1.0f; // --- 페이드 아웃에 걸릴 시간 추가 ---
     public Playermove move;
     public GameObject player;
+    public DialogueManager dialogueManager; // 독백을 실행할 DialogueManager
+    public DialogueLine[] monologueLines;
 
     private void OnTriggerEnter(Collider other)
     {
         // 충돌한 오브젝트의 태그가 'targetTag'에 설정된 태그와 일치하는지 확인합니다.
         if (other.CompareTag(targetTag))
         {
-            if(!DialogueManager.DidTalkWithNurse)
-            { 
+            if (!DialogueManager.DidTalkWithNurse)
+            {
                 StartCoroutine(Sequence());
                 return;
             }
@@ -66,6 +68,14 @@ public class SceneChangerOnTrigger : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
         yield return StartCoroutine(fadeManager.FadeIn(1));
-        move.SetCanMove(true);
+        if (dialogueManager != null && monologueLines.Length > 0)
+        {
+            dialogueManager.StartDialogue(monologueLines);
+        }
+        else
+        {
+            Debug.LogWarning("Dialogue Manager 또는 Monologue Lines가 설정되지 않았습니다.");
+            move.SetCanMove(true);
+        }
     }
 }
