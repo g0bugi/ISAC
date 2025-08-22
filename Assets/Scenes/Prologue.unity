@@ -882,7 +882,7 @@ MonoBehaviour:
   distortionFilter: {fileID: 1658351925}
   specificRippleSprite: {fileID: 21300000, guid: c70ad08318038c24684541acb438b1a7, type: 3}
   rippleManager: {fileID: 1251056466}
-  waitTime: 8
+  waitTime: 13
   startSilenceAt: 50
   changeSceneAt: 60
   nextSceneName: Hospital_1F In 1F_Interior
@@ -2167,6 +2167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747134884}
   - component: {fileID: 1747134886}
+  - component: {fileID: 1747134887}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -2202,6 +2203,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Clap: {fileID: 1225284180}
+--- !u!114 &1747134887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747134881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d493e1bfeb332547b50a3dc67714b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specificRippleSprite: {fileID: 21300000, guid: fecae189e139cdd4bab68554ef0ed42f, type: 3}
+  rippleManager: {fileID: 1251056466}
 --- !u!1 &1773894499
 GameObject:
   m_ObjectHideFlags: 0
