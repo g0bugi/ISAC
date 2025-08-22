@@ -2178,7 +2178,7 @@ MonoBehaviour:
   initialDelay: 0
   repeatInterval: 1
   specificRippleSprite: {fileID: 21300000, guid: 7ccf4cdb860e7174bb8b8a2658980eb7, type: 3}
-  RanOn: 0
+  RanOn: 1
 --- !u!1001 &274356524
 PrefabInstance:
   m_ObjectHideFlags: 0
