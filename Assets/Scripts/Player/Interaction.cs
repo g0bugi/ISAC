@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -22,6 +23,7 @@ public class Interaction : MonoBehaviour
 
     private GameObject marker; //플레이어한테 조작키 안내할 위치
     public Sprite sprite; // 조작키 이미지
+    public DialogManager manager;
 
     private bool IsMarker = false;
     private bool running = false;
@@ -37,7 +39,8 @@ public class Interaction : MonoBehaviour
     {
         // 1) 레이 쏘기
         bool hasHit = Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxdistance, mask);
-        if (hasHit && hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Object"))
+       
+        if (hasHit && hit.collider != null)
         {
             GameObject target = hit.collider.gameObject;
 
@@ -68,17 +71,29 @@ public class Interaction : MonoBehaviour
             {
                 move.canMove = false;
                 // 안전하게 인터페이스 호출
-                if (current.TryGetComponent<IInteractiable>(out var interact))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Object"))
                 {
-                    interact.Action();
+                    if (current.TryGetComponent<IInteractiable>(out var interact))
+                    {
+                        interact.Action();
+                    }
+                    else
+                    {
+                        // 상위나 자식에 붙어 있을 수도 있으면 필요 시 확장:
+                        var interactInParent = current.GetComponentInParent<IInteractiable>();
+                        if (interactInParent != null) interactInParent.Action();
+                        else
+                            return;
+                    }
                 }
-                else
+                else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("NPC"))
                 {
-                    // 상위나 자식에 붙어 있을 수도 있으면 필요 시 확장:
-                    var interactInParent = current.GetComponentInParent<IInteractiable>();
-                    if (interactInParent != null) interactInParent.Action();
+                    if (target.GetComponent<ObjData>() != null)
+                    {
+                        manager.Action(target);
+                    }
                 }
-                move.canMove = true;
+                    move.canMove = true;
             }
         }
         else
@@ -107,21 +122,24 @@ public class Interaction : MonoBehaviour
                 var sa = sr.color;
                 sa.a = 0f;
                 sr.color = sa;
-                Vector3 up = new Vector3(2, 0, 0);
+                Vector3 right = new Vector3(2, 0, 0);
+                
                 if (target.transform.childCount > 0)
                 {
                     // 자식이 있으면 첫 번째 자식 기준
-                    marker.transform.position = target.transform.GetChild(0).position + up;
+                    Vector3 pos = target.transform.GetChild(0).position;
+                    marker.transform.position = pos + right;
                 }
                 else
                 {
                     // 자식이 없으면 target 자체 기준
-                    marker.transform.position = target.transform.position + up;
+                    marker.transform.position = target.transform.position + right;
                 }
                 Debug.Log(target.name);
 
                 sr.sprite = sprite;
                 sr.transform.localScale *= 0.5f;
+                sr.transform.forward = sr.transform.position - transform.position;
                 StartCoroutine(Alpha(sr, true));
             }
             else
