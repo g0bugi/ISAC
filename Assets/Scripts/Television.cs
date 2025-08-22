@@ -6,24 +6,25 @@ public class Television : MonoBehaviour, IInteractiable
     public VideoPlayer player;
     public GameObject sound;
     bool IsPlay = false;
+    public GameObject noise;
     
     void Start()
     {
-        sound.SetActive(false);
+        noise.SetActive(false);
     }
    public void Action()
     {
-        Debug.Log("Æ¼ºñ´Ù~~");
+        Debug.Log("Æ¼ï¿½ï¿½ï¿½~~");
        IsPlay = !IsPlay;
         if (IsPlay)
         {
             TurnOn();
-            sound.SetActive(true);
+            noise.SetActive(true);
         }
         else
         {
             TurnOff();
-            sound.SetActive(false);
+            noise.SetActive(false);
         }
     }
 
