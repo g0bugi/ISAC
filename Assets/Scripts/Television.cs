@@ -4,7 +4,6 @@ using UnityEngine.Video;
 public class Television : MonoBehaviour, IInteractiable
 {
     public VideoPlayer player;
-    public GameObject sound;
     bool IsPlay = false;
     public GameObject noise;
     

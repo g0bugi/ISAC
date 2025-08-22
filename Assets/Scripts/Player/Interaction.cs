@@ -140,7 +140,7 @@ public class Interaction : MonoBehaviour
                 Debug.Log(target.name);
 
                 sr.sprite = sprite;
-                sr.transform.localScale *= 0.5f;
+                sr.transform.localScale *= 0.1f;
                 sr.transform.forward = sr.transform.position - transform.position;
                 StartCoroutine(Alpha(sr, true));
             }
